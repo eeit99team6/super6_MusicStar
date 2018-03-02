@@ -20,9 +20,7 @@
 			<li><a href="<c:url value="/pages/music.jsp"/>">音樂搜尋</a></li>
 			<li><a href="#">測試區</a>
 				<ul>
-					<li><a href="<c:url value="/testpages/test_table.jsp"/>">測試表格</a></li>
 					<li><a href="<c:url value="/testpages/test_fileupload.jsp"/>">上傳測試</a></li>
-					<li><a href="<c:url value="/testpages/test_google_login.jsp"/>">Google登入</a></li>
 				</ul></li>
 			<c:choose>
 				<c:when test="${not empty loginOK}">
@@ -64,9 +62,7 @@
 			<li><a href="<c:url value="/pages/music.jsp"/>">音樂搜尋</a></li>
 			<li><a href="#">測試區</a>
 				<ul>
-					<li><a href="<c:url value="/testpages/test_table.jsp"/>">測試表格</a></li>
 					<li><a href="<c:url value="/testpages/test_fileupload.jsp"/>">上傳測試</a></li>
-					<li><a href="<c:url value="/testpages/test_google_login.jsp"/>">google登入</a></li>
 				</ul></li>
 			<c:choose>
 				<c:when test="${not empty loginOK}">
