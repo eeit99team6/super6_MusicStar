@@ -241,7 +241,15 @@ var settings = {
 
     $(function () {
 
+<<<<<<< HEAD
         var $slideshow = $('.slideshow');
+=======
+        var $window = $(window),
+			$body = $('body'),
+			$slideshow = $('.slideshow');
+
+
+>>>>>>> branch 'master' of https://github.com/eeit99team6/super6_MusicStar.git
 
         // Prioritize "important" elements on medium.
         skel.on('+medium -medium', function () {
