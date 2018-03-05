@@ -50,8 +50,19 @@ public class MemberService
 	public MemberBean googleLogin(MemberBean bean)
 	{
 		MemberBean mb = null;
-		String mbrGoogleId = bean.getMbrGoogleId();
-		if (bean != null && mbrGoogleId != null && (mb = memberDAO.selectByGoogleId(mbrGoogleId)) != null)
+		String mbrGoogleId = null;
+		if (bean != null && (mbrGoogleId = bean.getMbrGoogleId()) != null && (mb = memberDAO.selectByGoogleId(mbrGoogleId)) != null)
+		{
+			return mb;
+		}
+		return null;
+	}
+	
+	public MemberBean fbLogin(MemberBean bean)
+	{
+		MemberBean mb = null;
+		String mbrFbId = null;
+		if (bean != null && (mbrFbId = bean.getMbrFbId()) != null && (mb = memberDAO.selectByFbId(mbrFbId)) != null)
 		{
 			return mb;
 		}

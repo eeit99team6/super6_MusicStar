@@ -80,6 +80,7 @@ ul.menu > li:last-child {
 }
 ul.menu li:last-child > a > img {
     height: 59px;
+    width: 59px;
     vertical-align: top;
     opacity: 0.75;
 }
@@ -232,3 +233,40 @@ ul.menu li:last-child > i {
         display: block;
     }
 }
+
+/* Social Login */
+#main_header .login_btn{
+	border-radius: 30px;
+	display: inline-block;
+	text-align: center; 
+	padding: 5px 0;
+	transition:background-color 0.5s ease;
+	cursor: pointer;
+}
+
+#main_header .login_btn > i{
+	color: white;
+}
+
+#google_login_btn {
+	background-color: rgba(255,170,51,0.5);	
+}
+
+#google_login_btn:hover {
+	background-color: rgba(255,170,51,0.8);	
+}
+
+#fb_login_btn{
+	background-color: rgba(0,0,150,0.5);
+}
+
+#fb_login_btn:hover{
+	background-color: rgba(0,0,150,0.8);
+}
+
+
+#main_header .login_btn:hover{
+
+}
+
+

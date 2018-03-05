@@ -7,6 +7,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="${ctx}/assets/js/jquery.scrolly.min.js"></script>
 <script src="${ctx}/assets/js/main.js"></script>
+<script src="https://apis.google.com/js/client:platform.js?onload=initClient" async defer></script>
 <script src="${ctx}/assets/js/main_header.js"></script>
 <script src="${ctx}/assets/js/jquery.jplayer.min.js"></script>
 <script src="${ctx}/assets/js/jplayer.playlist.min.js"></script>

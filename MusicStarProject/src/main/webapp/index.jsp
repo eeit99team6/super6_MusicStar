@@ -18,7 +18,6 @@
 	<jsp:include page="/includes/main_header.jsp" />
 	<!-- main_container start -->
 	<div id="main_container" class="container-fuild">
-	<div id="main_container" class="container-fuild">
 		<div class="slideshow full">
 			<section data-slide-image="${ctx}/assets/img/slideshow/night.jpg">
 				<a href="#">
@@ -52,7 +51,6 @@
 					</article>
 				</a>
 			</section>
-
 			<section data-slide-image="${ctx}/assets/img/slideshow/beach.jpg">
 				<a href="#">
 					<article class="inner">
@@ -62,7 +60,6 @@
 				</a>
 			</section>
 		</div>
-	</div>
 	</div>
 	<!-- main_container end -->
 	<jsp:include page="/includes/main_aside.jsp" />

@@ -25,8 +25,8 @@
 			<c:choose>
 				<c:when test="${not empty loginOK}">
 					<li><a href="#l"> ${loginOK.mbrName} <c:choose>
-								<c:when test="${not empty loginOK.mbrPhoto}">
-									<img src="${loginOK.mbrPhoto}" class="rounded-circle" />
+								<c:when test="${not empty mbrProfile}">
+									<img src="${mbrProfile}" class="rounded-circle" />
 								</c:when>
 								<c:otherwise>
 									<img src="${ctx}/assets/img/profile/init_profile.png" class="rounded-circle" />
@@ -107,16 +107,26 @@
 							</div>
 							<div class="modal-body">
 								<h6>
-									還不是會員? <a href="<c:url value="/pages/register.jsp"/>">註冊會員</a>
+									還不是會員? <a href="<c:url value="/pages/security/register.jsp"/>">註冊會員</a>
 								</h6>
 							</div>
 							<div class="modal-footer">
 								<span id="login_err" class="text-danger"></span>
-								<input type="submit" value="會員登入" class="btn" />
+								<input type="submit" value="會員登入" class="btn btn-outline-secondary" />
 							</div>
-							<div class="modal-body">
-								<h4>使用社群登入:</h4>
-								<div class="g-signin2" data-onsuccess="googleLogInSuccess"></div>
+							<div class="modal-body mx-auto">
+								<div class="container">
+								<div class="row">
+									<hr class="col-md-2">							
+									<h4 class="col-md-6 text-center">透過社群登入</h4>
+									<hr class="col-md-2">							
+								</div>
+								<div class="row">						
+									<div id="google_login_btn" title="透過Google帳號登入" class="col-md-4 login_btn"><i class="fab fa-google fa-3x"></i></div>				
+									<div id="fb_login_btn" title="透過FaceBook帳號登入" class="col-md-4 login_btn"><i class="fab fa-facebook-f fa-3x"></i></div>				
+													
+								</div>	
+								</div>	
 							</div>
 						</form>
 					</div>

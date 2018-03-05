@@ -1,6 +1,5 @@
 $(function() {
 	// audio player
-	var ctx = "/" + window.location.pathname.split("/")[1];	
 	var cssSelector = {
 		jPlayer : "#jplayer_main",
 		cssSelectorAncestor : "#jplayer_container"

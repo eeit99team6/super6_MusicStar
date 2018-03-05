@@ -11,7 +11,7 @@ public class Producer
 	 * @param contextPath : web應用的contextPath
 	 * @return cookie
 	 */
-	public static synchronized Cookie createCookie(String cookieName, String cookieValue,int cookieMaxAge,String contextPath)
+	public static Cookie createCookie(String cookieName, String cookieValue,int cookieMaxAge,String contextPath)
 	{
 		Cookie cookie = new Cookie(cookieName, cookieValue);
 		cookie.setMaxAge(30 * 60 * 60);
