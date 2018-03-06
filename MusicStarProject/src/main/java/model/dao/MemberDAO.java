@@ -27,7 +27,12 @@ public class MemberDAO
 
 	public MemberBean selectByGoogleId(String mbrGoogleId)
 	{
-		return mbrGoogleId != null ? getSession().createQuery("from MemberBean where mbrGoogleId = ?", MemberBean.class).setParameter(0, mbrGoogleId).uniqueResult() : null;
+		return mbrGoogleId != null ? getSession().createQuery("from MemberBean where mbrGoogleId = :mbrGoogleId", MemberBean.class).setParameter("mbrGoogleId", mbrGoogleId).uniqueResult() : null;
+	}
+
+	public MemberBean selectByFbId(String mbrFbId)
+	{
+		return mbrFbId != null ? getSession().createQuery("from MemberBean where mbrFbId = :mbrFbId", MemberBean.class).setParameter("mbrFbId", mbrFbId).uniqueResult() : null;
 	}
 
 	public List<MemberBean> selectAll()

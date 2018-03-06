@@ -1,32 +1,19 @@
-/*
-	Hielo by TEMPLATED
-	templated.co @templatedco
-	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
-*/
-
 var settings = {
 
     slideshow: {
-
         // Indicators (= the clickable dots at the bottom).
         indicators: true,
-
         // Transition speed (in ms)
         // For timing purposes only. It *must* match the transition speed of "#slideshow > section".
         speed: 1500,
-
         // Transition delay (in ms)
         delay: 5000,
-
         // Parallax intensity (between 0 and 1; higher = more intense, lower = less intense; 0 = off)
         parallax: 0.25
-
     }
-
 };
 
 (function ($) {
-
     skel.breakpoints({
         xlarge: '(max-width: 1680px)',
         large: '(max-width: 1280px)',
@@ -254,18 +241,7 @@ var settings = {
 
     $(function () {
 
-        var $window = $(window),
-			$body = $('body'),
-			$slideshow = $('.slideshow');
-
-        // Disable animations/transitions until the page has loaded.
-        $body.addClass('is-loading');
-
-        $window.on('load', function () {
-            window.setTimeout(function () {
-                $body.removeClass('is-loading');
-            }, 100);
-        });
+        var $slideshow = $('.slideshow');
 
         // Prioritize "important" elements on medium.
         skel.on('+medium -medium', function () {
