@@ -65,14 +65,11 @@
 				</div>
 					<div class="list-group-item">
 						<label>會員頭像：</label>
-						<span id="profileerror" class="text-danger"></span>
 						<input type="file" id="profile" name="mbrProfile" accept="image/*"/>
+						<div><span id="profileerror" class="text-danger"></span></div>
 					</div>
 				</div>
 				<div class="card-footer text-center">
-					<div>
-						<span id="errorMsg" class="text-danger"></span>
-					</div>
 					<input type="submit" value="確認註冊" class="col-md-6 mx-auto btn btn-info" />
 				</div>
 			</form>

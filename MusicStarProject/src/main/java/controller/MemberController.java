@@ -43,7 +43,7 @@ public class MemberController {
 
 	@RequestMapping(path = "/members/registerAjax", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
 	@ResponseBody
-	public String registerAjax(HttpSession session, @RequestPart("mbrProfile") MultipartFile mbrProfile,
+	public String registerAjax(HttpSession session, @RequestPart(value = "mbrProfile", required = false) MultipartFile mbrProfile,
 			MemberBean bean, BindingResult result, @RequestHeader(value = "referer", required = false) String referer) {
 		Map<String, Map<String, String>> data = new HashMap<>();
 		Map<String, String> error = new HashMap<>();
@@ -67,7 +67,7 @@ public class MemberController {
 			error.put("genderError", "性別必須選擇");
 		}
 
-		if (mbrProfile != null) {
+		if (!mbrProfile.isEmpty()) {
 			String contentType = mbrProfile.getContentType();		
 			if (contentType.indexOf("image") != -1) {
 
@@ -93,7 +93,6 @@ public class MemberController {
 				success.put("referer", referer);
 			} else {
 				error.put("idError", "帳號重複!");
-				error.put("message", "註冊失敗!");
 			}
 		}
 

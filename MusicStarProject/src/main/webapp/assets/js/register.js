@@ -28,8 +28,7 @@ $(function() {
 					$("#pwdCheckError").html(data.error.pwdError || "");
 					$("#emailError").html(data.error.emailError || "");
 					$("#genderError").html(data.error.genderError || "");
-					$("#profileerror").html(data.error.profileError || "");
-					$("#errorMsg").html(data.error.message || "");
+					$("#profileerror").html(data.error.profileError || "");				
 				}
 			}
 		});		
