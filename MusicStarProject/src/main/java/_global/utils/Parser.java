@@ -1,5 +1,6 @@
 package _global.utils;
 
+import java.io.Reader;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 
@@ -20,7 +21,7 @@ public class Parser
 	 * @param parseStr 要轉成Integer的字串
 	 * @return 轉換成功 : Integer  ； 轉換失敗 : null
 	 */
-	public synchronized static Integer parseInt(String parseStr)
+	public static Integer parseInt(String parseStr)
 	{
 		try
 		{
@@ -35,9 +36,30 @@ public class Parser
 	 * @param src 要轉成JSON字串的來源物件
 	 * @return JSON字串
 	 */
-	public synchronized static String toJson(Object src)
+	public static String toJson(Object src)
 	{
 		return gson.toJson(src);
+	}
+	
+	/**
+	 * @param <T> JSON物件的類型
+	 * @param jsonString 要轉成JSON物件的字串
+	 * @param classOfT 所需JSON物件所屬的Class
+	 * @return JSON物件
+	 */
+	public static <T> T parseJson(String jsonString, Class<T> classOfT)
+	{
+		return gson.fromJson(jsonString,classOfT);
+	}
+	
+	/**
+	 * @param reader 要讀取的JSON物件的Reader
+	 * @param classOfT 要轉成JSON物件的Class
+	 * @return JSON物件
+	 */
+	public static <T> T parseJson(Reader reader, Class<T> classOfT)
+	{
+		return gson.fromJson(reader,classOfT);
 	}
 	
 	/** 
@@ -47,7 +69,7 @@ public class Parser
 	 * @param message : 明文(要加密的字串) 
 	 * @return 加密後的 message
 	 */
-	public synchronized static String encryptString(String message) 
+	public static String encryptString(String message) 
     {
 	//  DES : Data Encryption Standard, 一種對稱式加密演算法。
 	//           美國聯邦政府於1976年定為聯邦資料處理標準(FIPS)，它的
@@ -70,7 +92,7 @@ public class Parser
 	String encryptedString = "";
 	try {
 		Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding"); 
-		SecretKeySpec secretKey = new SecretKeySpec(Constant.SecurityKey.getBytes(), "AES");
+		SecretKeySpec secretKey = new SecretKeySpec(Constant.securityKey.getBytes(), "AES");
 		cipher.init(Cipher.ENCRYPT_MODE, secretKey);
 		encryptedString = DatatypeConverter.printBase64Binary(cipher.doFinal(message.getBytes()));
 	} catch (InvalidKeyException e) {
@@ -94,12 +116,12 @@ public class Parser
 	 * @param encryptMessage : 加密文(要解密的字串) 
 	 * @return 解密後的 message
 	 */
-	public static synchronized String decryptString(String encryptMessage)
+	public static String decryptString(String encryptMessage)
 			 {
 		String decryptedString = "";
 		try {
 			Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding"); 
-			SecretKeySpec secretKey = new SecretKeySpec(Constant.SecurityKey.getBytes(), "AES");
+			SecretKeySpec secretKey = new SecretKeySpec(Constant.securityKey.getBytes(), "AES");
 			cipher.init(Cipher.DECRYPT_MODE, secretKey);
 			byte[] b = DatatypeConverter.parseBase64Binary(encryptMessage);
 			decryptedString = new String(cipher.doFinal(b));

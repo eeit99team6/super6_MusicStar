@@ -25,7 +25,7 @@ public class MemberBean
 	@Column(name = "MEMBER_EMAIL")
 	String mbrEmail;
 	@Column(name = "MEMBER_PHOTO")
-	Byte[] mbrPhoto;
+	String mbrPhoto;
 	@Column(name = "MEMBER_GOOGLE_ID")
 	String mbrGoogleId;
 	@Column(name = "MEMBER_FB_ID")
@@ -85,12 +85,12 @@ public class MemberBean
 		this.mbrEmail = mbrEmail;
 	}
 
-	public Byte[] getMbrPhoto()
+	public String getMbrPhoto()
 	{
 		return mbrPhoto;
 	}
 
-	public void setMbrPhoto(Byte[] mbrPhoto)
+	public void setMbrPhoto(String mbrPhoto)
 	{
 		this.mbrPhoto = mbrPhoto;
 	}

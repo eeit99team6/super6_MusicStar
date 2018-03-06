@@ -4,11 +4,6 @@
     /* 根據目前裝置的畫面寬度來設定可視區域的寬 */
 }
 
-body {
-	min-height: 100vh;
-	min-width: 500px;
-}
-
 body.is-loading *,
 body.is-loading *:before,
 body.is-loading *:after {
