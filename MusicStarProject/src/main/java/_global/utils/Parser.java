@@ -17,7 +17,6 @@ import com.google.gson.GsonBuilder;
 public class Parser
 {
 	private static Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
-
 	/**
 	 * @param parseStr 要轉成Integer的字串
 	 * @return 轉換成功 : Integer  ； 轉換失敗 : null
