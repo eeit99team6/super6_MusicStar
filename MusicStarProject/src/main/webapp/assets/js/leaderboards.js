@@ -1,10 +1,10 @@
 $(document).ready(function(){
-	$.getJSON('leaderboards.count.controller',function(datacount){			
+	$.getJSON(ctx + '/leaderboards.count.controller',function(datacount){			
 		var docFrag =$(document.createDocumentFragment());
 		var docFragIn =$(document.createDocumentFragment());
 		$.ajaxSettings.async = false;
 		for(var i=1;i<=datacount;i++){
-			$.getJSON('leaderboards.controller',{'music_contest_id':i},function(data){
+			$.getJSON(ctx + '/leaderboards.controller',{'music_contest_id':i},function(data){
 	 	    	console.log(data);
 				$.each(data,function(index,mu){				
 					var cc1=$('<div></div>').html('<img src='+mu[1].music_photo+'>')
