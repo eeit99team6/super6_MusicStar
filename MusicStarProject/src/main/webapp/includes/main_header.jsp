@@ -14,7 +14,7 @@
 				</ul></li>
 			<li><a href="<c:url value="/pages/rank.jsp#title"/>">歌曲排行</a>
 				<ul>
-					<li><a href="<c:url value="/pages/rank.jsp#contests"/>">賽事排行</a></li>
+					<li><a href="<c:url value="/pages/leaderboards.jsp"/>">賽事排行</a></li>
 					<li><a href="<c:url value="/pages/rank.jsp#likes"/>">創作排行</a></li>
 				</ul></li>
 			<li><a href="<c:url value="/pages/music.jsp"/>">音樂搜尋</a></li>
@@ -56,7 +56,7 @@
 				</ul></li>
 			<li><a href="<c:url value="/pages/rank.jsp#title"/>">歌曲排行</a>
 				<ul>
-					<li><a href="<c:url value="/pages/rank.jsp#contests"/>">賽事排行</a></li>
+					<li><a href="<c:url value="/pages/leaderboards.jsp"/>">賽事排行</a></li>
 					<li><a href="<c:url value="/pages/rank.jsp#likes"/>">創作排行</a></li>
 				</ul></li>
 			<li><a href="<c:url value="/pages/music.jsp"/>">音樂搜尋</a></li>

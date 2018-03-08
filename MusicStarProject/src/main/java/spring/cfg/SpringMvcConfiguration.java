@@ -87,13 +87,33 @@ public class SpringMvcConfiguration implements WebMvcConfigurer
     }
     
     @Bean
-    public String profileDirectoryPath() throws MalformedURLException {
-    	String profileDirectoryPath = imagesDirectoryPath()+ "profiles" + File.separator;
-		File profileDir = new File(profileDirectoryPath);
-		if (!profileDir.exists()) {
-			profileDir.mkdir();
+    public String profilesDirectoryPath() throws MalformedURLException {
+    	String profilesDirectoryPath = imagesDirectoryPath()+ "profiles" + File.separator;
+		File profilesDir = new File(profilesDirectoryPath);
+		if (!profilesDir.exists()) {
+			profilesDir.mkdir();
 		}
-		return profileDirectoryPath;
-    }   
+		return profilesDirectoryPath;
+    }
+   
+    @Bean
+    public String coverDirectoryPath() throws MalformedURLException {
+    	String coverDirectoryPath = imagesDirectoryPath()+ "cover" + File.separator;
+		File coverDir = new File(coverDirectoryPath);
+		if (!coverDir.exists()) {
+			coverDir.mkdir();
+		}
+		return coverDirectoryPath;
+    } 
+    
+    @Bean
+    public String audiosDirectoryPath() throws MalformedURLException {
+    	String audiosDirectoryPath = fileSourcePath() + "audios" + File.separator;
+		File audiosDir = new File(audiosDirectoryPath);
+		if (!audiosDir.exists()) {
+			audiosDir.mkdir();
+		}
+		return audiosDirectoryPath;
+    } 
 
 }
