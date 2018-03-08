@@ -12,10 +12,11 @@ import javax.crypto.spec.SecretKeySpec;
 import javax.xml.bind.DatatypeConverter;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 public class Parser
 {
-	private static Gson gson = new Gson();
+	private static Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 
 	/**
 	 * @param parseStr 要轉成Integer的字串
