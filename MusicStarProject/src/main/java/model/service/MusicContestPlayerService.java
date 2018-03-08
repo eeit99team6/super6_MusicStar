@@ -15,12 +15,12 @@ import model.dao.MusicContestPlayerDAO;
 public class MusicContestPlayerService {
 	
 	@Autowired
-	private MusicContestPlayerDAO musicContestPlayersDAO;
+	private MusicContestPlayerDAO musicContestPlayerDAO;
 	
 	public List<MusicContestPlayerBean> selectContestIdTop3(MusicContestPlayerBean bean){
 		List<MusicContestPlayerBean> result = null;
 		if(bean!=null && bean.getMusic_contest_id()!=null) {
-			List<MusicContestPlayerBean> temp = musicContestPlayersDAO.selectContestIdTop3(bean.getMusic_contest_id());
+			List<MusicContestPlayerBean> temp = musicContestPlayerDAO.selectContestIdTop3(bean.getMusic_contest_id());
 			if(temp!=null) {
 				result = new ArrayList<MusicContestPlayerBean>();
 				result.addAll(temp);
@@ -34,7 +34,7 @@ public class MusicContestPlayerService {
 	public List<MusicContestPlayerBean> selectContestIdTop10(MusicContestPlayerBean bean){
 		List<MusicContestPlayerBean> result = null;
 		if(bean!=null && bean.getMusic_contest_id()!=null) {
-			List<MusicContestPlayerBean> temp = musicContestPlayersDAO.selectContestIdTop10(bean.getMusic_contest_id());
+			List<MusicContestPlayerBean> temp = musicContestPlayerDAO.selectContestIdTop10(bean.getMusic_contest_id());
 			if(temp!=null) {
 				result = new ArrayList<MusicContestPlayerBean>();
 				result.addAll(temp);
@@ -45,5 +45,12 @@ public class MusicContestPlayerService {
 		return result;
 	}
 	
+	public List<MusicContestPlayerBean> selectContestIdCount(MusicContestPlayerBean bean) {
+		List<MusicContestPlayerBean> result = null;
+		if(bean!=null) {
+			result = musicContestPlayerDAO.selectContestIdCount();
+		}
+		return result;
+	}
 	
 }

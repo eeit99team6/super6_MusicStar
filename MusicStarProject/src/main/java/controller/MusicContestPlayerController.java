@@ -45,5 +45,23 @@ public class MusicContestPlayerController {
 		}						
 	}
 	
+	@RequestMapping(path={"/leaderboards.count.controller"},method={RequestMethod.GET,RequestMethod.POST},produces="application/json;charset=UTF-8")
+	@ResponseBody
+	public String methodCount(MusicContestPlayerBean bean, Model model) {	
+		Map<String,String> errors = new HashMap<>();
+		model.addAttribute("errors",errors);
+		
+		Gson gson = new Gson();
+		List<MusicContestPlayerBean> beanList = musicContestPlayerService.selectContestIdCount(bean);
+		if(beanList==null) {
+			errors.put("action", "UnKnow Action");
+			return "leaderboards.UnKnow";
+		}else {
+			model.addAttribute("datacount",beanList);						
+			String jsonCount=gson.toJson(beanList);				
+			return jsonCount;							
+		}						
+	}
+	
 	
 }
