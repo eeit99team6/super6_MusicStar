@@ -29,5 +29,7 @@
 		<property name="contextRelative" value="true"></property>
 		<property name="url" value="/testpages/test_google_login.jsp"></property>
 	</bean>
-
+	<bean id="leaderboards.UnKnow" class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/pages/leaderboards.jsp"></property>
+	</bean>
 </beans>

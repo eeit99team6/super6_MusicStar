@@ -6,6 +6,7 @@
     overflow: auto;
     padding: 20px 0;
     font-family: "Open Sans", Arial, Helvetica, sans-serif;
+    clear:both;
 }
 #main_footer h1,
 #main_footer h2,
