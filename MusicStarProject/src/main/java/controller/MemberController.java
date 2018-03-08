@@ -25,6 +25,7 @@ import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken.Payload;
 
 import _global.utils.Checker;
+import _global.utils.Constant;
 import _global.utils.Parser;
 import _global.utils.Processor;
 import _global.utils.Producer;
@@ -39,12 +40,23 @@ public class MemberController {
 	@Autowired
 	MemberService memberService;
 	@Autowired
-	String profileDirectoryPath;
+	String profilesDirectoryPath;
+	@Autowired
+	String coverDirectoryPath;
+	@Autowired
+	String audiosDirectoryPath;
+	
+	@RequestMapping(path = "/members/show", method = RequestMethod.GET, produces = "application/json; charset=UTF-8")
+	@ResponseBody
+	public String show() {
+		return Parser.toJson(memberService.search(null));
+	}
 
 	@RequestMapping(path = "/members/registerAjax", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
 	@ResponseBody
-	public String registerAjax(HttpSession session, @RequestPart(value = "mbrProfile", required = false) MultipartFile mbrProfile,
-			MemberBean bean, BindingResult result, @RequestHeader(value = "referer", required = false) String referer) {
+	public String registerAjax(HttpSession session,
+			@RequestPart(value = "mbrProfile", required = false) MultipartFile mbrProfile, MemberBean bean,
+			BindingResult result, @RequestHeader(value = "referer", required = false) String referer) {
 		Map<String, Map<String, String>> data = new HashMap<>();
 		Map<String, String> error = new HashMap<>();
 		data.put("error", error);
@@ -67,26 +79,33 @@ public class MemberController {
 			error.put("genderError", "性別必須選擇");
 		}
 
+		String contentType = mbrProfile.getContentType();
 		if (!mbrProfile.isEmpty()) {
-			String contentType = mbrProfile.getContentType();		
-			if (contentType.indexOf("image") != -1) {
-
-				String fileName = bean.getMbrId()+ "." + contentType.split("/")[1];
-				System.out.println("fileName = " + fileName);
-				try {
-					mbrProfile.transferTo(new File(profileDirectoryPath + fileName));
-					bean.setMbrPhoto("/FileSource/images/profiles/" + fileName);
-				} catch (IllegalStateException | IOException e) {
-					e.printStackTrace();
-				}
-			}else {
+			if (contentType.indexOf("image") == -1) {
 				error.put("profileError", "上傳必須為圖檔");
-			}
+			} 
 		}
 
 		if (!Checker.notEmpty(error)) {
 
 			if (memberService.register(bean)) {
+				String mbrId = bean.getMbrId();
+				String fileName = mbrId + "." + contentType.split("/")[1];
+				try {
+					mbrProfile.transferTo(new File(profilesDirectoryPath + fileName));
+					bean.setMbrPhoto(Constant.profilesDirectory + fileName);
+				} catch (IllegalStateException | IOException e) {
+					e.printStackTrace();
+				}				
+				File coverDir = new File(coverDirectoryPath + mbrId);	
+				if (!coverDir.exists()) {
+					coverDir.mkdir();
+				}				
+				File audioDir = new File(audiosDirectoryPath + mbrId);	
+				if (!audioDir.exists()) {
+					audioDir.mkdir();
+				}
+				
 				Map<String, String> success = new HashMap<>();
 				data.put("success", success);
 				success.put("message", "註冊成功!");
@@ -223,7 +242,7 @@ public class MemberController {
 
 		FaceBook fbAccessToken = Processor.runHttpGet("https://graph.facebook.com/v2.12/me", FaceBook.class,
 				"fields=id,name,email,picture", "access_token=" + accessToken);
-
+		
 		json.fb.Error error = fbAccessToken.getError();
 		if (error == null) {
 
