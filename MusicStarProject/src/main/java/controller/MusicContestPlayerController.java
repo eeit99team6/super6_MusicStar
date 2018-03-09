@@ -64,5 +64,23 @@ public class MusicContestPlayerController {
 		}						
 	}
 	
+	@RequestMapping(path={"/leaderboards-1.controller"},method={RequestMethod.GET,RequestMethod.POST},produces="application/json;charset=UTF-8")
+	@ResponseBody
+	public String method2(MusicContestPlayerBean bean, Model model) {	
+		Map<String,String> errors = new HashMap<>();
+		model.addAttribute("errors",errors);
+		
+		Gson gson = new Gson();
+		List<MusicContestPlayerBean> beanList = musicContestPlayerService.selectContestIdTop10(bean);
+		if(beanList==null) {
+			errors.put("action", "UnKnow Action");
+			return "leaderboards.UnKnow";
+		}else {
+			model.addAttribute("data",beanList);						
+			String jsonString =gson.toJson(beanList);				
+			return jsonString;							
+		}						
+	}
+	
 	
 }

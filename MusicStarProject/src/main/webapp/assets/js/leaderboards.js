@@ -16,7 +16,7 @@ $(document).ready(function(){
 			});
 	 	    		var rr1=$('<h2 class="leaderboard-title1"><i class="fa fa-play" style="font-size:48px;color:red"></i></h2>').append(data[0][2].music_contest_name)
 		    		var rr2=$('<ol class="leaderboard-ol"></ol>').append(docFragIn)
-		    		var rr3=$('<a href="${ctx}/leaderboards-1.jsp?music_contest_id='+data[0][2].music_contest_id+'" class="btn btn-outline-danger" role="button" aria-pressed="true">看本榜Top10</a>')
+		    		var rr3=$('<a href="' + ctx + '/pages/leaderboards-1.jsp?music_contest_id='+data[0][2].music_contest_id+'" class="btn btn-outline-danger" role="button" aria-pressed="true">看本榜Top10</a>')
 		    		var ww=$('<div id="leaderboard-max1" class="container border border-danger"></div>').append([rr1,rr2,rr3])
 		    		docFrag.append(ww);					    								
 				$("#leaderboard-outer").append(docFrag);
