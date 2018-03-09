@@ -40,4 +40,16 @@ public class MusicContestVoteBean implements Serializable {
 		this.music_contest_player_id = music_contest_player_id;
 	}
 
+	public MusicContestVoteBean(Integer music_contest_id, String voter_id, String music_contest_player_id) {
+		this.music_contest_id = music_contest_id;
+		this.voter_id = voter_id;
+		this.music_contest_player_id = music_contest_player_id;
+	}
+	public MusicContestVoteBean(Integer music_contest_id, String voter_id) {
+		this.music_contest_id = music_contest_id;
+		this.voter_id = voter_id;
+	}
+	public MusicContestVoteBean() {
+	}
+
 }
