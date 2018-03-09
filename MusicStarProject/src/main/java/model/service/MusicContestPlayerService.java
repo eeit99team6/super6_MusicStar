@@ -51,8 +51,7 @@ public class MusicContestPlayerService {
 		}
 		return result;
 	}
-	
-<<<<<<< HEAD
+
 	/**
 	 * 取得指定賽事ID的參賽者資料
 	 * 
@@ -62,14 +61,15 @@ public class MusicContestPlayerService {
 	 */
 	public List<Map> getContestPlayers(Integer musicCtstId) {
 		return musicCtstId != null ? musicContestPlayerDAO.selectPlayersByMusicCtstId(musicCtstId) : null;
-=======
+	}
+	
 	public List<MusicContestBean> selectContestIdCount(MusicContestBean bean) {
 		List<MusicContestBean> result = null;
 		if(bean!=null) {
 			result = musicContestDAOHibernate.selectContestIdCount();
 		}
 		return result;
->>>>>>> branch 'master' of https://github.com/eeit99team6/super6_MusicStar.git
+
 	}
 	
 }
