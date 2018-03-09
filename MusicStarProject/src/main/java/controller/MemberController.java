@@ -28,7 +28,6 @@ import _global.utils.Checker;
 import _global.utils.Constant;
 import _global.utils.Parser;
 import _global.utils.Processor;
-import _global.utils.Producer;
 import json.fb.FaceBook;
 import model.bean.MemberBean;
 import model.service.MemberService;
@@ -140,20 +139,20 @@ public class MemberController {
 			if (rememberme != null) {
 				String user = bean.getMbrId();
 				String pwd = bean.getMbrPwd();
-				cookieUser = Producer.createCookie("user", user, 30 * 60 * 60, contextPath);
-				cookiePassword = Producer.createCookie("password", Parser.encryptString(pwd), 30 * 60 * 60,
+				cookieUser = Processor.createCookie("user", user, 30 * 60 * 60, contextPath);
+				cookiePassword = Processor.createCookie("password", Parser.encryptString(pwd), 30 * 60 * 60,
 						contextPath);
-				cookieRememberMe = Producer.createCookie("rm", "enabled", 30 * 60 * 60, contextPath);
-				cookieAutoLogin = Producer.createCookie("autologin", "enabled", 30 * 60 * 60, contextPath);
+				cookieRememberMe = Processor.createCookie("rm", "enabled", 30 * 60 * 60, contextPath);
+				cookieAutoLogin = Processor.createCookie("autologin", "enabled", 30 * 60 * 60, contextPath);
 				session.setAttribute("rememberMe", "enabled");
 				session.setAttribute("rmUser", user);
 				session.setAttribute("rmPassword", pwd);
 			} else {
 				// MaxAge==0 表示要請瀏覽器刪除此Cookie
-				cookieUser = Producer.createCookie("user", "", 0, contextPath);
-				cookiePassword = Producer.createCookie("password", "", 0, contextPath);
-				cookieRememberMe = Producer.createCookie("rm", "disabled", 0, contextPath);
-				cookieAutoLogin = Producer.createCookie("autologin", "disabled", 0, contextPath);
+				cookieUser = Processor.createCookie("user", "", 0, contextPath);
+				cookiePassword = Processor.createCookie("password", "", 0, contextPath);
+				cookieRememberMe = Processor.createCookie("rm", "disabled", 0, contextPath);
+				cookieAutoLogin = Processor.createCookie("autologin", "disabled", 0, contextPath);
 				session.setAttribute("rememberMe", "disabled");
 				session.removeAttribute("rmUser");
 				session.removeAttribute("rmPassword");
@@ -177,7 +176,7 @@ public class MemberController {
 		String contextPath = servletContext.getContextPath();
 		session.removeAttribute("loginOK");
 		session.removeAttribute("mbrProfile");
-		Cookie cookieAutoLogin = Producer.createCookie("autologin", "disabled", 0, contextPath);
+		Cookie cookieAutoLogin = Processor.createCookie("autologin", "disabled", 0, contextPath);
 		response.addCookie(cookieAutoLogin);
 		return "r.index";
 	}
@@ -222,6 +221,15 @@ public class MemberController {
 
 				while (!memberService.register(bean)) {
 					bean.setMbrId(bean.getMbrId() + "_" + i++);
+				}
+				String mbrId = bean.getMbrId();
+				File coverDir = new File(coverDirectoryPath + mbrId);	
+				if (!coverDir.exists()) {
+					coverDir.mkdir();
+				}				
+				File audioDir = new File(audiosDirectoryPath + mbrId);	
+				if (!audioDir.exists()) {
+					audioDir.mkdir();
 				}
 				session.setAttribute("loginOK", bean);
 				session.setAttribute("mbrProfile", pictureUrl);
@@ -279,6 +287,15 @@ public class MemberController {
 
 				while (!memberService.register(bean)) {
 					bean.setMbrId(bean.getMbrId() + "_" + i++);
+				}
+				String mbrId = bean.getMbrId();
+				File coverDir = new File(coverDirectoryPath + mbrId);	
+				if (!coverDir.exists()) {
+					coverDir.mkdir();
+				}				
+				File audioDir = new File(audiosDirectoryPath + mbrId);	
+				if (!audioDir.exists()) {
+					audioDir.mkdir();
 				}
 				session.setAttribute("loginOK", bean);
 				session.setAttribute("mbrProfile", pictureUrl);

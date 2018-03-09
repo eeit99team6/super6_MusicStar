@@ -1,6 +1,7 @@
 package model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -77,6 +78,29 @@ public class MusicContestPlayerDAO {
 			return true;
 		}
 		return false;
+	}
+	
+	/**
+	 * 取得指定賽事ID的參賽者資料
+	 * @author Phil
+	 * @param musicCtstId 賽事的ID
+	 * @return 指定賽事參賽者資料的List
+	 */
+	public List<Map> selectPlayersByMusicCtstId(Integer musicCtstId)
+	{
+		String query = "select new Map (m.music_name as musicName, m.music_photo as musicPhoto, m.music_description as musicDescription, m.music_lyrics as musicLyrics, m.music_link as musicLink, m.music_member_id as musicCtstPlayerId, mcp.music_contest_players_votes as musicCtstVotes) from MusicContestPlayerBean mcp join MusicBean m on mcp.music_id = m.music_id where mcp.music_contest_id = :musicCtstId";
+		return musicCtstId != null ? getSession().createQuery(query,Map.class).setParameter("musicCtstId", musicCtstId).list(): null;
+	}
+	
+	/**
+	 * 取得所有賽事的參賽者資料
+	 * @author Phil
+	 * @return 所有賽事參賽者資料的List
+	 */
+	public List<Map> selectAllMusicCtstPlayers()
+	{
+		String query = "select new Map (m.music_name as musicName, m.music_photo as musicPhoto, m.music_description as musicDescription, m.music_lyrics as musicLyrics, m.music_link as musicLink, m.music_member_id as musicCtstPlayerId, mcp.music_contest_players_votes as musicCtstVotes) from MusicContestPlayerBean mcp join MusicBean m on mcp.music_id = m.music_id";
+		return getSession().createQuery(query,Map.class).list();
 	}
 	
 }

@@ -3,6 +3,10 @@ package _global.utils;
 import java.io.Reader;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
@@ -17,6 +21,8 @@ import com.google.gson.GsonBuilder;
 public class Parser
 {
 	private static Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+	SimpleDateFormat sdfForTW = new SimpleDateFormat("yyyy-MM-dd", Locale.TAIWAN);
+	
 	/**
 	 * @param parseStr 要轉成Integer的字串
 	 * @return 轉換成功 : Integer  ； 轉換失敗 : null
@@ -137,5 +143,28 @@ public class Parser
 			e.printStackTrace();
 		}
 		return decryptedString;
-	}	
+	}
+	
+	/**
+	 * @param date 要轉成字串的Date物件
+	 * @return "yyyy-MM-dd"日期格式的字串
+	 */
+	public String formatDate(Date date) {
+		return sdfForTW.format(date);
+	}
+	
+	/**
+	 * @param source 要轉成Date的字串
+	 * @return 轉換成功 : Date物件  ； 轉換失敗 : null
+	 */
+	public Date parseDate(String source) {
+		try {
+			return sdfForTW.parse(source);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	
 }
