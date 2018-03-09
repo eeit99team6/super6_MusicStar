@@ -78,7 +78,7 @@ public class MemberController {
 				|| !(Checker.notEmpty(gneder) && (gneder.toString().equals("M") || gneder.toString().equals("F")))) {
 			error.put("genderError", "性別必須選擇");
 		}
-
+		
 		String contentType = mbrProfile.getContentType();
 		if (!mbrProfile.isEmpty()) {
 			if (contentType.indexOf("image") == -1) {
