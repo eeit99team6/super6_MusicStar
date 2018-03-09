@@ -42,8 +42,6 @@
 
 		FB.AppEvents.logPageView();
 		FB.getLoginStatus(function(response) {
-			console.log("載入畫面時~~");
-			console.log(response);
 		});
 	};
 	(function(d, s, id) {
@@ -106,12 +104,8 @@ $(function() {
 		//FB Login
 		$("#fb_login_btn").click(function() {
 			FB.login(function(response) {
-				console.log("點擊登入後~~");
 				if (response.status === 'connected') {
-					console.log("連結至FB成功!!");
 					fbLoginAjax(response.authResponse.accessToken);
-				} else {
-					console.log("連結至FB失敗!!");
 				}
 			}, {
 				scope : 'public_profile,email'
