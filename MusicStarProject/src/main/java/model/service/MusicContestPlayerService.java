@@ -2,6 +2,7 @@ package model.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,8 +19,10 @@ public class MusicContestPlayerService {
 	
 	@Autowired
 	private MusicContestPlayerDAO musicContestPlayerDAO;
+
 	@Autowired
 	private MusicContestDAOHibernate musicContestDAOHibernate;
+
 	
 	public List<MusicContestPlayerBean> selectContestIdTop3(MusicContestPlayerBean bean){
 		List<MusicContestPlayerBean> result = null;
@@ -48,6 +51,17 @@ public class MusicContestPlayerService {
 		}
 		return result;
 	}
+
+	/**
+	 * 取得指定賽事ID的參賽者資料
+	 * 
+	 * @author Phil
+	 * @param musicCtstId 賽事的ID
+	 * @return 指定賽事參賽者資料的List
+	 */
+	public List<Map> getContestPlayers(Integer musicCtstId) {
+		return musicCtstId != null ? musicContestPlayerDAO.selectPlayersByMusicCtstId(musicCtstId) : null;
+	}
 	
 	public List<MusicContestBean> selectContestIdCount(MusicContestBean bean) {
 		List<MusicContestBean> result = null;
@@ -55,6 +69,7 @@ public class MusicContestPlayerService {
 			result = musicContestDAOHibernate.selectContestIdCount();
 		}
 		return result;
+
 	}
 	
 }

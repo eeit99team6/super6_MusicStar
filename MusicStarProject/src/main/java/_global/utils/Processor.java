@@ -4,6 +4,11 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.sql.Date;
+import java.time.ZoneId;
+import java.util.TimeZone;
+
+import javax.servlet.http.Cookie;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -105,6 +110,29 @@ public class Processor
 			e.printStackTrace();
 		}
 		return null;
+	}
+	
+	/** 
+	 * @param cookieName : Cookie的名稱
+	 * @param cookieValue : Cookie的內容
+	 * @param cookieMaxAge : Cookie存活時間(單位:秒)
+	 * @param contextPath : web應用的contextPath
+	 * @return cookie
+	 */
+	public static Cookie createCookie(String cookieName, String cookieValue,int cookieMaxAge,String contextPath)
+	{
+		Cookie cookie = new Cookie(cookieName, cookieValue);
+		cookie.setMaxAge(30 * 60 * 60);
+		cookie.setPath(contextPath);
+		return cookie;
+	}
+	
+	/**
+	 * @return 當前時間的 Date物件
+	 */
+	public static Date getCurrentDate()
+	{
+		return Date.valueOf(java.time.LocalDate.now(ZoneId.of("UTC+8")));
 	}
 
 }

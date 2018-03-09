@@ -7,6 +7,7 @@
 		class="org.springframework.web.servlet.view.InternalResourceView">
 		<property name="url" value="/index.jsp"></property>
 	</bean>
+	
 	<bean id="r.index" class="org.springframework.web.servlet.view.RedirectView">
 		<property name="contextRelative" value="true"></property>
 		<property name="url" value="/index.jsp"></property>
@@ -15,12 +16,12 @@
 	<bean id="leaderboards.UnKnow" class="org.springframework.web.servlet.view.InternalResourceView">
 		<property name="url" value="/pages/leaderboards.jsp"></property>
 	</bean>
-	
-	
+	 
 	<bean id="r.employeeLogin.ok" class="org.springframework.web.servlet.view.RedirectView">
 		<property name="contextRelative" value="true"></property>
 		<property name="url" value="/backend/index.jsp"></property>
-	</bean>                         
+	</bean>  
+	                       
 	<bean id="f.employeeLogin.notOK"
 		class="org.springframework.web.servlet.view.InternalResourceView">
 		<property name="url" value="/backEndlogin.jsp"></property>
@@ -51,7 +52,5 @@
 		<property name="contextRelative" value="true"></property>
 		<property name="url" value="/index.jsp"></property>
 	</bean> 
-	
-	
 	
 </beans>

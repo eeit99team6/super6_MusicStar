@@ -94,7 +94,7 @@ ul.menu li:last-child > i {
     cursor: pointer;
     margin-right: 25px;
 }
-@media screen and (max-width:1280px) {
+@media screen and (max-width:1200px) {
     ul.menu li {
         min-width: 125px;
         font-size: 90%;

@@ -1,6 +1,5 @@
 package model.dao;
 
-import java.io.Serializable;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -8,49 +7,46 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import _global.utils.Processor;
 import model.bean.MusicContestBean;
 
 @Repository
-public class MusicContestDAO {
-	
-    @Autowired
-	private SessionFactory sessoinFactory;
-    
-	// session
-	public MusicContestDAO(SessionFactory sessoinFactory) {
-		this.sessoinFactory = sessoinFactory;
-	}
+public class MusicContestDAO
+{
+	@Autowired
+	private SessionFactory sessionFactory;
 
-	public Session getSessoin() {
-		return sessoinFactory.getCurrentSession();
+	private Session getSession()
+	{
+		return sessionFactory.getCurrentSession();
 	}
 
 	// select(id)
 	public MusicContestBean select(int id) {
-		return (MusicContestBean) this.getSessoin().get(MusicContestBean.class, id);
+		return (MusicContestBean) this.getSession().get(MusicContestBean.class, id);
 	}
 
 	// select
 	public List<MusicContestBean> select() {
-		return this.getSessoin().createQuery("from MusicContestBean", MusicContestBean.class).list();
+		return this.getSession().createQuery("from MusicContestBean", MusicContestBean.class).list();
 	}
 	
 	// select where music_contest where music_contest_status = '報名中'
 
 	public List<MusicContestBean> selectMusicContestStatus(){
-		return this.getSessoin().createQuery("from MusicContestBean mb where mb.music_contest_status = '報名中'", MusicContestBean.class).list();
+		return this.getSession().createQuery("from MusicContestBean mb where mb.music_contest_status = '報名中'", MusicContestBean.class).list();
 	}
 	
 	// select where music_contest where music_contest_status = '比賽結束'
 
 		public List<MusicContestBean> selecHistorytMusicContest(){
-			return this.getSessoin().createQuery("from MusicContestBean mb where mb.music_contest_status = '比賽結束'", MusicContestBean.class).list();
+			return this.getSession().createQuery("from MusicContestBean mb where mb.music_contest_status = '比賽結束'", MusicContestBean.class).list();
 		}
 	
 	// insert
 	public MusicContestBean insert(MusicContestBean bean) {
 		if (bean != null) {
-				this.getSessoin().save(bean);
+				this.getSession().save(bean);
 				return bean;
 			}
 		return null;
@@ -58,7 +54,7 @@ public class MusicContestDAO {
 
 	// update
 	public MusicContestBean update(Integer id, MusicContestBean bean) {
-		MusicContestBean temp = this.getSessoin().get(MusicContestBean.class, id);
+		MusicContestBean temp = this.getSession().get(MusicContestBean.class, id);
 		if(temp!=null ) {
 			temp.setMusic_contest_apply_start_date(bean.getMusic_contest_apply_start_date());
 			temp.setMusic_contest_description(bean.getMusic_contest_description());
@@ -76,12 +72,47 @@ public class MusicContestDAO {
 	
 	// delete
 	public boolean delete(MusicContestBean bean) {
-		MusicContestBean temp =this.getSessoin().get(MusicContestBean.class, bean.getMusic_contest_id());
+		MusicContestBean temp =this.getSession().get(MusicContestBean.class, bean.getMusic_contest_id());
 		if(temp!=null) {
-			this.getSessoin().delete(temp);
+			this.getSession().delete(temp);
 			return true;
 		}
 		return false;
 	}
+	
+	/**
+	 * 取得狀態為報名中的賽事資料
+	 * @author Phil
+	 * @return 報名中的賽事資料的List
+	 */
+	public List<MusicContestBean> slelctCtstAtApplying(){		
+		return getSession().createQuery("from MusicContestBean where music_contest_apply_start_date <= :today and music_contest_validate_date > :today",MusicContestBean.class).setParameter("today", Processor.getCurrentDate()).list();	
+	}
 
+	/**
+	 * 取得狀態為審核中的賽事資料
+	 * @author Phil
+	 * @return 審核中的賽事資料的List
+	 */
+	public List<MusicContestBean> slelctCtstAtValidating(){		
+		return getSession().createQuery("from MusicContestBean where music_contest_validate_date <= :today and music_contest_vote_start_date > :today",MusicContestBean.class).setParameter("today", Processor.getCurrentDate()).list();	
+	}
+	
+	/**
+	 * 取得狀態為投票中的賽事資料
+	 * @author Phil
+	 * @return 投票中的賽事資料的List
+	 */
+	public List<MusicContestBean> slelctCtstAtVoting(){		
+		return getSession().createQuery("from MusicContestBean where music_contest_vote_start_date <= :today and music_contest_end_date > :today",MusicContestBean.class).setParameter("today", Processor.getCurrentDate()).list();	
+	}
+	
+	/**
+	 * 取得狀態為已結束的賽事資料
+	 * @author Phil
+	 * @return 已結束的賽事資料的List
+	 */
+	public List<MusicContestBean> slelctCtstIsClose(){		
+		return getSession().createQuery("from MusicContestBean where music_contest_end_date <= :today",MusicContestBean.class).setParameter("today", Processor.getCurrentDate()).list();	
+	}
 }
