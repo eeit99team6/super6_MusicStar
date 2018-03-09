@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -60,6 +61,12 @@ public class MusicContestDAO {
 	 */
 	public List<MusicContestBean> slelctCtstIsClose(){		
 		return getSession().createQuery("from MusicContestBean where music_contest_end_date <= :today",MusicContestBean.class).setParameter("today", Processor.getCurrentDate()).list();	
+	}
+	
+	//用在搜尋已結束的比賽有幾個-賽事排行榜使用
+	public List<MusicContestBean> selectContestIdCount(){
+		Query query = this.getSession().createQuery("select count(music_contest_id) from MusicContestBean where music_contest_status='比賽結束'");
+		return (List<MusicContestBean>) query.list();
 	}
 
 	// select(id)

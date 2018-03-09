@@ -7,14 +7,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import model.bean.MusicContestBean;
-import model.dao.MusicContestDAOHibernate;
+import model.dao.MusicContestDAO;
 
 @Service
 @Transactional
 public class MusicContestService {
     
 	@Autowired
-	private MusicContestDAOHibernate music_contestDao;
+	private MusicContestDAO music_contestDao;
 	
 	// select
 	public List<MusicContestBean> select() {
@@ -30,6 +30,18 @@ public class MusicContestService {
 		}
 		return null;
 	}
+	
+	// select with music_contest_status = '報名中'
+	public List<MusicContestBean> selectMusicContestSignUp() {
+		List<MusicContestBean> contestBean = (List<MusicContestBean>) music_contestDao.selectMusicContestStatus();
+		return contestBean;
+	}
+	
+	// select with music_contest_status = '比賽結束'
+		public List<MusicContestBean> selectHistoryMusicContest() {
+			List<MusicContestBean> contestBean = (List<MusicContestBean>) music_contestDao.selecHistorytMusicContest();
+			return contestBean;
+		}
 
 	// insert
 	public MusicContestBean insert(MusicContestBean bean) {

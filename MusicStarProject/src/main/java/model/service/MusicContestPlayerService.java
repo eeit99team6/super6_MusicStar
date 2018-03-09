@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import model.bean.MusicContestBean;
 import model.bean.MusicContestPlayerBean;
-import model.dao.MusicContestDAOHibernate;
+import model.dao.MusicContestDAO;
 import model.dao.MusicContestPlayerDAO;
 
 @Service
@@ -21,7 +21,7 @@ public class MusicContestPlayerService {
 	private MusicContestPlayerDAO musicContestPlayerDAO;
 
 	@Autowired
-	private MusicContestDAOHibernate musicContestDAOHibernate;
+	private MusicContestDAO musicContestDAO;
 
 	
 	public List<MusicContestPlayerBean> selectContestIdTop3(MusicContestPlayerBean bean){
@@ -66,7 +66,7 @@ public class MusicContestPlayerService {
 	public List<MusicContestBean> selectContestIdCount(MusicContestBean bean) {
 		List<MusicContestBean> result = null;
 		if(bean!=null) {
-			result = musicContestDAOHibernate.selectContestIdCount();
+			result = musicContestDAO.selectContestIdCount();
 		}
 		return result;
 
