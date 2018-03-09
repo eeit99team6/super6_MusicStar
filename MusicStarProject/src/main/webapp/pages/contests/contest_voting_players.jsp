@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Current Voting Contest</title>
+<title>進行投票</title>
 <jsp:include page="/includes/main_css.jsp" />
 <style type="text/css">
 </style>
@@ -18,7 +18,7 @@
 	<jsp:include page="/includes/main_header.jsp" />
 	<!-- main_container start -->
 	<div id="main_container" class="container">
-		<h1 class="voting_title display-3">${param.contestName}</h1>
+		<h1 class="default_title display-3">賽事投票中</h1>
 		<div id="display_area" class="row"></div>
 		<input type="hidden" id="contestId" value="${param.contestId}">
 	</div>

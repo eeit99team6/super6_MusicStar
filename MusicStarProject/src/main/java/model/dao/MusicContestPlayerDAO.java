@@ -89,7 +89,7 @@ public class MusicContestPlayerDAO {
 	/**
 	 * 取得所有賽事的參賽者資料
 	 * @author Phil
-	 * @return 有賽事參賽者資料的List
+	 * @return 所有賽事參賽者資料的List
 	 */
 	public List<Map> selectAllMusicCtstPlayers()
 	{

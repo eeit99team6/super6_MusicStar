@@ -2,7 +2,7 @@ $(function(){
 			var contestId = $("#contestId").val();
 			$.getJSON(ctx+"/contests/voting/Players?contestId="+contestId,function(data){		
 			var docFrag = $(document.createDocumentFragment());
-			if(data.errMsg == null){
+			if(data.errMsg == null && data.length > 0){
 				$.each(data,function(index,value){
 					docFrag.append(
 						"<div class='display_show card'>"+
@@ -17,7 +17,9 @@ $(function(){
 							"</div>"+
 							"<h5 class='view-description'>"+value.musicCtstPlayerId+" - "+value.musicName+"</h5>"+
 						"</div>");
-			});}		
+			});}else{
+				$("#display_area").after("<h2 class='text-center' style='margin-bottom:200px;'>很抱歉此賽事目前沒有任何參賽者</h2>");
+			}		
 			for(let i = 0; i < 5 ;i++){
 				docFrag.append("<div class='display_show'></div>");
 			}	

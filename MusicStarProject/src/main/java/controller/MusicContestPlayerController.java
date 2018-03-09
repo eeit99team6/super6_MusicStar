@@ -3,14 +3,16 @@ package controller;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
 import com.google.gson.Gson;
+
 import _global.utils.Checker;
 import _global.utils.Parser;
 import model.bean.MusicContestPlayerBean;
@@ -18,8 +20,6 @@ import model.service.MusicContestPlayerService;
 
 @Controller
 public class MusicContestPlayerController {
-	@Autowired
-	private ApplicationContext context;
 	@Autowired
 	private MusicContestPlayerService musicContestPlayerService;
 	

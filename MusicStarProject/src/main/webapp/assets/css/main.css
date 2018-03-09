@@ -16,3 +16,9 @@ body.is-loading *:after {
     -ms-transition: none !important;
     transition: none !important;
 }
+
+.default_title {
+	margin-top: 70px;
+	margin-bottom: 10px;
+	text-align: center;
+}

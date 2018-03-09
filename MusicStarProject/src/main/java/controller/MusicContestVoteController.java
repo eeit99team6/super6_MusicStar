@@ -6,8 +6,8 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -26,9 +26,8 @@ public class MusicContestVoteController {
 
 	@RequestMapping(path = "/contests/voting/vote", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
 	@ResponseBody
-	public String contestvotingAjax(String musicCtstId, String musicCtstPlayerId, HttpSession session) {
+	public String contestVotingAjax(String musicCtstId, String musicCtstPlayerId, HttpSession session) {
 		Map<String, String> data = new HashMap<>();
-
 		
 		Integer ctstId = null;
 		if (!Checker.notEmpty(musicCtstId)) {
@@ -44,17 +43,16 @@ public class MusicContestVoteController {
 
 		if (mb != null) {
 			String musicCtstVoterId = mb.getMbrId();
-			if (musicContestVoteService.canVote(ctstId,musicCtstVoterId)) {
+			if (musicContestVoteService.canVote(ctstId)) {
 				MusicContestVoteBean bean = new MusicContestVoteBean(ctstId,musicCtstVoterId,musicCtstPlayerId);
 				if (musicContestVoteService.voting(bean)) {
 					data.put("success", "投票成功!!");
 				} else {
-					data.put("errMsg", "投票失敗~請稍候再試!!");
+					data.put("errMsg", "這場比賽您已經投過票囉~無法再次投票!!");
 				}
 			} else {
-				data.put("errMsg", "這場比賽您已經投過票囉~無法再次投票!!");
+				data.put("errMsg", "這場比賽目前無法進行投票!!");
 			}
-
 		} else {
 			data.put("mustLogin", "必須登入才可進行投票!!");
 		}
@@ -62,4 +60,9 @@ public class MusicContestVoteController {
 		return Parser.toJson(data);
 	}
 
+	@RequestMapping(path = "/contests/{status}", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
+	@ResponseBody
+	public String contestAtVotingAjax(@PathVariable("status") String status) {	
+		return Parser.toJson(musicContestVoteService.getContests(status));	
+	}
 }
