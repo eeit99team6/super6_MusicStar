@@ -23,44 +23,19 @@
 		<div class="title-title">經典賽事排行榜</div>
 			
 		<div id="leaderboard-outer" class="container">
-			<div id='leaderboard-max1' class="container border border-danger">
-				<h2 class="leaderboard-title1"><i class="fa fa-play" style="font-size:48px;color:red"></i></h2>
-				<ol class="leaderboard-ol">
-			<!-- 		<li> -->
-			<!-- 			<div><img src="圖:"></div> -->
-			<!-- 			<div><a href="連結:"><i class="fa fa-play-circle" style="font-size:36px;color:red"></i></a></div> -->
-			<!-- 			<h4>歌名:</h4> -->
-			<!-- 			<h5>歌手:</h5> -->
-			<!-- 		</li>	 -->
-				</ol>
-				<a href="${ctx}/leaderboards-1.jsp?music_contest_id=1" class="btn btn-outline-danger" role="button" aria-pressed="true">看本榜Top10</a>
-			</div>
-			<div id='leaderboard-max2' class="container border border-danger">
-				<h2 class="leaderboard-title2"><i class="fa fa-play" style="font-size:48px;color:red"></i></h2>
-				<ol class="leaderboard-ol"></ol>
-				<a href="${ctx}/leaderboards-1.jsp?music_contest_id=2" class="btn btn-outline-danger" role="button" aria-pressed="true">看本榜Top50</a>
-			</div>
-			<div id='leaderboard-max3' class="container border border-danger">
-				<h2 class="leaderboard-title3"><i class="fa fa-play" style="font-size:48px;color:red"></i></h2>
-				<ol class="leaderboard-ol"></ol>
-				<a href="${ctx}/leaderboards-1.jsp?music_contest_id=3" class="btn btn-outline-danger" role="button" aria-pressed="true">看本榜Top10</a>
-			</div>
-			<div id='leaderboard-max4' class="container border border-danger">
-				<h2 class="leaderboard-title4"><i class="fa fa-play" style="font-size:48px;color:red"></i></h2>
-				<ol class="leaderboard-ol"></ol>
-				<a href="${ctx}/leaderboards-1.jsp?music_contest_id=4" class="btn btn-outline-danger" role="button" aria-pressed="true">看本榜Top10</a>
-			</div>
-			<div id='leaderboard-max5' class="container border border-danger">
-				<h2 class="leaderboard-title5"><i class="fa fa-play" style="font-size:48px;color:red"></i></h2>
-				<ol class="leaderboard-ol"></ol>
-				<a href="${ctx}/leaderboards-1.jsp?music_contest_id=5" class="btn btn-outline-danger" role="button" aria-pressed="true">看本榜Top10</a>
-			</div>
-			<div id='leaderboard-max6' class="container border border-danger">
-				<h2 class="leaderboard-title6"><i class="fa fa-play" style="font-size:48px;color:red"></i></h2>
-				<ol class="leaderboard-ol"></ol>
-				<a href="${ctx}/leaderboards-1.jsp?music_contest_id=6" class="btn btn-outline-danger" role="button" aria-pressed="true">看本榜Top50</a>
-			</div>
-		</div><!-- leaderboard-outer -->
+<!-- 			<div id='leaderboard-max1' class="container border border-danger"> -->
+<!-- 				<h2 class="leaderboard-title1"><i class="fa fa-play" style="font-size:48px;color:red"></i></h2> -->
+<!-- 				<ol class="leaderboard-ol"> -->
+<!-- 					<li> -->
+<!-- 						<div><img src="圖:"></div> -->
+<!-- 						<div><a href="連結:"><i class="fa fa-play-circle" style="font-size:36px;color:red"></i></a></div> -->
+<!-- 						<h4>歌名:</h4> -->
+<!-- 						<h5>歌手:</h5> -->
+<!-- 					</li>	 -->
+<!-- 				</ol> -->
+<%-- 				<a href="${ctx}/leaderboards-1.jsp?music_contest_id=1" class="btn btn-outline-danger" role="button" aria-pressed="true">看本榜Top10</a> --%>
+<!-- 			</div> -->
+<!-- 		</div>leaderboard-outer -->
 		<p>${errors.action}</p>	
 	</div>
 	<!-- main_container end -->
