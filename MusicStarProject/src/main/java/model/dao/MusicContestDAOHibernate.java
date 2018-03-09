@@ -5,10 +5,12 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import model.bean.MusicContestBean;
+import model.bean.MusicContestPlayerBean;
 
 @Repository
 public class MusicContestDAOHibernate {
@@ -70,4 +72,10 @@ public class MusicContestDAOHibernate {
 		}
 	}
 
+	//用在搜尋已結束的比賽有幾個-賽事排行榜使用
+	public List<MusicContestBean> selectContestIdCount(){
+		Query query = this.getSessoin().createQuery("select count(music_contest_id) from MusicContestBean where music_contest_status='比賽結束'");
+		return (List<MusicContestBean>) query.list();
+	}
+	
 }

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.google.gson.Gson;
 
 import model.bean.MusicBean;
+import model.bean.MusicContestBean;
 import model.bean.MusicContestPlayerBean;
 import model.service.MusicContestPlayerService;
 
@@ -47,12 +48,12 @@ public class MusicContestPlayerController {
 	
 	@RequestMapping(path={"/leaderboards.count.controller"},method={RequestMethod.GET,RequestMethod.POST},produces="application/json;charset=UTF-8")
 	@ResponseBody
-	public String methodCount(MusicContestPlayerBean bean, Model model) {	
+	public String methodCount(MusicContestBean bean, Model model) {	
 		Map<String,String> errors = new HashMap<>();
 		model.addAttribute("errors",errors);
 		
 		Gson gson = new Gson();
-		List<MusicContestPlayerBean> beanList = musicContestPlayerService.selectContestIdCount(bean);
+		List<MusicContestBean> beanList = musicContestPlayerService.selectContestIdCount(bean);
 		if(beanList==null) {
 			errors.put("action", "UnKnow Action");
 			return "leaderboards.UnKnow";
