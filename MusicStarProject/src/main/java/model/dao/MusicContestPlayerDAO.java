@@ -35,6 +35,12 @@ public class MusicContestPlayerDAO {
 		query.setMaxResults(10);
 		return (List<MusicContestPlayerBean>) query.list();
 	}
+	
+//用在搜尋有幾個比賽
+	public List<MusicContestPlayerBean> selectContestIdCount(){
+		Query query = this.getSession().createQuery("select count(DISTINCT music_contest_id) from MusicContestPlayerBean");
+		return (List<MusicContestPlayerBean>) query.list();
+	}	
 
 	public List<MusicContestPlayerBean> selectContestId(Integer music_contest_id){
 		Query query = this.getSession().createQuery("from MusicContestPlayerBean where music_contest_id=?0");
