@@ -1,0 +1,42 @@
+@charset "UTF-8";
+/*Main Footer*/
+#main_footer {
+    background-color: #32323a;
+    color: #eee;
+    overflow: auto;
+    padding: 20px 0;
+    font-family: "Open Sans", Arial, Helvetica, sans-serif;
+    clear:both;
+}
+#main_footer h1,
+#main_footer h2,
+#main_footer h3,
+#main_footer h4,
+#main_footer h5,
+#main_footer h6 {
+    font-weight: 800;
+    line-height: 1.5;
+    margin: 0 0 1em 0;
+    text-transform: uppercase;
+}
+#main_footer dl {
+    margin: 0 0 2em 0;
+}
+#main_footer dt {
+    margin: 0 0 1em 0;
+}
+.copyright a {
+    text-decoration: none;
+    color: #eee;
+    transition: color 0.5s;
+}
+.copyright a:hover {
+    text-decoration: none;
+    color: rgba(238, 238, 238, 0.5);
+}
+.link {
+    font-size: 32px;
+}
+.link a {
+    line-height: 60px;
+}

@@ -1,0 +1,45 @@
+@charset "UTF-8";
+
+/* leaderboards.jsp */
+.title-title{
+	box-shadow:2px 2px 2px rgba(20%,20%,40%,0.6),4px 4px 6px rgba(20%,20%,40%,0.4),6px 6px 12px rgba(20%,20%,40%,0.4),12px 12px 24px rgba(20%,20%,40%,0.4);
+	text-align: center;
+	font-family:標楷體;
+	font-size:56px;
+	margin-top:70px;
+}
+
+#leaderboard-outer{
+	text-align:center;
+	margin-top:10px;	
+}
+
+#leaderboard-outer h2{
+	 font-family:標楷體;
+	 font-weight:bold;
+	 padding-top:30px;
+	 color:blue;
+}
+
+.leaderboard-ol{
+ 	list-style-type: none; 
+}
+.leaderboard-ol li{
+ 	padding-top:20px;
+ 	padding-bottom:10px;
+ 	border-bottom:2px solid ; 	
+}
+.leaderboard-ol img{
+	width:80px;
+	height:80px;
+	padding-top:5px;
+	padding-bottom:10px;	
+}
+
+#leaderboard-max1{
+	float:left;
+	width:30%;
+	height:820px;
+	margin:15px;
+}
+
