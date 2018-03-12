@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.google.gson.Gson;
 import _global.utils.Checker;
@@ -87,6 +88,25 @@ public class MusicContestPlayerController {
 			String jsonString =gson.toJson(beanList);				
 			return jsonString;							
 		}						
+	}
+	
+	// 塞入一筆player的資料到指定的比賽
+	
+	/*
+	 * music_contest_id
+	 * music_contest_player_id
+	 * music_id
+	 * music_contest_players_votes
+	 * 
+	 * */
+	@RequestMapping(value="/insertPlayer", method=RequestMethod.POST)
+	public String insertPlayer(@RequestParam(value="music_contest_players_votes", required=false) String playersVotes ,MusicContestPlayerBean bean,Model model) {
+		if(bean!=null) {
+			 musicContestPlayerService.insertPlayer(bean);
+			 model.addAttribute("playerInfor", bean);
+			 return "r.insertPlayer.ok";
+		}
+		return "f.insertPlayer.notok";
 	}
 	
 	

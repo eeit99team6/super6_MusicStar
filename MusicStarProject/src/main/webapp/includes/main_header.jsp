@@ -4,11 +4,11 @@
 <header id="main_header">
 	<nav class="main_nav">
 		<ul class="menu">
-			<li><a href="<c:url value="/index.jsp"/>">MusicStar</a></li>
+			<li><a href="<c:url value="/index.jsp"/>"><img style="padding-bottom:5%" width="60" src="${ctx}/assets/img/pagesUsage/music-star.png"/>MusicStar</a></li>
 			<li><a href="<c:url value="/pages/contest.jsp#title"/>">賽事專區</a>
 				<ul>
 					<li><a href="<c:url value="/pages/contest.jsp#rule"/>">賽事規則</a></li>
-					<li><a href="<c:url value="/pages/contest.jsp#applying"/>">報名中</a></li>
+					<li><a href="<c:url value="/pages/contestSignUp.jsp"/>">報名中</a></li>
 					<li><a href="<c:url value="/pages/contest.jsp#voting"/>">投票中</a></li>
 					<li><a href="<c:url value="/pages/contest.jsp#end"/>">歷史賽事</a></li>
 				</ul></li>
@@ -34,7 +34,7 @@
 							</c:choose></a>
 						<ul>
 							<li><a href="#">資料設定</a></li>
-							<li><a href="#">上傳音樂</a></li>
+							<li><a href="<c:url value='/testpages/musicTestInsert.jsp'/>">上傳音樂</a></li>
 							<li><a href="#">我的音樂</a></li>
 							<li><a href="<c:url value="/members/logout"/>">登出</a></li>
 						</ul> <i class="fas fa-align-justify" title="系統"></i></li>
@@ -69,7 +69,7 @@
 					<li><a href="#">個人檔案</a>
 						<ul>
 							<li><a href="#">帳戶設定</a></li>
-							<li><a href="#">上傳音樂</a></li>
+							<li><a href="<c:url value='/testpages/musicTestInsert.jsp'/>">上傳音樂</a></li>
 							<li><a href="#">我的音樂</a></li>
 							<li><a href="<c:url value="/members/logout"/>">登出</a></li>
 						</ul></li>

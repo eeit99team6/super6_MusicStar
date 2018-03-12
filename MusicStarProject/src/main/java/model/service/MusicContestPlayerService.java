@@ -69,7 +69,23 @@ public class MusicContestPlayerService {
 			result = musicContestDAO.selectContestIdCount();
 		}
 		return result;
+	}
+	
+	
+	
+	/**
+	 * 報名: 塞入參賽者資料
+	 * 
+	 * @author yuting
+	 * 
+	 */
 
+	public MusicContestPlayerBean insertPlayer(MusicContestPlayerBean bean) {
+		if (bean != null) {
+			MusicContestPlayerBean reslut = musicContestPlayerDAO.insert(bean);
+			return reslut;
+		}
+		return null;
 	}
 	
 }
