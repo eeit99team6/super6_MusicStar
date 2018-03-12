@@ -2,27 +2,13 @@ package controller;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
-import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.MultipartConfig;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Part;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Required;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
-import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -33,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.multipart.MultipartFile;
 
 import _global.utils.Parser;
@@ -54,13 +39,13 @@ public class MusicContestController {
 	
 	@Autowired
 	MusicContestService musicContestService;
-
+// ============================ 創建比賽  && 修改比賽用 ============================== //
 	@RequestMapping(value = "/backend/pages/musicContext", method = RequestMethod.POST)
 	public String musicCreate(@RequestParam(value="music_contest_id",required=false) String id,
 			@RequestParam(value="music_contest_update",required=false) String update,@RequestPart(value="music_contest_photo",required=false) MultipartFile photo,
 			MusicContestBean bean, BindingResult bindingResult, Model model
 			) {
-System.out.println("我來了~~~");
+     System.out.println("我來了~~~");
 		// 接收資料
 		Map<String, String> errors = new HashMap<String, String>();
 		model.addAttribute("errors", errors);
@@ -71,7 +56,7 @@ System.out.println("我來了~~~");
 				errors.put("errors_name", "名稱有誤");
 			}
 			if (bindingResult.getFieldErrorCount("music_contest_description")!=0) {
-				errors.put("errors_name", "介紹有誤");
+				errors.put("errors_music_contest_description", "介紹有誤");
 			}
 			if (bindingResult.getFieldErrorCount("music_contest_style_id")!=0) {
 				errors.put("errors_tempStyleId", "音樂風格有誤");
@@ -92,9 +77,7 @@ System.out.println("我來了~~~");
 				errors.put("errors_tempEndDate", "比賽截止日期有誤");
 			}
 		}
-		// Update Information
-		    //  id 
-		    //  update key words 
+
 		// 驗證資料
 		   // photo
 		if(photo!=null){
@@ -139,18 +122,37 @@ System.out.println("我來了~~~");
 			model.addAttribute("createOK", result);
 			return "r.musicContestCreate.ok";
 		}else {
+			// Update Information
+		       //  id 
+		       //  update key words 
 			MusicContestBean updateResult= musicContestService.update(bean.getMusic_contest_id(), bean);
 			model.addAttribute("updateOK", updateResult);
 			return "r.musicContestUpdate.ok";
-   	}
-     
+     	}
 	}
 	
+// ============================ 讀取全部賽事圖表用 AJAX ============================== //
 	@RequestMapping(value="/backend/pages/musicContextCheckAjax", method=RequestMethod.GET, produces="application/json;charset=UTF-8")
     @ResponseBody
 	public String musicCheckAjax() {
 		return Parser.toJson(musicContestService.select());
 	}
 	
+// ============================ 讀取報名中賽事圖表用 AJAX ============================== //
+	
+	@RequestMapping(value="/pages/musicContesetSignUpAjax", method=RequestMethod.GET, produces="application/json;charset=UTF-8")
+    @ResponseBody
+	public String musicContesetSignUpAjax() {
+		return Parser.toJson(musicContestService.selectMusicContestSignUp());
+	}
+	
+	// ============================ 讀取比賽結束賽事圖表用 AJAX ============================== //
+	
+	@RequestMapping(value="/pages/musicContesetHistoryAjax", method=RequestMethod.GET, produces="application/json;charset=UTF-8")
+	@ResponseBody
+	public String musicContesetHistoryAjax() {
+		return Parser.toJson(musicContestService.selectHistoryMusicContest());
+	}
+
 
 }

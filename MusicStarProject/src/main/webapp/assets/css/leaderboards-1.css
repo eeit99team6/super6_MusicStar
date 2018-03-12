@@ -1,0 +1,85 @@
+@charset "UTF-8";
+
+/* leaderboards-1.jsp */
+#leaderboard-1-left{
+	float:left;
+	margin-left:200px;
+	margin-top:60px;
+}
+
+.leaderboard-1-left-title{
+	color:#8e8e8e;
+	font-size:36px;
+	font-weight:bold;
+	font-family:標楷體;
+}
+
+.left-div a{
+	font-size:24px;
+	line-height:50px;
+	font-weight:bold;
+}
+.left-div a:link {
+/* 設定還沒瀏覽過的連結樣式 */
+	text-decoration:none;
+	color:#8e8e8e;
+}
+.left-div a:visited {
+/* 設定已經瀏覽過的連結樣式 */
+	color:#8e8e8e;
+}
+.left-div a:hover {
+/* 設定滑鼠移到連結上的樣式 */
+	color:red;
+}
+
+#leaderboard-1-right{
+	margin-top:70px;
+}
+#leaderboard-1-left{
+	margin-top:70px;
+}
+#leaderboard-1-right h2{
+	 font-family:標楷體;
+	 font-weight:bold;
+	 padding-top:30px;
+	 color:blue;
+	 text-align:center;
+}
+
+.leaderboard-1-table1{
+	float:left;
+	line-height:92px;
+	margin-left:100px;
+/* 	padding-top:1px; */
+}
+
+.leaderboard-1-table2{
+	float:left;
+	line-height:100px;
+}
+
+.leaderboards-1-tbody-2 img{
+	width:60px;
+	height:60px;
+}
+
+.ch i{
+	padding-top:32px;
+	padding-bottom:32px;
+}
+
+ tbody td{
+	padding-right:50px;
+}
+
+ tbody tr{
+	border-bottom:1px solid;
+}
+
+.leaderboard-1-back{
+	text-align:center;
+	margin-top:1400px;
+	float:none;
+}
+
