@@ -425,7 +425,7 @@ div.jp-video .jp-progress {
   margin: 0 90px 10px; }
 
 .jp-playlist{
-	max-height:480px;
+	max-height:200px;
 	overflow-y:scroll; 
 }
 

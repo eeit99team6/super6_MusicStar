@@ -11,8 +11,8 @@ $(function(){
 								"<div class='mask'>"+
 									"<h2>"+value.musicName+"</h2>"+
 									"<p>"+value.musicDescription+"</p>"+
-									"<a href='#' data-music-link='"+value.musicLink+"' class='info play_music'>播放歌曲</a>"+
-									"<a href='#'data-player-id='"+value.musicCtstPlayerId+"' class='info voting'>投他一票</a>"+
+									"<a data-music-link='"+value.musicLink+"' class='info play_music'>播放歌曲</a>"+
+									"<a data-player-id='"+value.musicCtstPlayerId+"' class='info voting'>投他一票</a>"+
 								"</div>"+
 							"</div>"+
 							"<h5 class='view-description'>"+value.musicCtstPlayerId+" - "+value.musicName+"</h5>"+
@@ -20,14 +20,17 @@ $(function(){
 			});}else{
 				$("#display_area").after("<h2 class='text-center' style='margin-bottom:200px;'>很抱歉此賽事目前沒有任何參賽者</h2>");
 			}		
-			for(let i = 0; i < 5 ;i++){
+			for(let i = 0; i < 3 ;i++){
 				docFrag.append("<div class='display_show'></div>");
 			}	
 			$("#display_area").append(docFrag)
 			.on("click",".play_music",function(e){
-				var musicLink = $(this).data("music-link");
-				alert("播放歌曲: "+ $(this).parent().find("h2").eq(0).text());
-				if(musicLink){location.href=musicLink;}
+				var $this = $(this),
+					musicName = $this.parent().find("h2").eq(0).text(),
+					musicCtstPlayerId = $this.next("a").data("player-id"),
+					musicLink = $this.data("music-link"),
+					musicPhoto = $this.parents(".view").find("img").eq(0).attr("src");
+				addAndPlayMusic(musicName,musicCtstPlayerId,musicLink,musicPhoto);
 				})			
 	 		.on("click",".voting",function(e){
 				var musicCtstPlayerId = $(this).data("player-id");

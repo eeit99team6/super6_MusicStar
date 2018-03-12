@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import model.bean.MusicContestPlayerBean;
+import model.bean.MusicContestVoteBean;
 
 @Repository
 public class MusicContestPlayerDAO {
@@ -81,6 +82,21 @@ public class MusicContestPlayerDAO {
 	}
 	
 	/**
+	 * 取得指定賽事參賽者ID資料
+	 * @author Phil
+	 * @param musicCtstId 賽事的ID
+	 * @param musicCtstPlayerId 參賽者的ID
+	 * @return 指定賽事參賽者的資料
+	 */
+	public MusicContestPlayerBean selectById(Integer musicCtstId, String musicCtstPlayerId)
+	{
+		return musicCtstId != null && musicCtstPlayerId != null
+				? getSession().createQuery("from MusicContestPlayerBean where music_contest_id = ? and music_contest_player_id = ?", MusicContestPlayerBean.class).setParameter(0, musicCtstId)
+						.setParameter(1, musicCtstPlayerId).uniqueResult()
+				: null;
+	}
+	
+	/**
 	 * 取得指定賽事ID的參賽者資料
 	 * @author Phil
 	 * @param musicCtstId 賽事的ID
@@ -101,6 +117,23 @@ public class MusicContestPlayerDAO {
 	{
 		String query = "select new Map (m.music_name as musicName, m.music_photo as musicPhoto, m.music_description as musicDescription, m.music_lyrics as musicLyrics, m.music_link as musicLink, m.music_member_id as musicCtstPlayerId, mcp.music_contest_players_votes as musicCtstVotes) from MusicContestPlayerBean mcp join MusicBean m on mcp.music_id = m.music_id";
 		return getSession().createQuery(query,Map.class).list();
+	}
+	
+	/**
+	 * 增加投票數
+	 * @author Phil
+	 */
+	public synchronized void addVotes(MusicContestVoteBean bean) {
+		Integer musicCtstId = null;
+		String musicCtstPlayerId = null;
+		if (bean != null && (musicCtstId = bean.getMusic_contest_id()) != null && (musicCtstPlayerId = bean.getMusic_contest_player_id()) != null) {
+			MusicContestPlayerBean mcpb = selectById(musicCtstId, musicCtstPlayerId);
+			Integer votes = mcpb.getMusic_contest_players_votes();
+			if(votes == null) {
+				votes = 0;
+			}
+			mcpb.setMusic_contest_players_votes(votes++);
+		}
 	}
 	
 }

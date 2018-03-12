@@ -1,6 +1,6 @@
 package model.dao;
 
-import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -28,12 +28,33 @@ public class MusicContestDAO {
 	}
 	
 	/**
+	 * 確認賽式的狀態
+	 * @author Phil
+	 * @return 尚未開始:0 , 報名中:1 , 審核中:2 , 投票中:3 , 已結束:4
+	 */
+	public int checkCtstStatus (Integer musicCtstId)
+	{
+		MusicContestBean bean = getSession().createQuery("from MusicContestBean where music_contest_id = :musicCtstId", MusicContestBean.class).setParameter("musicCtstId", musicCtstId).uniqueResult();
+		Date today = Processor.getCurrentTwDate();
+		if (today.after(bean.getMusic_contest_end_date()))
+			return 4;
+		else if (today.after(bean.getMusic_contest_vote_start_date()))
+			return 3;
+		else if (today.after(bean.getMusic_contest_validate_date()))
+			return 2;
+		else if (today.after(bean.getMusic_contest_apply_start_date()))
+			return 1;
+		else
+			return 0;		
+	}
+	
+	/**
 	 * 取得狀態為報名中的賽事資料
 	 * @author Phil
 	 * @return 報名中的賽事資料的List
 	 */
 	public List<MusicContestBean> slelctCtstAtApplying(){		
-		return getSession().createQuery("from MusicContestBean where music_contest_apply_start_date <= :today and music_contest_validate_date > :today",MusicContestBean.class).setParameter("today", Processor.getCurrentDate()).list();	
+		return getSession().createQuery("from MusicContestBean where music_contest_apply_start_date <= :today and music_contest_validate_date > :today",MusicContestBean.class).setParameter("today", Processor.getCurrentTwDate()).list();	
 	}
 
 	/**
@@ -42,7 +63,7 @@ public class MusicContestDAO {
 	 * @return 審核中的賽事資料的List
 	 */
 	public List<MusicContestBean> slelctCtstAtValidating(){		
-		return getSession().createQuery("from MusicContestBean where music_contest_validate_date <= :today and music_contest_vote_start_date > :today",MusicContestBean.class).setParameter("today", Processor.getCurrentDate()).list();	
+		return getSession().createQuery("from MusicContestBean where music_contest_validate_date <= :today and music_contest_vote_start_date > :today",MusicContestBean.class).setParameter("today", Processor.getCurrentTwDate()).list();	
 	}
 	
 	/**
@@ -51,7 +72,7 @@ public class MusicContestDAO {
 	 * @return 投票中的賽事資料的List
 	 */
 	public List<MusicContestBean> slelctCtstAtVoting(){		
-		return getSession().createQuery("from MusicContestBean where music_contest_vote_start_date <= :today and music_contest_end_date > :today",MusicContestBean.class).setParameter("today", Processor.getCurrentDate()).list();	
+		return getSession().createQuery("from MusicContestBean where music_contest_vote_start_date <= :today and music_contest_end_date > :today",MusicContestBean.class).setParameter("today", Processor.getCurrentTwDate()).list();	
 	}
 	
 	/**
@@ -60,7 +81,7 @@ public class MusicContestDAO {
 	 * @return 已結束的賽事資料的List
 	 */
 	public List<MusicContestBean> slelctCtstIsClose(){		
-		return getSession().createQuery("from MusicContestBean where music_contest_end_date <= :today",MusicContestBean.class).setParameter("today", Processor.getCurrentDate()).list();	
+		return getSession().createQuery("from MusicContestBean where music_contest_end_date <= :today",MusicContestBean.class).setParameter("today", Processor.getCurrentTwDate()).list();	
 	}
 	
 	//用在搜尋已結束的比賽有幾個-賽事排行榜使用

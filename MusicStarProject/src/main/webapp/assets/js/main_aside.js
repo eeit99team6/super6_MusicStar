@@ -25,10 +25,20 @@ $(function() {
 		keyEnabled : false
 	};
 
-	var audioPlaylist = new jPlayerPlaylist(cssSelector, playlist, options);
+	audioPlaylist = new jPlayerPlaylist(cssSelector, playlist, options);
 
 	$("body").on("click", "#jp_toggle", function() {
 		$("#jp_player_list").toggleClass("jp-hide");
 		$(this).toggleClass("fa-chevron-down").toggleClass("fa-chevron-up");
 	});
+	
+	addAndPlayMusic = function (musicName,playerId,musicLink,musicPhoto){
+		audioPlaylist.add({
+			title:musicName,
+			artist:playerId,
+			mp3:musicLink,
+			poster:musicPhoto
+		});
+		audioPlaylist.play(-1);
+	}
 });

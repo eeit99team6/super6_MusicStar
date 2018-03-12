@@ -9,7 +9,7 @@
 				<ul>
 					<li><a href="<c:url value="/pages/contest.jsp#rule"/>">賽事規則</a></li>
 					<li><a href="<c:url value="/pages/contest.jsp#applying"/>">報名中</a></li>
-					<li><a href="<c:url value="/pages/contest.jsp#voting"/>">投票中</a></li>
+					<li><a href="<c:url value="/pages/contests/contest_voting.jsp"/>">投票中</a></li>
 					<li><a href="<c:url value="/pages/contest.jsp#end"/>">歷史賽事</a></li>
 				</ul></li>
 			<li><a href="<c:url value="/pages/rank.jsp#title"/>">歌曲排行</a>
@@ -51,7 +51,7 @@
 				<ul>
 					<li><a href="<c:url value="/pages/contest.jsp#rule"/>">賽事規則</a></li>
 					<li><a href="<c:url value="/pages/contest.jsp#applying"/>">報名中</a></li>
-					<li><a href="<c:url value="/pages/contest.jsp#voting"/>">投票中</a></li>
+					<li><a href="<c:url value="/pages/contests/contest_voting.jsp"/>">投票中</a></li>
 					<li><a href="<c:url value="/pages/contest.jsp#end"/>">歷史賽事</a></li>
 				</ul></li>
 			<li><a href="<c:url value="/pages/rank.jsp#title"/>">歌曲排行</a>
