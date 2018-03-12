@@ -61,6 +61,10 @@ public class MusicListService {
 			result=musicListDAO.delete(bean.getMember_music_list_id());
 			System.out.println("result OK");
 			}	
+			else if(!result1){
+				result=musicListDAO.delete(bean.getMember_music_list_id());
+				System.out.println("result OK");
+			}
 		}
 		return result1;
 	}
