@@ -22,6 +22,7 @@ public class MusicContestPlayerDAO {
 		return sessionFactory.getCurrentSession();
 	}
 	
+	
 //用在搜尋該比賽排行前3名	
 	public List<MusicContestPlayerBean> selectContestIdTop3(Integer music_contest_id){
 		Query query = this.getSession().createQuery("from MusicContestPlayerBean mb join MusicBean mc on mb.music_id=mc.music_id join MusicContestBean md on mb.music_contest_id=md.music_contest_id where mb.music_contest_id=?0 order by music_contest_players_votes desc");
@@ -42,13 +43,15 @@ public class MusicContestPlayerDAO {
 	public List<MusicContestPlayerBean> selectContestIdCount(){
 		Query query = this.getSession().createQuery("select count(DISTINCT music_contest_id) from MusicContestPlayerBean");
 		return (List<MusicContestPlayerBean>) query.list();
-	}	
+	}
+	
 
 	public List<MusicContestPlayerBean> selectContestId(Integer music_contest_id){
 		Query query = this.getSession().createQuery("from MusicContestPlayerBean where music_contest_id=?0");
 		query.setParameter("0", music_contest_id);
 		return (List<MusicContestPlayerBean>) query.list();
 	}
+	
 	
 	public List<MusicContestPlayerBean> selectAll(){
 		Query query = this.getSession().createQuery("from MusicContestPlayerBean");
@@ -62,7 +65,7 @@ public class MusicContestPlayerDAO {
 		}
 		return null;
 	}
-	
+		
 	public MusicContestPlayerBean update(MusicContestPlayerBean bean) {
 		MusicContestPlayerBean result =null;
 		if(bean!=null && bean.getMusic_contest_id()!=null && bean.getMusic_contest_player_id()!=null) {
@@ -71,7 +74,7 @@ public class MusicContestPlayerDAO {
 		}
 		return null;
 	}
-	
+		
 	public boolean delete(Integer music_contest_id,String music_contest_player_id) {
 		MusicContestPlayerBean result = null;
 		if(music_contest_id!=null && music_contest_player_id!=null) {
@@ -80,10 +83,10 @@ public class MusicContestPlayerDAO {
 		}
 		return false;
 	}
-	
+		
 	/**
 	 * 取得指定賽事參賽者ID資料
-	 * @author Phil
+	 * @author Phil 2018.03.12
 	 * @param musicCtstId 賽事的ID
 	 * @param musicCtstPlayerId 參賽者的ID
 	 * @return 指定賽事參賽者的資料
@@ -98,7 +101,7 @@ public class MusicContestPlayerDAO {
 	
 	/**
 	 * 取得指定賽事ID的參賽者資料
-	 * @author Phil
+	 * @author Phil 2018.03.12
 	 * @param musicCtstId 賽事的ID
 	 * @return 指定賽事參賽者資料的List
 	 */
@@ -110,7 +113,7 @@ public class MusicContestPlayerDAO {
 	
 	/**
 	 * 取得所有賽事的參賽者資料
-	 * @author Phil
+	 * @author Phil 2018.03.12
 	 * @return 所有賽事參賽者資料的List
 	 */
 	public List<Map> selectAllMusicCtstPlayers()
@@ -120,8 +123,9 @@ public class MusicContestPlayerDAO {
 	}
 	
 	/**
+	 * 
 	 * 增加投票數
-	 * @author Phil
+	 * @author Phil 2018.03.12
 	 */
 	public synchronized void addVotes(MusicContestVoteBean bean) {
 		Integer musicCtstId = null;
@@ -137,3 +141,4 @@ public class MusicContestPlayerDAO {
 	}
 	
 }
+
