@@ -33,12 +33,14 @@
 	color:red;
 }
 
-#leaderboard-1-right{
-	margin-top:70px;
-}
 #leaderboard-1-left{
 	margin-top:70px;
 }
+
+#leaderboard-1-right{
+	margin-top:70px;
+}
+
 #leaderboard-1-right h2{
 	 font-family:標楷體;
 	 font-weight:bold;
@@ -51,12 +53,13 @@
 	float:left;
 	line-height:92px;
 	margin-left:100px;
-/* 	padding-top:1px; */
+/* 	margin-top:10px; */
 }
 
 .leaderboard-1-table2{
 	float:left;
-	line-height:100px;
+	line-height:92px;
+/* 	font-size:20px; */
 }
 
 .leaderboards-1-tbody-2 img{
@@ -65,8 +68,8 @@
 }
 
 .ch i{
-	padding-top:32px;
-	padding-bottom:32px;
+/* 	padding-top:30px; */
+	padding-bottom:2px;
 }
 
  tbody td{
