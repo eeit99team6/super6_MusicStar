@@ -1,4 +1,5 @@
 $(document).ready(function(){
+	function createLikeTable(){
 	$.getJSON(ctx + '/likeleaderboards.controller',function(data){
 		console.log(data);
 		var docFrag =$(document.createDocumentFragment());
@@ -14,17 +15,22 @@ $(document).ready(function(){
 			docFrag.append(rr);
 		})
 		$('.likemusic-tbody').append(docFrag)
-	})
+	});}
+	
+	createLikeTable();
 
 	$('.likemusic-tbody').on('click','.like',function(){
 		var id = $(this).parents('tr').find('td:nth-child(7)').text();
 		$.getJSON(ctx + '/likeleaderboards.like.controller',{'likes_music_id':id},function(data){			
 			if(data.success){
 				alert(data.success);
+				$('.likemusic-tbody').html("");
+				createLikeTable();
 			}else if(data.error){
 				alert(data.error);
 			}else if(data.mustlogin){
 				alert(data.mustlogin);
+				$("#login_box").modal("show");
 			}			
 		})		
 	})

@@ -50,13 +50,13 @@ public class LeaderboardsLikeController {
 		
 	@RequestMapping(path={"/likeleaderboards.like.controller"},method={RequestMethod.GET,RequestMethod.POST},produces="application/json;charset=UTF-8")
 	@ResponseBody
-	public String InsertLike(LikeMusicBean bean, Integer likes_music_id, Model model, HttpSession session) {
+	public String InsertLike(Integer likes_music_id, Model model, HttpSession session) {
 		Map<String,String> data = new HashMap<>();
 				
 		MemberBean mb =(MemberBean) session.getAttribute("loginOK");
 		if(mb!=null) {
 			String xxx =mb.getMbrId();
-			LikeMusicBean newbean = new LikeMusicBean(xxx,bean.getLikes_music_id());
+			LikeMusicBean newbean = new LikeMusicBean(xxx,likes_music_id);
 			if(likeMusicService.insertLike(newbean)) {
 				data.put("success", "謝謝您支持這位歌手");
 			}else {				
