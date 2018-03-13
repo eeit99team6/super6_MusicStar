@@ -4,10 +4,12 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import model.bean.MusicContestPlayerBean;
 import model.bean.MusicListBean;
 
 @Repository
@@ -54,6 +56,14 @@ public class MusicListDAO {
 		}
 		return false;
 	}
+	//用於搜尋我的歌單 謙0313
+	public List<MusicListBean> selectmemid(String member_music_list_member_id){
+		Query query = this.getSession().createQuery("from MusicListBean where member_music_list_member_id=?0");
+		query.setParameter("0", member_music_list_member_id);
+		return (List<MusicListBean>) query.list();
+	}
+	
+	
 }
 		
 	

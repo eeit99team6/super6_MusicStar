@@ -4,10 +4,11 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-
+import model.bean.MusicContestPlayerBean;
 import model.bean.MusicListContentBean;
 
 @Repository
@@ -39,5 +40,13 @@ public class MusicListContentDAO {
 		return this.getSession().createQuery("from MusicListContentBean",MusicListContentBean.class).list();
 				}
 	
+	//搜尋歌單id裡的音樂 
+	//謙 0313
+	public List<MusicListContentBean> selectmusiclistiditem(Integer member_music_list_content_id){
+		Query query = this.getSession().createQuery("from MusicListContentBean mlcb join MusicBean mc on mlcb.member_music_list_content_music_id=mc.music_id where mlcb.member_music_list_content_id=?0");
+		query.setParameter("0", member_music_list_content_id);
+	
+		return (List<MusicListContentBean>) query.list();
+	}
 	
 }

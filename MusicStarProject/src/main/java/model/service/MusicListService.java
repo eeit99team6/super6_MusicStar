@@ -8,7 +8,10 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import model.bean.MusicBean;
+import model.bean.MusicContestBean;
 import model.bean.MusicListBean;
+import model.bean.MusicListContentBean;
 import model.dao.MusicListContentDAO;
 import model.dao.MusicListDAO;
 
@@ -34,6 +37,11 @@ public class MusicListService {
 		}
 		return result;
 	}
+	public List<MusicListBean> select() {
+		List<MusicListBean> musiclistbean = (List<MusicListBean>) musicListDAO.select();
+		return musiclistbean;
+	}
+
 
 	public MusicListBean insert(MusicListBean bean) {
 		MusicListBean result = null;
@@ -68,5 +76,16 @@ public class MusicListService {
 		}
 		return result1;
 	}
+	
+	public List<MusicListBean> selectmemid(String mbrId){
+		if(mbrId !=null) {
+			List<MusicListBean> temp = musicListDAO.selectmemid(mbrId);
+			if(temp != null) {				
+				return temp;			
+			}
+		}
+			return null;
+	} 
+	
 
 }
