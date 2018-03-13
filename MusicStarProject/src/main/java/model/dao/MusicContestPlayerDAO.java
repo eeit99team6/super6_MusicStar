@@ -103,4 +103,12 @@ public class MusicContestPlayerDAO {
 		return getSession().createQuery(query,Map.class).list();
 	}
 	
+	// 選擇  指定的賽事 和 指定的 member_id 
+	public long selectByMIdAndMusId(Integer musicId, String memberId) {
+		Query query = this.getSession().createQuery("select count(*) from MusicContestPlayerBean m where m.music_contest_id = :mid and m.music_contest_player_id = :mplayid", Long.class);
+		query.setParameter("mid", musicId);
+		query.setParameter("mplayid", memberId);
+		return (Long)query.uniqueResult();
+	}
+	
 }
