@@ -3,6 +3,7 @@ package controller;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -93,20 +94,37 @@ public class MusicContestPlayerController {
 	// 塞入一筆player的資料到指定的比賽
 	
 	/*
-	 * music_contest_id
-	 * music_contest_player_id
-	 * music_id
-	 * music_contest_players_votes
+	 * YuTingWu 
 	 * 
 	 * */
 	@RequestMapping(value="/insertPlayer", method=RequestMethod.POST)
-	public String insertPlayer(@RequestParam(value="music_contest_players_votes", required=false) String playersVotes ,MusicContestPlayerBean bean,Model model) {
+	public String insertPlayer(@RequestParam(value="music_contest_players_votes", required=false) String playersVotes ,
+			MusicContestPlayerBean bean,Model model) {
 		if(bean!=null) {
 			 musicContestPlayerService.insertPlayer(bean);
 			 model.addAttribute("playerInfor", bean);
 			 return "r.insertPlayer.ok";
 		}
 		return "f.insertPlayer.notok";
+	}
+	
+	
+	// 確認 報名者是否已經報名過比賽
+	
+	/* =================== 確認 報名者是否已經報名過比賽  ========================== */
+	
+	@RequestMapping(value="/pages/checkedPlayerAjax", method=RequestMethod.GET, produces="text/plain;charset=UTF-8")
+	@ResponseBody
+	public String chekcedPlayer(@RequestParam(value="music_contest_players_votes", required=false) String playersVotes ,
+			@RequestParam(value="music_id", required=false) String musicId ,
+			MusicContestPlayerBean bean,Model model) {
+//		List listCont = new  ArrayList<>();
+//		Map<String,Long> map = new HashMap<String,Long>();
+		Long result = musicContestPlayerService.chekcedPlayer(bean.getMusic_contest_id(), bean.getMusic_contest_player_id());
+		
+		System.out.println(result);
+//		listCont.add(map.put("count", result));
+		return Parser.toJson(result);
 	}
 	
 	

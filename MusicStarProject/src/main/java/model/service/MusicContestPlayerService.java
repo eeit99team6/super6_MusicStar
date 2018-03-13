@@ -71,6 +71,20 @@ public class MusicContestPlayerService {
 		return result;
 	}
 	
+
+	/**
+	 * 查看: 檢查 是否已報名此賽事 
+	 * 
+	 * @author yuting
+	 * 
+	 */
+	public long chekcedPlayer(Integer musicId, String memberId) {
+		if(musicId!=null && memberId!=null) {
+			return musicContestPlayerDAO.selectByMIdAndMusId(musicId, memberId);
+		}
+		return 0;
+	}
+	
 	
 	
 	/**
@@ -79,7 +93,6 @@ public class MusicContestPlayerService {
 	 * @author yuting
 	 * 
 	 */
-
 	public MusicContestPlayerBean insertPlayer(MusicContestPlayerBean bean) {
 		if (bean != null) {
 			MusicContestPlayerBean reslut = musicContestPlayerDAO.insert(bean);
