@@ -29,6 +29,10 @@ font-weight:bold;
     border-radius:30%;
 }
 
+#music-contest-sing-up-container{
+margin:0 auto;
+}
+
 .divImagContainer:hover{
     opacity:0.7;
 }
@@ -73,15 +77,9 @@ font-weight: bold;
 	 
 	 <div class="title">報名中</div>
 	 <div class="row">
-	  <div id="music-contest-sing-up-container" class="card-colums">
+	  <div id="music-contest-sing-up-container" class="card columns">
 	  
-	  </div>
-	  
-	   <div id="music-contest-history-container" class="card mr-4">
-	   
-	  </div>
      </div>
-    
 	  </div>
 	</div>
 <!--  =====================  沒有 login =============================== -->
@@ -180,7 +178,7 @@ font-weight: bold;
                                  .addClass("card-img img-fluid w-100"); 
 		
 			  
-			  var div = $("<div></div>").addClass("card mb-6 divImagContainer")
+			  var div = $("<div></div>").addClass("card divImagContainer ")
 			                            .attr({
 			                            id:"div" + item.music_contest_id,
 			                            });
