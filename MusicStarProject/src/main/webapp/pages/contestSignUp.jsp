@@ -213,10 +213,8 @@ font-weight: bold;
 				   var memeberTemp = $(".modal-header").children("p").text();
 				   var memeberId = memeberTemp.substr(3);
 				   
-				   alert("musicContestId:" +musicContestId + " , "+ "memeberId:" + memeberId );
 // Ajax 判斷是否已經報名過此比賽
 					$.get("checkedPlayerAjax",{"music_contest_id":musicContestId,"music_contest_player_id":memeberId},function(countForSingup){
-						alert("countForSingup:"+countForSingup);
 						
 						if(countForSingup==0){
 				            $("#borderIfo").children("p").text("請先確認您已上傳此項賽事之音樂");
