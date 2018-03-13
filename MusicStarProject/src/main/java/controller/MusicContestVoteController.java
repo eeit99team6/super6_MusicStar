@@ -38,7 +38,11 @@ public class MusicContestVoteController {
 		if (!Checker.notEmpty(musicCtstPlayerId)) {
 			data.put("musicCtstPlayerIdErr", "必須提供musicCtstPlayerId");
 		}
-
+		
+		if (Checker.notEmpty(data)) {
+			return Parser.toJson(data);
+		}
+		
 		MemberBean mb = (MemberBean) session.getAttribute("loginOK");
 
 		if (mb != null) {

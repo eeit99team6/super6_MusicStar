@@ -187,7 +187,7 @@ public class MemberController {
 			@RequestHeader(value = "referer", required = false) String referer) {
 		Map<String, String> data = new HashMap<>();
 
-		GoogleIdToken googleIdToken = Checker.verifyGoogleIdToken(idToken);
+		GoogleIdToken googleIdToken = Processor.verifyGoogleIdToken(idToken);
 
 		if (googleIdToken != null) {
 			Payload payload = googleIdToken.getPayload();

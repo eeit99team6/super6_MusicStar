@@ -1,13 +1,13 @@
 package model.service;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import _global.utils.Processor;
 import model.bean.MemberBean;
 import model.dao.MemberDAO;
 
@@ -23,7 +23,7 @@ public class MemberService
 		String mbrId = null;
 		if (bean != null && (mbrId = bean.getMbrId()) != null && memberDAO.selectById(mbrId) == null)
 		{
-			bean.setMbrRegisterDate(new Date());
+			bean.setMbrRegisterDate(Processor.getCurrentTwDate());
 			return memberDAO.insert(bean) != null ? true : false;
 		} else
 		{

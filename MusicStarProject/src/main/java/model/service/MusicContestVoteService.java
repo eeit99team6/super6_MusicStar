@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import model.bean.MusicContestBean;
 import model.bean.MusicContestVoteBean;
 import model.dao.MusicContestDAO;
+import model.dao.MusicContestPlayerDAO;
 import model.dao.MusicContestVoteDAO;
 
 @Service
@@ -17,6 +18,8 @@ public class MusicContestVoteService
 {
 	@Autowired
 	private MusicContestVoteDAO musicContestVoteDAO;
+	@Autowired
+	private MusicContestPlayerDAO musicContestPlayerDAO;
 	@Autowired
 	private MusicContestDAO musicContestDAO;
 
@@ -37,11 +40,20 @@ public class MusicContestVoteService
 		return null;
 	}
 	
-	public boolean canVote(Integer musicCtstId) {	
-		return true;	
+	public boolean canVote(Integer musicCtstId) {
+		return musicContestDAO.checkCtstStatus(musicCtstId) == 3 ? true : false;
 	}
 
 	public boolean voting(MusicContestVoteBean bean) {
-		return bean != null && bean.getMusic_contest_id() != null && bean.getVoter_id() != null && bean.getMusic_contest_player_id() != null && musicContestVoteDAO.insert(bean) != null ? true : false;		
+		
+		if (bean != null) {
+			MusicContestVoteBean mcvb = null;
+			if ((mcvb = musicContestVoteDAO.insert(bean)) != null) {
+				musicContestPlayerDAO.addVotes(mcvb);
+				return true;
+			}
+		}		
+		return false;		
 	}
+	
 }

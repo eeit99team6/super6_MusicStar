@@ -24,6 +24,7 @@ public class Parser
 	SimpleDateFormat sdfForTW = new SimpleDateFormat("yyyy-MM-dd", Locale.TAIWAN);
 	
 	/**
+	 * 將String轉為Integer
 	 * @param parseStr 要轉成Integer的字串
 	 * @return 轉換成功 : Integer  ； 轉換失敗 : null
 	 */
@@ -39,6 +40,7 @@ public class Parser
 	}
 
 	/**
+	 * 將JSON物件轉為JSON字串
 	 * @param src 要轉成JSON字串的來源物件
 	 * @return JSON字串
 	 */
@@ -48,10 +50,11 @@ public class Parser
 	}
 	
 	/**
+	 * 將JSON字串轉為指定類型的JSON物件
 	 * @param <T> JSON物件的類型
 	 * @param jsonString 要轉成JSON物件的字串
-	 * @param classOfT 所需JSON物件所屬的Class
-	 * @return JSON物件
+	 * @param classOfT 所需JSON物件類型所屬的Class
+	 * @return 指定類型的JSON物件
 	 */
 	public static <T> T parseJson(String jsonString, Class<T> classOfT)
 	{
@@ -59,9 +62,10 @@ public class Parser
 	}
 	
 	/**
+	 * 將JSON物件轉為指定類型格式的JSON字串
 	 * @param reader 要讀取的JSON物件的Reader
 	 * @param classOfT 要轉成JSON物件的Class
-	 * @return JSON物件
+	 * @return 指定類型格式的JSON物件
 	 */
 	public static <T> T parseJson(Reader reader, Class<T> classOfT)
 	{
@@ -146,18 +150,20 @@ public class Parser
 	}
 	
 	/**
+	 * 將Date轉換為當前台灣時區的日期字串
 	 * @param date 要轉成字串的Date物件
 	 * @return "yyyy-MM-dd"日期格式的字串
 	 */
-	public String formatDate(Date date) {
+	public String formatTwDate(Date date) {
 		return sdfForTW.format(date);
 	}
 	
 	/**
+	 * 將日期字串轉換為當前台灣時區的Date物件
 	 * @param source 要轉成Date的字串
 	 * @return 轉換成功 : Date物件  ； 轉換失敗 : null
 	 */
-	public Date parseDate(String source) {
+	public Date parseTwDate(String source) {
 		try {
 			return sdfForTW.parse(source);
 		} catch (ParseException e) {
