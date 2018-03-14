@@ -20,26 +20,41 @@ public class MusicContestVoteDAO
 		return sessionFactory.getCurrentSession();
 	}
 
+	/**
+	 * @author Phil 2018.03.12
+	 */
 	public MusicContestVoteBean selectById(Integer musicCtstId,String musicCtstVoterId)
 	{
 		return musicCtstId != null ? getSession().createQuery("from MusicContestVoteBean where music_contest_id = :musicCtstId and voter_id = :musicCtstVoterId", MusicContestVoteBean.class).setParameter("musicCtstId", musicCtstId).setParameter("musicCtstVoterId", musicCtstVoterId).uniqueResult() : null;
 	}
 	
+	/**
+	 * @author Phil 2018.03.12
+	 */
 	public List<MusicContestVoteBean> selectByMusicCtstId(Integer musicCtstId)
 	{
 		return musicCtstId != null ? getSession().createQuery("from MusicContestVoteBean where music_contest_id = :musicCtstId", MusicContestVoteBean.class).setParameter("musicCtstId", musicCtstId).list() : null;
 	}
 
+	/**
+	 * @author Phil 2018.03.12
+	 */
 	public List<MusicContestVoteBean> selectByMusicCtstVoterId(String musicCtstVoterId)
 	{
 		return musicCtstVoterId != null ? getSession().createQuery("from MusicContestVoteBean where voter_id = :musicCtstVoterId", MusicContestVoteBean.class).setParameter("musicCtstVoterId", musicCtstVoterId).list() : null;
 	}
 
+	/**
+	 * @author Phil 2018.03.12
+	 */
 	public List<MusicContestVoteBean> selectAll()
 	{
 		return getSession().createQuery("from MusicContestVoteBean", MusicContestVoteBean.class).list();
 	}
 
+	/**
+	 * @author Phil 2018.03.12
+	 */
 	public MusicContestVoteBean insert(MusicContestVoteBean bean)
 	{
 		Integer musicCtstId = null;
@@ -52,6 +67,9 @@ public class MusicContestVoteDAO
 		return null;
 	}
 	
+	/**
+	 * @author Phil 2018.03.12
+	 */
 	public boolean delete(	Integer musicCtstId, String musicCtstVoterId)
 	{
 		MusicContestVoteBean mcvb = null;

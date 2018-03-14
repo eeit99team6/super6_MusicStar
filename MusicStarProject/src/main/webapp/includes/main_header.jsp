@@ -21,7 +21,7 @@
 			<li><a href="<c:url value="/pages/product.jsp"/>">歌單總覽</a></li>
 			<li><a href="#">測試區</a>
 				<ul>
-					<li><a href="<c:url value="/testpages/test_fileupload.jsp"/>">上傳測試</a></li>
+					<li><a href="<c:url value="/testpages/test_slideshow_control.jsp"/>">輪播牆</a></li>
 				</ul></li>
 			<c:choose>
 				<c:when test="${not empty loginOK}">
@@ -64,7 +64,7 @@
 			<li><a href="<c:url value="/pages/product.jsp"/>">歌單總覽</a></li>
 			<li><a href="#">測試區</a>
 				<ul>
-					<li><a href="<c:url value="/testpages/test_fileupload.jsp"/>">上傳測試</a></li>
+					<li><a href="<c:url value="/testpages/test_slideshow_control.jsp"/>">輪播牆</a></li>
 				</ul></li>
 			<c:choose>
 				<c:when test="${not empty loginOK}">
@@ -86,7 +86,7 @@
 	<c:if test="${empty loginOK}">
 		<div class="container">
 			<div class="modal fade" id="login_box">
-				<div class="modal-dialog modal-md">
+				<div class="modal-dialog modal-dialog-centered modal-md">
 					<div class="modal-content">
 						<form action="<c:url value="/members/loginAjax"/>" method="post" id="login_form">
 							<div class="modal-header">

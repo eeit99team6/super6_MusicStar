@@ -44,7 +44,7 @@ public class MemberController {
 	String coverDirectoryPath;
 	@Autowired
 	String audiosDirectoryPath;
-	
+
 	@RequestMapping(path = "/members/show", method = RequestMethod.GET, produces = "application/json; charset=UTF-8")
 	@ResponseBody
 	public String show() {
@@ -77,12 +77,12 @@ public class MemberController {
 				|| !(Checker.notEmpty(gneder) && (gneder.toString().equals("M") || gneder.toString().equals("F")))) {
 			error.put("genderError", "性別必須選擇");
 		}
-		
+
 		String contentType = mbrProfile.getContentType();
 		if (!mbrProfile.isEmpty()) {
 			if (contentType.indexOf("image") == -1) {
 				error.put("profileError", "上傳必須為圖檔");
-			} 
+			}
 		}
 
 		if (!Checker.notEmpty(error)) {
@@ -93,22 +93,22 @@ public class MemberController {
 				try {
 					mbrProfile.transferTo(new File(profilesDirectoryPath + fileName));
 					bean.setMbrPhoto(Constant.profilesDirectory + fileName);
+					File coverDir = new File(coverDirectoryPath + mbrId);
+					if (!coverDir.exists()) {
+						coverDir.mkdir();
+					}
+					File audioDir = new File(audiosDirectoryPath + mbrId);
+					if (!audioDir.exists()) {
+						audioDir.mkdir();
+					}
+					Map<String, String> success = new HashMap<>();
+					data.put("success", success);
+					success.put("message", "註冊成功!");
+					success.put("referer", referer);
 				} catch (IllegalStateException | IOException e) {
 					e.printStackTrace();
-				}				
-				File coverDir = new File(coverDirectoryPath + mbrId);	
-				if (!coverDir.exists()) {
-					coverDir.mkdir();
-				}				
-				File audioDir = new File(audiosDirectoryPath + mbrId);	
-				if (!audioDir.exists()) {
-					audioDir.mkdir();
+					error.put("idError", "註冊失敗!");
 				}
-				
-				Map<String, String> success = new HashMap<>();
-				data.put("success", success);
-				success.put("message", "註冊成功!");
-				success.put("referer", referer);
 			} else {
 				error.put("idError", "帳號重複!");
 			}
@@ -223,11 +223,11 @@ public class MemberController {
 					bean.setMbrId(bean.getMbrId() + "_" + i++);
 				}
 				String mbrId = bean.getMbrId();
-				File coverDir = new File(coverDirectoryPath + mbrId);	
+				File coverDir = new File(coverDirectoryPath + mbrId);
 				if (!coverDir.exists()) {
 					coverDir.mkdir();
-				}				
-				File audioDir = new File(audiosDirectoryPath + mbrId);	
+				}
+				File audioDir = new File(audiosDirectoryPath + mbrId);
 				if (!audioDir.exists()) {
 					audioDir.mkdir();
 				}
@@ -250,7 +250,7 @@ public class MemberController {
 
 		FaceBook fbAccessToken = Processor.runHttpGet("https://graph.facebook.com/v2.12/me", FaceBook.class,
 				"fields=id,name,email,picture", "access_token=" + accessToken);
-		
+
 		json.fb.Error error = fbAccessToken.getError();
 		if (error == null) {
 
@@ -289,11 +289,11 @@ public class MemberController {
 					bean.setMbrId(bean.getMbrId() + "_" + i++);
 				}
 				String mbrId = bean.getMbrId();
-				File coverDir = new File(coverDirectoryPath + mbrId);	
+				File coverDir = new File(coverDirectoryPath + mbrId);
 				if (!coverDir.exists()) {
 					coverDir.mkdir();
-				}				
-				File audioDir = new File(audiosDirectoryPath + mbrId);	
+				}
+				File audioDir = new File(audiosDirectoryPath + mbrId);
 				if (!audioDir.exists()) {
 					audioDir.mkdir();
 				}

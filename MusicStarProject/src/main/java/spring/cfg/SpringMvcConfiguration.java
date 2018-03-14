@@ -104,6 +104,16 @@ public class SpringMvcConfiguration implements WebMvcConfigurer
 			coverDir.mkdir();
 		}
 		return coverDirectoryPath;
+    }
+    
+    @Bean
+    public String sildeshowDirectoryPath() throws MalformedURLException {
+    	String sildeshowDirectoryPath = imagesDirectoryPath()+ "sildeshow" + File.separator;
+    	File sildeshowDir = new File(sildeshowDirectoryPath);
+    	if (!sildeshowDir.exists()) {
+    		sildeshowDir.mkdir();
+    	}
+    	return sildeshowDirectoryPath;
     } 
     
     @Bean

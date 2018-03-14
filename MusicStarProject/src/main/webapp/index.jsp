@@ -19,46 +19,16 @@
 	<!-- main_container start -->
 	<div id="main_container" class="container-fuild">
 		<div class="slideshow full">
-			<section data-slide-image="${ctx}/assets/img/slideshow/night.jpg">
-				<a href="#">
-					<article class="inner">
-						<h2>音樂比賽1</h2>
-						<P>點擊進入音樂比賽1</P>
-					</article>
-				</a>
-			</section>
-			<section data-slide-image="${ctx}/assets/img/slideshow/sky.jpg">
-				<a href="#">
-					<article class="inner">
-						<h2>音樂比賽2</h2>
-						<P>點擊進入音樂比賽2</P>
-					</article>
-				</a>
-			</section>
-			<section data-slide-image="${ctx}/assets/img/slideshow/sea.jpg">
-				<a href="#">
-					<article class="inner">
-						<h2>音樂比賽3</h2>
-						<P>點擊進入音樂比賽3</P>
-					</article>
-				</a>
-			</section>
-			<section data-slide-image="${ctx}/assets/img/slideshow/baston.jpg">
-				<a href="#">
-					<article class="inner">
-						<h2>音樂比賽4</h2>
-						<P>點擊進入音樂比賽4</P>
-					</article>
-				</a>
-			</section>
-			<section data-slide-image="${ctx}/assets/img/slideshow/beach.jpg">
-				<a href="#">
-					<article class="inner">
-						<h2>音樂比賽5</h2>
-						<P>點擊進入音樂比賽5</P>
-					</article>
-				</a>
-			</section>
+			<c:forEach var="slide" items="${applicationScope.slides}">
+				<section data-slide-image="${slide.slide_photo}">
+					<a href="${slide.slide_link}">
+						<article class="inner">
+							<h2>${slide.slide_name}</h2>
+							<P>${slide.slide_description}</P>
+						</article>
+					</a>
+				</section>
+			</c:forEach>
 		</div>
 	</div>
 	<!-- main_container end -->

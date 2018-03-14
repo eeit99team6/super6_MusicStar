@@ -20,26 +20,41 @@ public class MemberDAO
 		return sessionFactory.getCurrentSession();
 	}
 
+	/**
+	 * @author Phil 2018.03.12
+	 */
 	public MemberBean selectById(String mbrId)
 	{
 		return mbrId != null ? getSession().get(MemberBean.class, mbrId) : null;
 	}
 
+	/**
+	 * @author Phil 2018.03.12
+	 */
 	public MemberBean selectByGoogleId(String mbrGoogleId)
 	{
 		return mbrGoogleId != null ? getSession().createQuery("from MemberBean where mbrGoogleId = :mbrGoogleId", MemberBean.class).setParameter("mbrGoogleId", mbrGoogleId).uniqueResult() : null;
 	}
 
+	/**
+	 * @author Phil 2018.03.12
+	 */
 	public MemberBean selectByFbId(String mbrFbId)
 	{
 		return mbrFbId != null ? getSession().createQuery("from MemberBean where mbrFbId = :mbrFbId", MemberBean.class).setParameter("mbrFbId", mbrFbId).uniqueResult() : null;
 	}
 
+	/**
+	 * @author Phil 2018.03.12
+	 */
 	public List<MemberBean> selectAll()
 	{
 		return getSession().createQuery("from MemberBean", MemberBean.class).list();
 	}
 
+	/**
+	 * @author Phil 2018.03.12
+	 */
 	public MemberBean insert(MemberBean bean)
 	{
 		String mbrId = null;
@@ -51,6 +66,9 @@ public class MemberDAO
 		return null;
 	}
 
+	/**
+	 * @author Phil 2018.03.12
+	 */
 	public MemberBean update(MemberBean bean)
 	{
 		MemberBean mb = null;
@@ -70,6 +88,9 @@ public class MemberDAO
 		return null;
 	}
 
+	/**
+	 * @author Phil 2018.03.12
+	 */
 	public boolean delete(String mbrId)
 	{
 		MemberBean mb = null;
