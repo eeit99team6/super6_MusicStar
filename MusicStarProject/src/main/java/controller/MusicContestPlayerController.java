@@ -97,16 +97,20 @@ public class MusicContestPlayerController {
 	 * YuTingWu 
 	 * 
 	 * */
-	@RequestMapping(value="/insertPlayer", method=RequestMethod.POST)
+	@RequestMapping(value="/pages/insertPlayer", method=RequestMethod.POST)
 	public String insertPlayer(@RequestParam(value="music_contest_players_votes", required=false) String playersVotes ,
 			MusicContestPlayerBean bean,Model model) {
-		if(bean!=null) {
-			 musicContestPlayerService.insertPlayer(bean);
-			 model.addAttribute("playerInfor", bean);
-			 return "r.insertPlayer.ok";
+		Long result = musicContestPlayerService.chekcedPlayer(bean.getMusic_contest_id(), bean.getMusic_contest_player_id());
+        if(!(result !=0)) {
+		  if(bean!=null) {
+			  musicContestPlayerService.insertPlayer(bean);
+			  model.addAttribute("playerInfor", bean);
+			  return "r.insertPlayer.ok";
 		}
+      }
+        model.addAttribute("alertInsert", "此賽事您已經報名過了唷!");
 		return "f.insertPlayer.notok";
-	}
+    }
 	
 	
 	// 確認 報名者是否已經報名過比賽

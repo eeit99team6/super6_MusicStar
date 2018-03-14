@@ -133,11 +133,13 @@ public class MusicController
 		// 依據model 回傳　view　
 	     if(bean!=null) {
 	    	    MusicBean reslut =musicservice.insert(memberLoginOk.getMbrId(),bean);
+	    	    model.addAttribute("message", "上傳音樂成功唷!");
 	    		model.addAttribute("insertMusicOk", reslut);
-	         return "r.musicinsert.ok";       
+	         return "f.musicinsert.ok";       
 	     }
 			  //return logical name no login !
 	  }
+		model.addAttribute("errorMessage", "上傳音樂失敗搂~");
 		return "f.musicinsert.notOk";
 	}
 	

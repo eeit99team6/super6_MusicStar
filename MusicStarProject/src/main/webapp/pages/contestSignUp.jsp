@@ -9,7 +9,7 @@
 <jsp:include page="/includes/main_css.jsp" />
 <link href="${ctx}/assets/css/music-contest-signup/music-singup-bootstrap.min.css" rel="stylesheet" />
 <link href="${ctx}/assets/css/music-contest-signup/music-singup-dataTables.bootstrap4.css" rel="stylesheet" />
-<link href="${ctx}/assets/css/music-contest-signup/music-singup-font-awesome.min.css" rel="stylesheet" />
+<%-- <link href="${ctx}/assets/css/music-contest-signup/music-singup-font-awesome.min.css" rel="stylesheet" /> --%>
 <link href="${ctx}/assets/css/music-contest-signup/music-singup-sb-admin.css" rel="stylesheet" />
 <style type="text/css">
 
@@ -59,6 +59,12 @@ border:solid 1px black;
 
 label{
 font-weight: bold;
+}
+
+.musicImgSan:hover{
+ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+ cursor:pointer;
+
 }
 
 
@@ -128,7 +134,7 @@ font-weight: bold;
 
 <div id="creatContest" class="modal fade" >
 <div class="modal-dialog" role="document">               
-  <form class="modal-content" method="POST" enctype="multipart/form-data" action="<c:url value='/insertPlayer'/>">
+  <form class="modal-content" method="POST" enctype="multipart/form-data" action="<c:url value='/pages/insertPlayer'/>">
       <div class="modal-header">
           <img src="${ctx}/assets/img/pagesUsage/music-star.png" width="50"><h3 class="modal-title" id="exampleModalLabel">Music Star</h3>
          <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
@@ -136,18 +142,18 @@ font-weight: bold;
 
     <div class="modal-body">
          <label for="music_contest_id">音樂比賽名稱:</label>
-         <select name="music_contest_id" id="music_contest_id" class="col-xl-12">
+         <select name="music_contest_id" id="music_contest_id" class="col-xl-12" required>
          </select>
     </div>  
     
     <div class="modal-body">
       <label for="music_contest_player_id">會員:</label>
-      <input type="text" placeholder="music_contest_player_id" name="music_contest_player_id" id="music_contest_player_id" class="col-xl-12" value="${loginOK.mbrId}" readonly/>
+      <input type="text" placeholder="music_contest_player_id" name="music_contest_player_id" id="music_contest_player_id" class="col-xl-12" value="${loginOK.mbrId}" required readonly/>
     </div>  
      
       <div class="modal-body" id="music_id_div">
-      <label for="music_id">您的音樂:</label>
-      <input style="display:none" type="text" placeholder="music_id" name="music_id" id="music_id" class="col-xl-6" readonly>
+      <label for="music_id">您的音樂:</label>                                                                         
+      <input style="display:none" type="text" placeholder="music_id" name="music_id" id="music_id" class="col-xl-6" required readonly>
       </div> 
       
        <div class="modal-footer col-xl-12">
@@ -251,8 +257,8 @@ font-weight: bold;
 				var musicImg = $("<img/>").attr({
 					                       src: item.music_photo,
 				                           title: item.music_name + ".mp3",
-				                           width: "10%",
-				                           height: "10%",
+				                           width: "40px",
+				                           height: "40px",
 				                           value: item.music_id
 			                       	       })
 				                           .addClass("musicImgSan");
