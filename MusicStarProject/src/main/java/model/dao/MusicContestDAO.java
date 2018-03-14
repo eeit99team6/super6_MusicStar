@@ -29,7 +29,7 @@ public class MusicContestDAO {
 	
 	/**
 	 * 確認賽式的狀態
-	 * @author Phil
+	 * @author Phil 2018.03.12
 	 * @return 尚未開始:0 , 報名中:1 , 審核中:2 , 投票中:3 , 已結束:4
 	 */
 	public int checkCtstStatus (Integer musicCtstId)
@@ -50,7 +50,7 @@ public class MusicContestDAO {
 	
 	/**
 	 * 取得狀態為報名中的賽事資料
-	 * @author Phil
+	 * @author Phil 2018.03.12
 	 * @return 報名中的賽事資料的List
 	 */
 	public List<MusicContestBean> slelctCtstAtApplying(){		
@@ -59,7 +59,7 @@ public class MusicContestDAO {
 
 	/**
 	 * 取得狀態為審核中的賽事資料
-	 * @author Phil
+	 * @author Phil 2018.03.12
 	 * @return 審核中的賽事資料的List
 	 */
 	public List<MusicContestBean> slelctCtstAtValidating(){		
@@ -68,7 +68,7 @@ public class MusicContestDAO {
 	
 	/**
 	 * 取得狀態為投票中的賽事資料
-	 * @author Phil
+	 * @author Phil 2018.03.12
 	 * @return 投票中的賽事資料的List
 	 */
 	public List<MusicContestBean> slelctCtstAtVoting(){		
@@ -77,7 +77,7 @@ public class MusicContestDAO {
 	
 	/**
 	 * 取得狀態為已結束的賽事資料
-	 * @author Phil
+	 * @author Phil 2018.03.12
 	 * @return 已結束的賽事資料的List
 	 */
 	public List<MusicContestBean> slelctCtstIsClose(){		

@@ -12,6 +12,8 @@ import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import spring.listener.SlideshowInitListener;
+
 @Configuration
 @ComponentScan("model")
 @EnableTransactionManagement
@@ -42,4 +44,9 @@ public class SpringRootConfiguration
 		return new HibernateTransactionManager(sessionFactory());
 	}
 
+    @Bean
+    public SlideshowInitListener slideshowInitListener() {
+    	return new SlideshowInitListener();
+    }
+    
 }

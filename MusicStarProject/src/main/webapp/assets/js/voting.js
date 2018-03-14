@@ -1,10 +1,10 @@
 $(function(){
 			var contestId = $("#contestId").val();
 			$.getJSON(ctx+"/contests/voting/Players?contestId="+contestId,function(data){		
-			var docFrag = $(document.createDocumentFragment());
+			var $docFrag = $(document.createDocumentFragment());
 			if(data.errMsg == null && data.length > 0){
 				$.each(data,function(index,value){
-					docFrag.append(
+					$docFrag.append(
 						"<div class='display_show card'>"+
 							"<div class='view view-eighth'>"+
 								"<img src='"+value.musicPhoto+"'/>"+
@@ -21,9 +21,9 @@ $(function(){
 				$("#display_area").after("<h2 class='text-center' style='margin-bottom:200px;'>很抱歉此賽事目前沒有任何參賽者</h2>");
 			}		
 			for(let i = 0; i < 3 ;i++){
-				docFrag.append("<div class='display_show'></div>");
+				$docFrag.append("<div class='display_show'></div>");
 			}	
-			$("#display_area").append(docFrag)
+			$("#display_area").append($docFrag)
 			.on("click",".play_music",function(e){
 				var $this = $(this),
 					musicName = $this.parent().find("h2").eq(0).text(),

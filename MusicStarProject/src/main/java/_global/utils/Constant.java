@@ -15,6 +15,7 @@ public class Constant
 	public static final String imagesDirectory = "/FileSource/images/"; //存放影像檔的目錄
 	public static final String profilesDirectory = "/FileSource/images/profiles/"; //存放會員頭像的目錄
 	public static final String coverDirectory = "/FileSource/images/cover/"; //存放音樂封面的目錄
+	public static final String sildeshowDirectory = "/FileSource/images/sildeshow/"; //存放圖片的目錄
 	public static final String audioDirectory = "/FileSource/audios/"; //存放音樂封面的目錄  audioDirectory + loginOK.getMemberId +/ yyMMDDhhmmSSS +"_" + 
 
 }
