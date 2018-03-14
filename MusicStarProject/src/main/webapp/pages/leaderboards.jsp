@@ -35,7 +35,7 @@
 <!-- 				</ol> -->
 <%-- 				<a href="${ctx}/leaderboards-1.jsp?music_contest_id=1" class="btn btn-outline-danger" role="button" aria-pressed="true">看本榜Top10</a> --%>
 <!-- 			</div> -->
-<!-- 		</div>leaderboard-outer -->
+ 		</div><!--leaderboard-outer -->
 		<p>${errors.action}</p>	
 	</div>
 	<!-- main_container end -->

@@ -1,6 +1,8 @@
 $(document).ready(function(){
 //right	
-	$.getJSON(ctx+'/leaderboards-1.controller',{'music_contest_id':'${param.music_contest_id}'},function(data){
+	 var xxxId = $("#xxxId").val();
+	
+	$.getJSON(ctx+'/leaderboards-1.controller',{'music_contest_id':xxxId},function(data){
  		$('.leaderboard-title').html(data[0][2].music_contest_name)
 		var docFrag =$(document.createDocumentFragment());
 		$.each(data,function(index,mu){
@@ -23,7 +25,7 @@ $(document).ready(function(){
 		for(var i=1;i<=datacount;i++){
 			$.getJSON(ctx+'/leaderboards-1.controller',{'music_contest_id':i},function(data){
 				console.log(data[1][2].music_contest_id);
-				var cc=$('<div class="left-div"><i class="material-icons" style="font-size:24px;color:red">skip_next</i><a href="${ctx}/leaderboards-1.jsp?music_contest_id='+data[1][2].music_contest_id+'">'+data[1][2].music_contest_name+'</a></div>')
+				var cc=$('<div class="left-div"><i class="material-icons" style="font-size:24px;color:red">skip_next</i><a href="'+ctx+'/pages/leaderboards-1.jsp?music_contest_id='+data[1][2].music_contest_id+'">'+data[1][2].music_contest_name+'</a></div>')
 				docFrag.append(cc)
 			$('#leaderboard-1-left').append(docFrag);
 			})

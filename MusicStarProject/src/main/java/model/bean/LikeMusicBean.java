@@ -14,6 +14,22 @@ public class LikeMusicBean implements Serializable {
 	String likes_member_id;
 	@Id
 	Integer likes_music_id;
+	
+	/** 
+	 * @author james.pu 2018.03.13 11:00
+	 * @return 需要用到
+	 */
+	public LikeMusicBean(String likes_member_id, Integer likes_music_id) {
+		this.likes_member_id =likes_member_id;
+		this.likes_music_id =likes_music_id;
+	}
+	
+	/** 
+	 * @author james.pu 2018.03.13 11:00
+	 * @return 需要用到
+	 */
+	public LikeMusicBean() {
+	}
 
 	public String getLikes_member_id() {
 		return likes_member_id;
