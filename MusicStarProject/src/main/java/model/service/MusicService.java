@@ -68,5 +68,62 @@ public class MusicService
 	   }	
 		return false;
 	} 
-	 
+	
+	
+	/**
+	 * @author Yeh
+	 */
+	
+	// select all
+	public List<MusicBean> select(){
+		List<MusicBean> list = musicdao.select();
+		return list;
+	}
+	
+	// select by music_style_id
+	public List<MusicBean> selectStyle(Integer music_style_id){
+		List<MusicBean> style = null;
+		if(music_style_id != null){
+			style = musicdao.selectStyle(music_style_id);
+		}
+		return style;
+	}
+	
+	// select by music_member_id
+	public List<MusicBean> selectSinger(String music_member_id){
+		List<MusicBean> singer = null;
+		if(music_member_id != null){
+			singer = musicdao.selectSinger(music_member_id);
+		}
+		return singer;
+	}
+	
+	// select by music_member_id , music_style_id
+	public List<MusicBean> selectSingerStyle(String music_member_id , Integer music_style_id){
+		List<MusicBean> singerStyle = null;
+		if(music_member_id != null){
+			singerStyle = musicdao.selectSingerStyle(music_member_id, music_style_id);
+		}
+		return singerStyle;
+	}
+	
+	// select by keyword
+	public MusicBean selectMusicName(String keyword){
+		MusicBean musicName = null;
+		if(keyword != null){
+			musicName = musicdao.selectMusicName(keyword);
+			return musicName;
+		}
+		return null;
+	}
+	
+	// select by music_name
+	public List<MusicBean> selectAllMusicName(String music_name){
+		List<MusicBean> allMusicName = null;
+		if(music_name != null){
+			allMusicName = musicdao.selectAllMusicName(music_name);
+		}
+		return allMusicName;
+	}
+	
 }

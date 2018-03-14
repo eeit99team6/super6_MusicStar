@@ -35,7 +35,7 @@ display:block;
 	<form method="POST" action="<c:url value='/musicInsert'/>" enctype="multipart/form-data">
     music_name:<input name="music_name" type="text">
     music_link:<input name="music_link" type="file">
-    music_member_id<input name="music_member_id" type="text">
+    music_member_id<input name="music_member_id" type="text" value="${loginOK.mbrId}" readonly>
     music_photo<input name="music_photo" type="file">
     music_description<input name="music_description" type="text">
     music_lyrics<input name="music_lyrics" type="text">

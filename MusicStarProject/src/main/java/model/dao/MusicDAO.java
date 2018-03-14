@@ -81,4 +81,50 @@ public class MusicDAO
 		return false;
 	}
 	
+	
+	/**
+	 * @author Yeh
+	 */
+	
+	//select by music_style_id
+	
+	public List<MusicBean> selectStyle(Integer music_style_id){
+		Query query = this.getSession().createQuery("from MusicBean where music_style_id=?0");
+		query.setParameter(0, music_style_id);
+		return (List<MusicBean>)query.list();
+	}
+	
+	//select by music_member_id
+	
+	public List<MusicBean> selectSinger(String music_member_id){
+		Query query = this.getSession().createQuery("from MusicBean where music_member_id=?0");
+		query.setParameter(0, music_member_id);
+		return (List<MusicBean>)query.list();
+	}
+	
+	//select by music_member_id , music_style_id
+	
+	public List<MusicBean> selectSingerStyle(String music_member_id , Integer music_style_id){
+		Query query = this.getSession().createQuery("from MusicBean where music_member_id = ?0 and music_style_id = ?1");
+		query.setParameter(0, music_member_id);
+		query.setParameter(1, music_style_id);
+		return (List<MusicBean>)query.list();
+	}
+	
+	//select by music_name
+	
+	public MusicBean selectMusicName(String keyword){
+		Query query = this.getSession().createQuery("from MusicBean where music_name = ?0");
+		query.setParameter(0, keyword);
+		return (MusicBean) query.uniqueResult();
+	}
+	
+	//select by music_name like
+	
+	public List<MusicBean> selectAllMusicName(String music_name){
+		Query query = this.getSession().createQuery("select music_name from MusicBean where music_name like :music_name");
+		query.setParameter("music_name", music_name+"%");
+		List<MusicBean> test = (List<MusicBean>)query.list();
+		return test;
+	}
 }

@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.context.ApplicationContext;
@@ -16,9 +18,16 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.gson.Gson;
+
+import _global.utils.Parser;
+import model.bean.MemberBean;
 import model.bean.MusicListBean;
+import model.bean.MusicListContentBean;
 import model.service.MusicListService;
 
 
@@ -106,6 +115,35 @@ public class MusiclistController {
 		} else {
 			errors.put("action", "Unknown Action:"+prodaction);
 			return "product.error";
+		}
+	}
+	@RequestMapping(value="/pages/musiclists", method=RequestMethod.GET, produces="application/json;charset=UTF-8")
+    @ResponseBody
+	public String musiclistAjax() {
+		return Parser.toJson(musicListService.select());
+	}
+	//0313 抓自己歌單之controller 謙
+	
+	@RequestMapping(path={"/mymusiclistidid.controller"},method={RequestMethod.GET,RequestMethod.POST},produces="application/json;charset=UTF-8")
+	@ResponseBody
+	public String method(HttpSession session) {	
+		Map<String,String> errors = new HashMap<>();
+		MemberBean mb =(MemberBean) session.getAttribute("loginOK");			
+		
+		if(mb!=null) 
+		{
+			String beanId = mb.getMbrId();
+			List<MusicListBean> beanList = musicListService.selectmemid(beanId);
+			if (beanList == null) {
+				errors.put("action", "UnKnow Action");
+				return Parser.toJson(errors);
+			} else {
+//				model.addAttribute("data", beanList);
+				return Parser.toJson(beanList);
+			}				
+		}else {
+			errors.put("mustLogin", "必須登入");
+			return Parser.toJson(errors);
 		}
 	}
 }

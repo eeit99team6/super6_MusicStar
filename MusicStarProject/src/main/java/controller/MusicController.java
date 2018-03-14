@@ -141,9 +141,8 @@ public class MusicController
 		return "f.musicinsert.notOk";
 	}
 	
-	
 	//=========== music select by id  =========================================//
-	@RequestMapping(value="/musicSelectByIdAjax", method=RequestMethod.GET, produces="application/json;charset=UTF-8")
+	@RequestMapping(value="/pages/musicSelectByIdAjax", method=RequestMethod.GET, produces="application/json;charset=UTF-8")
     @ResponseBody
 	public String selectById(HttpSession session) {
 		 MemberBean result = (MemberBean) session.getAttribute("loginOK");

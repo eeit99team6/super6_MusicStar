@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import model.bean.MusicContestPlayerBean;
 import model.bean.MusicListContentBean;
 import model.dao.MusicListContentDAO;
 
@@ -37,5 +38,21 @@ public class MusicListContentService {
 		}
 		return result;
 	}
+	
+
+	public List<MusicListContentBean> selectmusiclistiditem(MusicListContentBean bean){
+		List<MusicListContentBean> result = null;
+		if(bean!=null && bean.getMember_music_list_content_id()!=null) {
+			List<MusicListContentBean> temp = musicListContentDAO.selectmusiclistiditem(bean.getMember_music_list_content_id());
+			if(temp!=null) {
+				result = new ArrayList<MusicListContentBean>();
+				result.addAll(temp);
+			}
+		}else {
+			return result;
+		}
+		return result;
+	} 
+	
 
 }
