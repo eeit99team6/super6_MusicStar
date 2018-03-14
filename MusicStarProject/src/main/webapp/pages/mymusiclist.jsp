@@ -53,28 +53,43 @@
 	<script src="assets/js/jquery-3.3.1.min.js"></script>
 	<script src="assets/js/bootstrap.min.js"></script>
 	<script language="javascript">
-	$(document).ready(function() {		
+	$(document).ready(function() {
+		function createListTable(){
 	    //讀取歌單
 	    	$.getJSON(ctx+'/mymusiclistidid.controller',function(datas){
 	    		//datas = [{},{}];
 	    		console.log(datas)
 //		    		console.log(datas[1].member_music_list_description)
+
 	    		var docFrag = $(document.createDocumentFragment());
-	    		$.each(datas,function(idx,mu){
-	    		
+	    		$.each(datas,function(idx,mu){			  	    		
 	    			//product = {}
 	    			var cell1 = $("<td></td>").html(mu.member_music_list_id);
-	    			var cell2 = $("<td></td>").html(mu.member_music_list_name);
+	    			var cell2 = $("<td></td>").html('<a href="'+ctx+'/pages/mymusiclistcontent.jsp?member_music_list_content_id='+mu.member_music_list_id+'">' + mu.member_music_list_name + '</a>');
 	    			var cell3 = $("<td></td>").html(mu.member_music_list_description);
 	    			var cell4 = $("<td></td>").html(mu.member_music_list_member_id);
 	    			var cell5 = $("<td></td>").html(mu.member_music_list_quantity);
+	    			var cell6 = $("<td></td>").html('<button class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>');
 	    		
-	    			var row = $("<tr></tr>").append([cell1,cell2,cell3,cell4,cell5]);
+	    			var row = $("<tr></tr>").append([cell1,cell2,cell3,cell4,cell5,cell6]);
 	    			
 	    			docFrag.append(row);
-	    	})
+	    		});
+				    //刪除歌單			    
+			   $('#like_table>tbody').on('click','tr button:nth-child(1)',function(){
+	 			   var id = $(this).parents('tr').find('td:nth-child(1)').text();
+	 			   $.get(ctx+'/deletemymusiclist',{'member_music_list_id':datas[0].member_music_list_id},function(data){
+	 				   if(data.ok){		 					   
+	 				   alert(data.ok);
+	 				  	createListTable();
+	 				   }
+
+	 			   })
+			  });
 	    	   		$('#like_table>tbody').html(docFrag);
-	    	})
+	    	});
+		}
+		createListTable();		    	
 	})	    	
 </script>
 </body>

@@ -44,7 +44,7 @@ public class MusicListDAO {
 			result.setMember_music_list_name(member_music_list_name);
 //			result.setMember_music_list_member_id(member_music_list_member_id);
 			result.setMember_music_list_description(member_music_list_description);
-			result.setMember_music_list_quantity(member_music_list_quantity);
+			//result.setMember_music_list_quantity(member_music_list_quantity);
 		}
 		return result;
 	}

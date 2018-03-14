@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>歌單內容</title>
+<title>我的歌單內容</title>
 <jsp:include page="/includes/main_css.jsp" />
 <link rel="stylesheet" href="assets/css/bootstrap.min.css">
 <link rel="stylesheet" href="assets/css/jumbotron.css">
@@ -37,7 +37,7 @@
 							<th>歌曲作者ID</th>
                           </tr>
                        </thead>
-                       <tbody>
+                       <tbody class="productTable-tbody">
                        </tbody>
                       
                        <tfoot>
@@ -57,12 +57,10 @@
 	<script src="assets/js/jquery-3.3.1.min.js"></script>
 	<script src="assets/js/bootstrap.min.js"></script>
 	<script>
-		$(document).ready(function() {		
+		$(document).ready(function() {	
+			function createListMusicIdTable(){
 			    //讀取歌單
 			    	$.getJSON(ctx+'/musiclistiditem.controller',{'member_music_list_content_id':'${param.member_music_list_content_id}'},function(datas){
-			    		//datas = [{},{}];
-			    		console.log(datas)
-// 			    		console.log(datas[1].member_music_list_description)
 			    		var docFrag = $(document.createDocumentFragment());
 			    		$.each(datas,function(idx,mu){
 			    			//product = {}
@@ -72,13 +70,28 @@
 			    			var cell4 = $("<td></td>").text(mu[1].music_id);
 			    			var cell5 = $("<td></td>").text(mu[1].music_link);
 			    			var cell6 = $("<td></td>").text(mu[1].music_member_id);
-			    			var row = $("<tr></tr>").append([cell1,cell2,cell3,cell4,cell5,cell6]);
-			    			
-			    			docFrag.append(row);
-			    	})
-			    	   		$('#productTable>tbody').html(docFrag);
-			    	})
-			})	    	
+			    			var cell7 = $("<td></td>").html('<button class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>');
+			    			var row = $("<tr></tr>").append([cell1,cell2,cell3,cell4,cell5,cell6,cell7]);			    			
+			    				docFrag.append(row);
+			    		});			    				
+			    	   	$('#productTable>tbody').html(docFrag);
+			    	});
+			}
+			createListMusicIdTable();
+		
+		   $('.productTable-tbody').on('click','.btn',function(){
+			   var id1 = $(this).parents('tr').find('td:nth-child(2)').text();
+			   var id2 = $(this).parents('tr').find('td:nth-child(3)').text();		   
+ 			   $.getJSON(ctx+'/deletemymusiclistmusic',{'member_music_list_content_id':id1,'member_music_list_content_music_id':id2},function(data){
+ 				   if(data.ok){		 					   
+ 				   alert(data.ok);
+ 				  createListMusicIdTable();
+ 				  }
+ 			   })
+		  });
+		
+						
+	})	    	
 	</script>
     <jsp:include page="/includes/main_aside.jsp" />
 	<jsp:include page="/includes/main_footer.jsp" />

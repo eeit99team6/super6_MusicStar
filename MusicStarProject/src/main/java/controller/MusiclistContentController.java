@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.google.gson.Gson;
 
 import _global.utils.Parser;
+import model.bean.MusicListBean;
 import model.bean.MusicListContentBean;
 import model.service.MusicListContentService;
 
@@ -41,5 +42,20 @@ public class MusiclistContentController {
 			return jsonString;							
 		}						
 	}
+	
+	// 刪除我的歌單內的音樂  謙0314
+		@RequestMapping(path = { "/deletemymusiclistmusic" }, method = { RequestMethod.GET,
+				RequestMethod.POST }, produces = "application/json;charset=UTF-8")
+		@ResponseBody
+		public String method1(MusicListContentBean bean, Model model) {
+			Map<String, String> data = new HashMap<>();
+			boolean result = musicListContentService.delete2(bean);
+			if (!result) {
+				data.put("fail", "山除失敗");
+			} else {
+				data.put("ok", "山除Ok");
+			}
+			return Parser.toJson(data);
+		}
 	
 }
