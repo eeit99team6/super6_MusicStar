@@ -23,8 +23,8 @@
   <div class="content-wrapper">
     <div class="container-fluid">
       <!-- Breadcrumbs-->
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item">
+      <ol class="breadcrumb"  style="margin-top:4px;">
+        <li class="breadcrumb-item" >
           <a href="#">Music Star</a>
         </li>
         <li class="breadcrumb-item active">主控台</li>

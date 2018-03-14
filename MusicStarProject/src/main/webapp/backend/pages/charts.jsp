@@ -17,18 +17,19 @@
 <body>
 	<!-- Navigation-- jsp include -->
 	<jsp:include page="/backend/include/nav.jsp" />
-	
+
+ 	      <!-- Breadcrumbs-->
+
  <div class="content-wrapper">
     <div class="container-fluid">
-      <!-- Breadcrumbs-->
-      <ol class="breadcrumb">
+      <!-- 創建比賽 查詢比賽 -->
+            <ol class="breadcrumb"  style="margin-top:60px;">
         <li class="breadcrumb-item">
           <a href="#">Music Star</a>
         </li>
-        <li class="breadcrumb-item active">比賽後台</li>
+          <li class="breadcrumb-item active">比賽後台</li>
       </ol>
       
-      <!-- 創建比賽 查詢比賽 -->
                                                                                 
      <a style="padding-left:0; display:inline" class="nav-link" data-toggle="modal" data-target="#creatContest"><button class="btn btn-success"><i class="fa fa-fw fa-table"></i>建構比賽</button></a>
      <button class="btn btn-success" id="tableCheck"><i class="fa fa-fw fa-table"></i>查看比賽</button>
