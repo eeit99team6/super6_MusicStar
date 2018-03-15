@@ -43,7 +43,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="jp-playlist">
+			<div class="jp-playlist scrollbar-dynamic">
 				<ul>
 					<!-- The method Playlist.displayPlaylist() uses this unordered list -->
 					<li></li>

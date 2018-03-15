@@ -7,9 +7,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Music_Select</title>
   <jsp:include page="/includes/main_css.jsp" />
-<!--   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+<link href="${ctx}/assets/css/common_style/allPages.css" rel="stylesheet"/>
 
   <style type="text/css">
+         .title-title span{
+         font-size:20px;
+         }
   		/* Style the buttons */
 		.music_selector .btn {
 		  border: none;
@@ -86,16 +89,13 @@
 		}
   </style>
   <jsp:include page="/includes/main_js.jsp" />
-<!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
-<!--   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
 </head>
 <body>
 <jsp:include page="/includes/main_header.jsp" />
 	<!-- main_container start -->
 	<div id="main_container" class="container-fuild">
+	<div class="title-title">MusicStar 音樂搜尋引擎   <span>請點選下方喜歡的搜尋方式~~</span>   </div> 
 <div class="container" style="margin-top:75px;margin-bottom:25px">
-  <h2>MusicStar 音樂搜尋引擎</h2>
-  <p>請點選下方喜歡的搜尋方式~~</p>
 <div class="music_selector">
   <ul class="nav nav-tabs">
     <li class="active" id="litab"><a data-toggle="tab" href="#home" class="btn">Button</a></li>

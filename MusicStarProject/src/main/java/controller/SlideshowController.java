@@ -33,6 +33,9 @@ public class SlideshowController {
 	@Autowired
 	String sildeshowDirectoryPath;
 
+	/**
+	 * @author Phil 2018.03.15
+	 */
 	@RequestMapping(path = "/slideshow/add", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
 	@ResponseBody
 	public String addSlide(String slideName, String slideLink, String slideDescription,
@@ -77,6 +80,9 @@ public class SlideshowController {
 		return Parser.toJson(data);
 	}
 
+	/**
+	 * @author Phil 2018.03.15
+	 */
 	@RequestMapping(path = "/slideshow/remove", method = RequestMethod.GET, produces = "application/json; charset=UTF-8")
 	@ResponseBody
 	public String removeSlide(String slideIdList) {
@@ -96,6 +102,9 @@ public class SlideshowController {
 		return Parser.toJson(data);
 	}
 
+	/**
+	 * @author Phil 2018.03.15
+	 */
 	@RequestMapping(path = "/slideshow/getSlides", method = RequestMethod.GET, produces = "application/json; charset=UTF-8")
 	@ResponseBody
 	public String getSlides() {
@@ -109,6 +118,9 @@ public class SlideshowController {
 		}
 	}
 
+	/**
+	 * @author Phil 2018.03.15
+	 */
 	@RequestMapping(path = "/slideshow/update", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
 	@ResponseBody
 	public String updateSlide(String slideId, String slideName, String slideLink, String slideDescription,
@@ -165,6 +177,9 @@ public class SlideshowController {
 		return Parser.toJson(data);
 	}
 
+	/**
+	 * @author Phil 2018.03.15
+	 */
 	@RequestMapping(path = "/slideshow/changeOrder", method = RequestMethod.GET, produces = "application/json; charset=UTF-8")
 	@ResponseBody
 	public String changeOrder(String sildeOrderMap) {

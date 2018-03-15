@@ -12,17 +12,14 @@
 					<li><a href="<c:url value="/pages/contests/contest_voting.jsp"/>">投票中</a></li>
 					<li><a href="<c:url value="/pages/contest.jsp#end"/>">歷史賽事</a></li>
 				</ul></li>
-			<li><a href="<c:url value="/pages/rank.jsp#title"/>">歌曲排行</a>
+			<li><a href="#">歌曲排行</a>
 				<ul>
 					<li><a href="<c:url value="/pages/leaderboards.jsp"/>">賽事排行</a></li>
 					<li><a href="<c:url value="/pages/leaderboards-like.jsp"/>">創作排行</a></li>
 				</ul></li>
 			<li><a href="<c:url value="/pages/music.jsp"/>">音樂搜尋</a></li>
 			<li><a href="<c:url value="/pages/musiclists.jsp"/>">歌單總覽</a></li>
-			<li><a href="#">測試區</a>
-				<ul>
-					<li><a href="<c:url value="/testpages/test_slideshow_control.jsp"/>">輪播牆</a></li>
-				</ul></li>
+	
 			<c:choose>
 				<c:when test="${not empty loginOK}">
 					<li><a href="#l"> ${loginOK.mbrName} <c:choose>
@@ -56,17 +53,14 @@
 					<li><a href="<c:url value="/pages/contests/contest_voting.jsp"/>">投票中</a></li>
 					<li><a href="<c:url value="/pages/contest.jsp#end"/>">歷史賽事</a></li>
 				</ul></li>
-			<li><a href="<c:url value="/pages/rank.jsp#title"/>">歌曲排行</a>
+			<li><a href="#">歌曲排行</a>
 				<ul>
 					<li><a href="<c:url value="/pages/leaderboards.jsp"/>">賽事排行</a></li>
 					<li><a href="<c:url value="/pages/leaderboards-like.jsp"/>">創作排行</a></li>
 				</ul></li>
 			<li><a href="<c:url value="/pages/music.jsp"/>">音樂搜尋</a></li>
 			<li><a href="<c:url value="/pages/musiclists.jsp"/>">歌單總覽</a></li>
-			<li><a href="#">測試區</a>
-				<ul>
-					<li><a href="<c:url value="/testpages/test_slideshow_control.jsp"/>">輪播牆</a></li>
-				</ul></li>
+	
 			<c:choose>
 				<c:when test="${not empty loginOK}">
 					<li><a href="#">個人檔案</a>
@@ -74,7 +68,7 @@
 							<li><a href="#">帳戶設定</a></li>
 							<li><a href="<c:url value='/pages/music/musicInsert.jsp'/>">上傳音樂</a></li>
 							<li><a href="<c:url value='/pages/music/selectAllMsuicById.jsp'/>">我的音樂</a></li>
-							<li><a href="<c:url value='/pages/mymusiclist.jsp'/>">我的歌單</a></li> 
+							<li><a href="<c:url value='/pages/mymusiclist.jsp'/>">我的歌單</a></li>
 							<li><a href="<c:url value="/members/logout"/>">登出</a></li>
 						</ul></li>
 				</c:when>
