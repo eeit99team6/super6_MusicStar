@@ -11,12 +11,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
 import com.google.gson.Gson;
+
 import _global.utils.Checker;
 import _global.utils.Parser;
 import model.bean.MusicContestBean;
 import model.bean.MusicContestPlayerBean;
 import model.service.MusicContestPlayerService;
+import model.service.MusicStyleService;
 
 @Controller
 public class MusicContestPlayerController {
@@ -41,20 +44,6 @@ public class MusicContestPlayerController {
 		}						
 	}
 	
-	@RequestMapping(path = "/contests/voting/Players", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
-	@ResponseBody
-	public String getContestPlayersAjax(String contestId) {
-		Map<String, String> data = new HashMap<>();
-		Integer id = Parser.parseInt(contestId);
-		if (id == null) {
-			data.put("errMsg", "contestId格式錯誤");
-		}
-		if (Checker.notEmpty(data)) {
-			return Parser.toJson(data);
-		}
-		return Parser.toJson(musicContestPlayerService.getContestPlayers(id));
-	}
-
 	@RequestMapping(path={"/leaderboards.count.controller"},method={RequestMethod.GET,RequestMethod.POST},produces="application/json;charset=UTF-8")
 	@ResponseBody
 	public String methodCount(MusicContestBean bean, Model model) {	

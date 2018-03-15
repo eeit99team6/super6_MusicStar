@@ -171,4 +171,18 @@ public class MusicController
 	   } 
      	return null;
 	}
+    }
+	
+	/**
+	 * 取得音樂型態的Map<styleId,styleName>
+	 * @author Phil 2018.03.15
+	 */
+	@RequestMapping(value="/music/styleMap", method=RequestMethod.GET, produces="application/json; charset=UTF-8")
+    @ResponseBody
+	public String getMusicStyleMap(HttpSession session) {	 
+		 return  Parser.toJson(musicStyleService.getStyleMap());
+    }
 }
+
+	
+

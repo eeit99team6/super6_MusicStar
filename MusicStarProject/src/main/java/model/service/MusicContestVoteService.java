@@ -23,6 +23,9 @@ public class MusicContestVoteService
 	@Autowired
 	private MusicContestDAO musicContestDAO;
 
+	/**
+	 * @author Phil 2018.03.13
+	 */
 	public List<MusicContestBean> getContests(String status){		
 		if(status != null) {
 			status = status.toLowerCase();
@@ -40,10 +43,16 @@ public class MusicContestVoteService
 		return null;
 	}
 	
+	/**
+	 * @author Phil 2018.03.13
+	 */
 	public boolean canVote(Integer musicCtstId) {
 		return musicContestDAO.checkCtstStatus(musicCtstId) == 3 ? true : false;
 	}
 
+	/**
+	 * @author Phil 2018.03.13
+	 */
 	public boolean voting(MusicContestVoteBean bean) {
 		
 		if (bean != null) {

@@ -28,6 +28,9 @@ public class SlideshowService {
 		return slideshowDAO.selectAll();
 	}
 
+	/**
+	 * @author Phil 2018.03.14
+	 */
 	public synchronized boolean changeSlidesOrder(Map<Integer, Short> orderMap) {
 		if (orderMap != null) {
 			List<SlideshowBean> slides = (List<SlideshowBean>) servletContext.getAttribute("slides");
@@ -43,6 +46,9 @@ public class SlideshowService {
 		return false;
 	}
 
+	/**
+	 * @author Phil 2018.03.14
+	 */
 	public boolean addSlide(SlideshowBean bean) {
 		if (bean != null) {
 			List<SlideshowBean> slides = (List<SlideshowBean>) servletContext.getAttribute("slides");
@@ -54,6 +60,9 @@ public class SlideshowService {
 		return false;
 	}
 
+	/**
+	 * @author Phil 2018.03.14
+	 */
 	public boolean updateSlide(SlideshowBean sb, String sildeshowDirectoryPath) {
 		if (sb != null) {
 			List<SlideshowBean> slides = (List<SlideshowBean>) servletContext.getAttribute("slides");
@@ -81,6 +90,9 @@ public class SlideshowService {
 		return false;
 	}
 
+	/**
+	 * @author Phil 2018.03.14
+	 */
 	public synchronized boolean removeSlide(List<Integer> slideIdList, String sildeshowDirectoryPath) {
 		
 		if (Checker.notEmpty(slideIdList)) {

@@ -55,7 +55,7 @@ public class MusicContestPlayerService {
 	/**
 	 * 取得指定賽事ID的參賽者資料
 	 * 
-	 * @author Phil
+	 * @author Phil 2018.03.15
 	 * @param musicCtstId 賽事的ID
 	 * @return 指定賽事參賽者資料的List
 	 */
