@@ -6,6 +6,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" type="text/css" href="../css/table.css" />
+<link href="${ctx}/assets/css/common_style/allPages.css" rel="stylesheet"/>
+
 <title>我的歌單</title>
 <jsp:include page="/includes/main_css.jsp" />
 <jsp:include page="/includes/main_js.jsp" />
@@ -17,6 +19,7 @@
 <jsp:include page="/includes/main_header.jsp" />
 <!-- main_container start -->
 	<div id="main_container" class="container-fuild">
+		<div class="title-title">我的歌單</div> 
 	<main role="main" class="container mt-2">
     <div class="row">
        <div class="col-lg-3">
@@ -24,7 +27,6 @@
      <br>
       <br>
        <br>
-       <h3>我的歌單</h3>
 		<div class="card">
 			<div class="card-body">
 				<!-- 每頁不同的內容從這裡開始 -->

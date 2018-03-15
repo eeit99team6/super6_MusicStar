@@ -18,48 +18,88 @@ margin-bottom:50px;
 
 .jpPlayerContainer a{
 text-decoration:none;
+font-weight:bold;
 }
 
 .jpPlayerContainer{
-border:2px solid gray;
 margin:10px 20px 5px 0px;
-padding:20;
-border-radius: 10px; 
-wisth:10px;
-background-color:lightcyan;
 }
 
-.jpPlayerContainer:hover{
-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+.outSide{
+text-align:center;
+position:relative;
+overflow: hidden;
+padding:1px;
 }
 
 .jcontainer{
-text-align:left;
+text-align:center;
 position: relative;
 margin:0px 0px 0px 5px;
+position:relative;
+overflow: hidden;
 }
 
 .imgDiv{
 text-align:center;
-display:block;
-margin:5px;
-border:2px solid #66B2FF;
-border-radius:8px;
+margin:2px; 
+position:relative;
+overflow: hidden;
 }
 
 .imgDiv img{
-border:1.5px solid #000080;
-border-radius:3px;
-margin:8px 20px 8px 8px;
+border:2px solid black;
+border-radius:10px;
+border-radius: 50%;
+padding:10px;
+width:300px;
 }
 
-.imgDiv in:hover{
-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+.rotateClass{
+-webkit-animation: rotation 2s infinite linear;
 }
+
+
+@-webkit-keyframes rotation {
+		from {
+				-webkit-transform: rotate(0deg);
+		}
+		to {
+				-webkit-transform: rotate(359deg);
+		}
+}
+
+.imgDiv img:hover{
+/*  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);  */
+}
+
 
 #jqueryMain{
 text-align:center;
 }
+
+.textDiv{
+position:absolute;
+background-color:black;
+right:50%;
+bottom:10%;
+color:snow;
+font-weight:bold;
+padding:2px;
+border:1px dashed snow;
+}
+
+.centerDiv{
+position:absolute;
+right:45%;
+bottom:45%;
+width:35px;
+height:35px;
+background-color:snow;
+border-radius:50%;
+border:2px solid black;
+}
+
 
 
 </style>
@@ -96,7 +136,7 @@ text-align:center;
 			var docFrag = $(document.createDocumentFragment());
 			var count = 1;
 			$.each(jason_data,function(index,item){
-				  var outSideDiv=$("<div></div>").addClass(" col-md-4 ");
+				  var outSideDiv=$("<div></div>").addClass(" col-md-4 outSide");
 				  var jpPlayerContainer = $("<div></div>").addClass("jpPlayerContainer");
 				  var jpDivPlayer=$("<div></div>").attr({id:"jquery_jplayer_" + count})
 				                                  
@@ -110,16 +150,24 @@ text-align:center;
                   
                   var divImg = $("<div></div>").addClass("imgDiv")
                   var imgTag = $("<img></img>").attr({ 
-                      src: item.music_photo,
-                      width:80,
-                      heigh:80,
-                      })
-                  divImg.append(imgTag).append(item.music_name)
+                                               src: item.music_photo,
+                                               }).addClass("imgClass")
+                                               
+                  var textDiv = $("<div></div>").text(item.music_name).addClass("textDiv");
+                  var centerDiv = $("<div></div>").addClass("centerDiv")
+                  
+                  divImg.append(imgTag)
+                  divImg.append(textDiv)
+                  divImg.append(centerDiv)
+               
                   
 			      jpDivContainer.append(linkPlay);
 			      jpDivContainer.append(linkPause);
+			      
+			      divImg.append(jpDivContainer)
+			      
 			      jpPlayerContainer.append(jpDivPlayer);
-			      jpPlayerContainer.append(jpDivContainer);
+			      
 			      jpPlayerContainer.append(divImg);
 			      outSideDiv.append(jpPlayerContainer);
 			      docFrag.append(outSideDiv);
@@ -143,23 +191,12 @@ text-align:center;
 	  		return;
 	  		}
 			
-//  			$(".jcontainer").on("click",function(){
-// 	            if(($(this).next(".imgDiv").attr("data-click-state"))==1){
-// 	            	$(this).next(".imgDiv").attr("data-click-state",0);
-// 	                $(this).next(".imgDiv").css("display","none");
-// 	            }else{
-// 	               $(this).attr("data-click-state",1);	   
-// 	               $(this).next(".imgDiv").css("display","block");
-// 	            }
-//  			})
  			
- 			
- 			$(".jcontainer").on("click",function(){
-	          
-	               if(($(this).next(".imgDiv").css("display"))=="none"){
-	            	   $(this).next(".imgDiv").css("display","block");
+ 			$(".jcontainer").on("click","a",function(){
+	               if(($(this).parents(".imgDiv").find(".imgClass").is(".rotateClass"))){
+	            	   $(this).parents(".imgDiv").find(".imgClass").removeClass("rotateClass");
 	               }else{
-	            	   $(this).next(".imgDiv").css("display","none");
+	            	   $(this).parents(".imgDiv").find(".imgClass").addClass("rotateClass");
 	               };
  			})
 		

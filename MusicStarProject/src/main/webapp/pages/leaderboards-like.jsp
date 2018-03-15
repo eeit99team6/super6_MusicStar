@@ -8,7 +8,11 @@
 <title>創作排行</title>
 <jsp:include page="/includes/main_css.jsp" />
 <link href="${ctx}/assets/css/leaderboards-like.css" rel="stylesheet" />
+<link href="${ctx}/assets/css/common_style/allPages.css" rel="stylesheet"/>
 <style type="text/css">
+.title-title{
+color:orange;
+}
 </style>
 <jsp:include page="/includes/main_js.jsp" />
 <script src="${ctx}/assets/js/leaderboards-like.js"></script>
@@ -20,7 +24,7 @@
 	<!-- main_container start -->
 	<div id="main_container" class="container-fuild">
 	
-	<div class="leaderboards-like-title">創作者排行榜</div>
+	<div class="title-title">創作者排行榜</div>
 
 		<div id="leaderboards-like-table" class="container">
 			<table class="table">
