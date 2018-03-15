@@ -22,6 +22,13 @@
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/locale/bootstrap-table-zh-TW.min.js"></script>
 <script>
+	var musicStyleMap;
+	$.getJSON(ctx + "/music/styleMap",function(data){
+		musicStyleMap = data;
+	})	
+	function formatStyle(value, row, index){
+		return "<h5>"+musicStyleMap[value]+"</h5>";
+	}
 	function formatImg(value, row, index){
 		return "<img src='"+value+"' height='100px'/>";
 	}
@@ -38,11 +45,11 @@
 		<table id="contests_table" data-smart-display="true" data-sortable="true" data-pagination="true" data-search="true" data-toggle="table" data-url="<c:url value="/contests/voting"/>">		
 			<thead>
 				<tr>
-					<th data-field="music_contest_style_id">賽事類型</th>
+					<th data-field="music_contest_style_id" data-formatter="formatStyle">賽事類型</th>
 					<th data-field="music_contest_name">賽事名稱</th>
 					<th data-field="music_contest_photo" data-formatter="formatImg">賽事圖片</th>
 					<th data-field="music_contest_description">賽事簡介</th>
-					<th data-field="music_contest_status">賽事狀態</th>
+					<th data-formatter="投票中">賽事狀態</th>
 					<th data-field="music_contest_id" data-formatter="formatLink">投票頁面</th>
 				</tr>
 			</thead>

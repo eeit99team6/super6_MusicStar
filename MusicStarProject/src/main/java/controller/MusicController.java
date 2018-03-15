@@ -6,7 +6,6 @@ import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.multipart.MultipartFile;
 
 import _global.utils.Constant;
@@ -26,13 +24,15 @@ import _global.utils.Parser;
 import model.bean.MemberBean;
 import model.bean.MusicBean;
 import model.service.MusicService;
+import model.service.MusicStyleService;
 
 @Controller
 public class MusicController
 {
 	@Autowired
 	MusicService musicservice;
-	
+	@Autowired
+	private MusicStyleService musicStyleService;
 	@Autowired
 	String profilesDirectoryPath;
 	@Autowired
@@ -152,7 +152,15 @@ public class MusicController
 		 return  Parser.toJson(musicservice.selectById(memberId));
     }
 	
-	
+	/**
+	 * 取得音樂型態的Map<styleId,styleName>
+	 * @author Phil 2018.03.15
+	 */
+	@RequestMapping(value="/music/styleMap", method=RequestMethod.GET, produces="application/json; charset=UTF-8")
+    @ResponseBody
+	public String getMusicStyleMap(HttpSession session) {	 
+		 return  Parser.toJson(musicStyleService.getStyleMap());
+    }
 }
 
 	

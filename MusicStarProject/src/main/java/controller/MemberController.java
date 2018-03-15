@@ -45,12 +45,18 @@ public class MemberController {
 	@Autowired
 	String audiosDirectoryPath;
 
+	/**
+	 * @author Phil 2018.03.15
+	 */
 	@RequestMapping(path = "/members/show", method = RequestMethod.GET, produces = "application/json; charset=UTF-8")
 	@ResponseBody
 	public String show() {
 		return Parser.toJson(memberService.search(null));
 	}
 
+	/**
+	 * @author Phil 2018.03.15
+	 */
 	@RequestMapping(path = "/members/registerAjax", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
 	@ResponseBody
 	public String registerAjax(HttpSession session,
@@ -86,13 +92,12 @@ public class MemberController {
 		}
 
 		if (!Checker.notEmpty(error)) {
-
+			String mbrId = bean.getMbrId();
+			String fileName = mbrId + "." + contentType.split("/")[1];				
+			bean.setMbrPhoto(Constant.profilesDirectory + fileName);
 			if (memberService.register(bean)) {
-				String mbrId = bean.getMbrId();
-				String fileName = mbrId + "." + contentType.split("/")[1];
 				try {
 					mbrProfile.transferTo(new File(profilesDirectoryPath + fileName));
-					bean.setMbrPhoto(Constant.profilesDirectory + fileName);
 					File coverDir = new File(coverDirectoryPath + mbrId);
 					if (!coverDir.exists()) {
 						coverDir.mkdir();
@@ -117,6 +122,9 @@ public class MemberController {
 		return Parser.toJson(data);
 	}
 
+	/**
+	 * @author Phil 2018.03.15
+	 */
 	@RequestMapping(path = "/members/loginAjax", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
 	@ResponseBody
 	public String loginAjax(HttpSession session, HttpServletResponse response, MemberBean bean, BindingResult result,
@@ -171,6 +179,9 @@ public class MemberController {
 
 	}
 
+	/**
+	 * @author Phil 2018.03.15
+	 */
 	@RequestMapping(path = "/members/logout", method = RequestMethod.GET)
 	public String logout(Model model, HttpServletResponse response, HttpSession session, MemberBean bean) {
 		String contextPath = servletContext.getContextPath();
@@ -181,6 +192,9 @@ public class MemberController {
 		return "r.index";
 	}
 
+	/**
+	 * @author Phil 2018.03.15
+	 */
 	@RequestMapping(path = "/members/googleLoginAjax", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
 	@ResponseBody
 	public String googleLoginAjax(HttpSession session, HttpServletResponse response, String idToken,
@@ -242,6 +256,9 @@ public class MemberController {
 		return Parser.toJson(data);
 	}
 
+	/**
+	 * @author Phil 2018.03.15
+	 */
 	@RequestMapping(path = "/members/fbLoginAjax", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
 	@ResponseBody
 	public String fbLoginAjax(HttpSession session, HttpServletResponse response, String accessToken,

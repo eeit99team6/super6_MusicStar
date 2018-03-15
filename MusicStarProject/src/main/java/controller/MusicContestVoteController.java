@@ -16,6 +16,7 @@ import _global.utils.Checker;
 import _global.utils.Parser;
 import model.bean.MemberBean;
 import model.bean.MusicContestVoteBean;
+import model.service.MusicContestPlayerService;
 import model.service.MusicContestVoteService;
 
 @Controller
@@ -23,7 +24,13 @@ public class MusicContestVoteController {
 
 	@Autowired
 	private MusicContestVoteService musicContestVoteService;
+	@Autowired
+	private MusicContestPlayerService musicContestPlayerService;
 
+	/**
+	 * 進行投票
+	 * @author Phil 2018.03.15
+	 */
 	@RequestMapping(path = "/contests/voting/vote", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
 	@ResponseBody
 	public String contestVotingAjax(String musicCtstId, String musicCtstPlayerId, HttpSession session) {
@@ -62,6 +69,24 @@ public class MusicContestVoteController {
 		}
 
 		return Parser.toJson(data);
+	}
+	
+	/**
+	 * 取得指定投票中賽事的參賽者資料
+	 * @author Phil 2018.03.15
+	 */
+	@RequestMapping(path = "/contests/voting/Players", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
+	@ResponseBody
+	public String getContestPlayersAjax(String contestId) {
+		Map<String, String> data = new HashMap<>();
+		Integer id = Parser.parseInt(contestId);
+		if (id == null) {
+			data.put("errMsg", "contestId格式錯誤");
+		}
+		if (Checker.notEmpty(data)) {
+			return Parser.toJson(data);
+		}
+		return Parser.toJson(musicContestPlayerService.getContestPlayers(id));
 	}
 
 	@RequestMapping(path = "/contests/{status}", method = RequestMethod.GET, produces = "application/json; charset=utf-8")

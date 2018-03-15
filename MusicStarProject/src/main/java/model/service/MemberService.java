@@ -18,6 +18,9 @@ public class MemberService
 	@Autowired
 	private MemberDAO memberDAO;
 
+	/**
+	 * @author Phil 2018.03.15
+	 */
 	public boolean register(MemberBean bean)
 	{
 		String mbrId = null;
@@ -31,6 +34,9 @@ public class MemberService
 		}
 	}
 
+	/**
+	 * @author Phil 2018.03.15
+	 */
 	public MemberBean login(MemberBean bean)
 	{
 		MemberBean mb = null;
@@ -47,6 +53,9 @@ public class MemberService
 		return null;
 	}
 
+	/**
+	 * @author Phil 2018.03.15
+	 */
 	public MemberBean googleLogin(MemberBean bean)
 	{
 		MemberBean mb = null;
@@ -58,6 +67,9 @@ public class MemberService
 		return null;
 	}
 	
+	/**
+	 * @author Phil 2018.03.15
+	 */
 	public MemberBean fbLogin(MemberBean bean)
 	{
 		MemberBean mb = null;
@@ -69,6 +81,9 @@ public class MemberService
 		return null;
 	}
 
+	/**
+	 * @author Phil 2018.03.15
+	 */
 	public List<MemberBean> search(MemberBean bean)
 	{
 		List<MemberBean> beanList = null;
