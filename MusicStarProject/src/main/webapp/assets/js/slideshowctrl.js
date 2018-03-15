@@ -97,7 +97,7 @@ $(function() {
 		});
 	}
 	
-	refreshSlideshowList();
+	$slideshow_select_modal.on("show.bs.modal",refreshSlideshowList);
 	/* refresh slideshow list end */
 	 	
     /* inset slideshow */
