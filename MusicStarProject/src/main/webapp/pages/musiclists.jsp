@@ -10,6 +10,7 @@
 
 <link rel="stylesheet" href="assets/css/bootstrap.min.css">
 <link rel="stylesheet" href="assets/css/jumbotron.css">
+<link href="${ctx}/assets/css/common_style/allPages.css" rel="stylesheet"/>
 <jsp:include page="/includes/main_js.jsp" />
 <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 </head>
@@ -17,7 +18,7 @@
 	<jsp:include page="/includes/main_header.jsp" />
 	<!-- main_container start -->
 	<div id="main_container" class="container-fuild">
-	
+	<div class="title-title">歌單總覽 </div> 
 	<main role="main" class="container mt-2">
     <div class="row">
        <div class="col-lg-3">

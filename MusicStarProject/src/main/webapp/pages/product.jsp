@@ -58,6 +58,8 @@ function clearForm() {
 		<td>${errors.xxx4}</td>
 	</tr>
 	<tr>
+	   <td><button id="buttonAdd" type="button" name="prodaction" class="btn btn-primary"><i class="fas fa-plus"></i></button></td>
+	
 		<td>
 			<input type="submit" name="prodaction" value="Insert">
 			<input type="submit" name="prodaction" value="Update">

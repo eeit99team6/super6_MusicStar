@@ -6,18 +6,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>InsertMusicOK</title>
+<link href="${ctx}/assets/css/common_style/allPages.css" rel="stylesheet"/>
 <jsp:include page="/includes/main_css.jsp" />
 <style type="text/css">
-.title{
-margin-top:5%;
-margin-bottom:30px;
-text-align: center;
-font-size:300%;
-font-weight:bold;
-}
 
 #alerInfor{
 text-align:center;
+margin:200px;
 }
 
 #countdownDiv{
@@ -36,7 +31,7 @@ margin-right:20%;
 	<jsp:include page="/includes/main_header.jsp" />
 	<!-- main_container start -->
 	<div id="main_container" class="container-fuild">
-		 <div class="title"><div class="fab fa-angellist" > MusicStar </div> <div class="fab fa-angellist" ></div></div>
+		 <div class="title-title"><div class="fab fa-angellist" > MusicStar </div> <div class="fab fa-angellist" ></div></div>
 
 	       <div id="alerInfor"><h1>Yo~ ${insertMusicOk.music_member_id} ${message}${errorMessage}</h1>
 	       </div></div> 

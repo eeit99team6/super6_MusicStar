@@ -59,22 +59,17 @@ public class MusicListService {
 		return result;
 	}
 	public boolean delete(MusicListBean bean) {
-		boolean result1 = false;
+//		boolean result1 = false;
 		boolean result = false;
 
 		if(bean!=null) {
-			result1=musicListContentDAO.deletefirst(bean.getMember_music_list_id());
+			musicListContentDAO.deletefirst(bean.getMember_music_list_id());
 			System.out.println("result1 OK");
-			if(result1) {
-			result=musicListDAO.delete(bean.getMember_music_list_id());
-			System.out.println("result OK");
-			}	
-			else if(!result1){
-				result=musicListDAO.delete(bean.getMember_music_list_id());
-				System.out.println("result OK");
-			}
+
+			result = musicListDAO.delete(bean.getMember_music_list_id());
+			System.out.println("result OK");			
 		}
-		return result1;
+		return result;
 	}
 	//用於搜尋會員的歌單
 	public List<MusicListBean> selectmemid(String mbrId){
