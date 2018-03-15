@@ -7,7 +7,7 @@ $(document).ready(function(){
 			var cc1= $('<th class="text-danger"></th>').html(mu[5]).counterUp({delay:10,time:1000,});
 			var cc2= $('<td></td>').html(mu[3])
 			var cc3= $('<td></td>').html('<img src='+mu[0]+'>')
-			var cc4= $('<td></td>').html('<a data-music-link='+mu[1]+' class="play_music"><i class="fa fa-play-circle" style="font-size:36px;color:green"></i></a>')
+			var cc4= $('<td></td>').html('<a href="#" data-music-link='+mu[1]+' class="play_music"><i class="fa fa-play-circle" style="font-size:36px;color:green"></i></a>')
 			var cc5= $('<td></td>').html(mu[2])			
 			var cc6= $('<td></td>').html('<a href="#" class="like"><i class="fa fa-heart" style="font-size:36px;color:red"></i></a>')			
 			var cc7= $('<td style="visibility:hidden"></td>').html(mu[4])			
