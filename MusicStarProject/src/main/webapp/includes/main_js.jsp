@@ -13,3 +13,6 @@
 <script src="${ctx}/assets/js/jplayer.playlist.min.js"></script>
 <script src="${ctx}/assets/js/main_aside.js"></script>
 <script src="${ctx}/assets/js/main_footer.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.0/jquery.waypoints.min.js"></script>
+<script src="${ctx}/assets/js/jquery.counterup.min.js"></script>
+	

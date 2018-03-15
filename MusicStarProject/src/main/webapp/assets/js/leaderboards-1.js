@@ -11,7 +11,7 @@ $(document).ready(function(){
 			var cc3=$('<td></td>').html(mu[1].music_name)
 			var cc4=$('<td></td>').html(mu[0].music_contest_player_id)
 			var cc5=$('<td></td>').html(mu[1].music_description)
-			var cc6=$('<td></td>').html(mu[0].music_contest_players_votes)
+			var cc6=$('<td></td>').html(mu[0].music_contest_players_votes).counterUp({delay:10,time:1000,});
     		var row =$('<tr></tr>').append([cc1,cc2,cc3,cc4,cc5,cc6])
     		docFrag.append(row);			
 		});
