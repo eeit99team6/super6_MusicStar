@@ -11,6 +11,7 @@
 <link
 	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.css"
 	rel="stylesheet" />
+<link href="${ctx}/assets/css/common_style/allPages.css" rel="stylesheet"/>	
 <style type="text/css">
 #contests_table * {
 	text-align: center;
@@ -34,7 +35,7 @@
 	<jsp:include page="/includes/main_header.jsp" />
 	<!-- main_container start -->
 	<div id="main_container" class="container-fuild">
-		<h1 class="default_title display-3">投票中的賽事</h1>
+		<div class="title-title">投票中的賽事</div>
 		<table id="contests_table" data-smart-display="true" data-sortable="true" data-pagination="true" data-search="true" data-toggle="table" data-url="<c:url value="/contests/voting"/>">		
 			<thead>
 				<tr>

@@ -6,14 +6,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>SelectAllMusic</title>
+<link href="${ctx}/assets/css/common_style/allPages.css" rel="stylesheet"/>
+
 <jsp:include page="/includes/main_css.jsp" />
 <style type="text/css">
-.title{
-margin-top:5%;
-margin-bottom:30px;
-text-align: center;
-font-size:300%;
-font-weight:bold;
+
+.containerMain{
+margin-top:50px;
+margin-bottom:50px;
 }
 
 .jpPlayerContainer a{
@@ -73,21 +73,15 @@ text-align:center;
 	<!-- main_container start -->
 	
 	<div id="main_container" class="container-fuild">
-		 <div class="title"> 我的音樂 </div>
+		 <div class="title-title"> 我的音樂 </div>
 		 <!-- =========================================   -->
-<div class="container">
+<div class="container containerMain">
   <div id="jqueryMain" class="row mx-auto text-center"> 
   </div>
 </div>
 
 	 	 <!-- =========================================   -->
-	
-	
 	 </div>
-	
-	 
-
-
 	
 	<!-- main_container end -->
 	<jsp:include page="/includes/main_aside.jsp" />

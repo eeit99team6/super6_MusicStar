@@ -7,16 +7,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>AlreadyInsertedPlayer</title>
 <jsp:include page="/includes/main_css.jsp" />
-<style type="text/css">
-.title{
-margin-top:5%;
-margin-bottom:30px;
-text-align: center;
-font-size:300%;
-font-weight:bold;
-}
+<link href="${ctx}/assets/css/common_style/allPages.css" rel="stylesheet"/>
 
+<style type="text/css">
 #alerInfor{
+margin:200px;
 text-align:center;
 }
 
@@ -30,7 +25,7 @@ text-align:center;
 	<jsp:include page="/includes/main_header.jsp" />
 	<!-- main_container start -->
 	<div id="main_container" class="container-fuild">
-		 <div class="title"><div class="fab fa-angellist" > MusicStar 敬告</div></div>
+		 <div class="title-title"><div class="fab fa-angellist" > MusicStar 敬告</div></div>
 	       <div id="alerInfor"><h1>${alertInsert}</h1></div></div>
 	</div>
 	<!-- main_container end -->

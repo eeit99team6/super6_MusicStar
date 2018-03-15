@@ -7,18 +7,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>賽事報名</title>
 <jsp:include page="/includes/main_css.jsp" />
-<link href="${ctx}/assets/css/music-contest-signup/music-singup-bootstrap.min.css" rel="stylesheet" />
-<link href="${ctx}/assets/css/music-contest-signup/music-singup-dataTables.bootstrap4.css" rel="stylesheet" />
-<%-- <link href="${ctx}/assets/css/music-contest-signup/music-singup-font-awesome.min.css" rel="stylesheet" /> --%>
-<link href="${ctx}/assets/css/music-contest-signup/music-singup-sb-admin.css" rel="stylesheet" />
+
+
 <style type="text/css">
 
-.title{
-margin-top:5%;
-text-align: center;
-font-size:300%;
-font-weight:bold;
-}
 
 .divImagContainer{
     position: relative;
@@ -69,6 +61,7 @@ font-weight: bold;
 
 
 </style>
+<link href="${ctx}/assets/css/common_style/allPages.css" rel="stylesheet"/>
 <jsp:include page="/includes/main_js.jsp" />
 <script>
 	
@@ -77,11 +70,10 @@ font-weight: bold;
 <body>
 	<jsp:include page="/includes/main_header.jsp" />
 	<!-- main_container start -->
-	<div id="main_container" class="content">
 	 
 	<div id="main_container" class="container-fuid">
 	 
-	 <div class="title">報名中</div>
+	 <div class="title-title">報名中</div>
 	 <div class="row">
 	  <div id="music-contest-sing-up-container" class="card columns">
 	  
