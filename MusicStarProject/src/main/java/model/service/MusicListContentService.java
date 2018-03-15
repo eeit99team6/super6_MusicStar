@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import model.bean.MusicContestPlayerBean;
+import model.bean.MusicListBean;
 import model.bean.MusicListContentBean;
 import model.dao.MusicListContentDAO;
 
@@ -66,4 +67,11 @@ public class MusicListContentService {
 	} 
 	//insert音樂至歌單
 
+	public MusicListContentBean insert(MusicListContentBean bean) {
+		MusicListContentBean result = null;
+		if (bean != null) {
+			result = musicListContentDAO.insert(bean);
+		}
+		return result;
+	}
 }

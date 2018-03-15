@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import model.bean.LikeMusicBean;
 import model.bean.MusicContestPlayerBean;
+import model.bean.MusicListBean;
 import model.bean.MusicListContentBean;
 
 @Repository
@@ -62,5 +63,11 @@ public class MusicListContentDAO {
 	
 		return (List<MusicListContentBean>) query.list();
 	}
-	
+	//加入音樂至歌單
+	public MusicListContentBean insert(MusicListContentBean bean) {
+		
+		this.getSession().save(bean);
+		return bean;
+
+}
 }
