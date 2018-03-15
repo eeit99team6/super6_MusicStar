@@ -8,7 +8,7 @@ $(document).ready(function(){
 	 	    	console.log(data);
 				$.each(data,function(index,mu){				
 					var cc1=$('<div></div>').html('<img src='+mu[1].music_photo+'>')
-					var cc2=$('<div></div>').html('<a data-music-link='+mu[1].music_link+' class="play_music"><i class="fa fa-play-circle" style="font-size:36px;color:green"></i></a>')
+					var cc2=$('<div></div>').html('<a href="#" data-music-link='+mu[1].music_link+' class="play_music"><i class="fa fa-play-circle" style="font-size:36px;color:green"></i></a>')
 					var cc3=$('<h4></h4>').html(mu[1].music_name)
 					var cc4=$('<h5></h5>').html(mu[0].music_contest_player_id)
 		    		var rr=$('<li></li>').append([cc1,cc2,cc3,cc4])

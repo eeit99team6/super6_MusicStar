@@ -11,11 +11,13 @@
 .jp-video button::-moz-focus-inner {
   /* Disable the browser CSS3 focus highlighting. */
   border: 0; }
-
+  
+/* 改清單顏色大小 */
 .jp-audio,
 .jp-audio-stream,
 .jp-video {
-  font-size: 16px;
+  font-size: 32px;
+  font-weight:bold;
   font-family: Verdana, Arial, sans-serif;
   line-height: 1.6;
   color: #fff;
@@ -23,7 +25,7 @@
   border-left: 1px solid #554461;
   border-right: 1px solid #180a1f;
   border-bottom: 1px solid #180a1f;
-  background-color: rgba(0, 0, 0, 0.5); }
+  background-color: rgba(229, 0, 255, 0.5); }
 
 .jp-audio {
   width: 201px;
@@ -76,11 +78,12 @@
   /* Rules for IE6 (full-screen) */
   bottom: 0;
   left: 0; }
-
+  
+/* 控制條顏色背景 */
 .jp-interface {
   position: relative;
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.5); 
+  background-color: rgba(0, 0, 0, 0); 
   /* Required for the full screen */ }
 
 /* @group CONTROLS */
@@ -459,7 +462,9 @@ div.jp-type-playlist div.jp-playlist a {
   text-decoration: none; }
 
 div.jp-type-playlist div.jp-playlist a:hover {
-  color: #e892e9; }
+/*   color: #e892e9;  */
+  color:blue;
+  }
 
 div.jp-type-playlist div.jp-playlist li.jp-playlist-current {
   background-color: rgba(0,0,0,0.5);
@@ -494,9 +499,12 @@ div.jp-type-playlist div.jp-playlist span.jp-free-media a {
 div.jp-type-playlist div.jp-playlist span.jp-free-media a:hover {
   color: #E892E9; }
 
+/* 歌單作者 顏色大小*/
 span.jp-artist {
-  font-size: .8em;
-  color: #8C7A99; }
+  font-size: .12em;
+  color: #ffff00; 
+  font-weight:bold;
+  }
 
 /* @end */
 .jp-video .jp-video-play {
