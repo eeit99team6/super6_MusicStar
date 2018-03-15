@@ -51,9 +51,9 @@ public class MusiclistContentController {
 			Map<String, String> data = new HashMap<>();
 			boolean result = musicListContentService.delete2(bean);
 			if (!result) {
-				data.put("fail", "山除失敗");
+				data.put("fail", "刪除失敗");
 			} else {
-				data.put("ok", "山除Ok");
+				data.put("ok", "刪除成功");
 			}
 			return Parser.toJson(data);
 		}

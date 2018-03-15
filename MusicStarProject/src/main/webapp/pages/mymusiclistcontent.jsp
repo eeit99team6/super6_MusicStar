@@ -9,9 +9,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>我的歌單內容</title>
 <jsp:include page="/includes/main_css.jsp" />
+<style type="text/css">
+
+</style>
+<jsp:include page="/includes/main_js.jsp" />
 <link rel="stylesheet" href="assets/css/bootstrap.min.css">
 <link rel="stylesheet" href="assets/css/jumbotron.css">
-<jsp:include page="/includes/main_js.jsp" />
 <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 </head>
 <body>
@@ -64,12 +67,12 @@
 			    		var docFrag = $(document.createDocumentFragment());
 			    		$.each(datas,function(idx,mu){
 			    			//product = {}
-			    			var cell1 = $("<td></td>").text(mu[1].music_photo);
-			    			var cell2 = $("<td></td>").text(mu[0].member_music_list_content_id);
-			    			var cell3 = $("<td></td>").text(mu[0].member_music_list_content_music_id);
-			    			var cell4 = $("<td></td>").text(mu[1].music_id);
-			    			var cell5 = $("<td></td>").text(mu[1].music_link);
-			    			var cell6 = $("<td></td>").text(mu[1].music_member_id);
+			    			var cell1 = $("<td></td>").html(mu[1].music_photo);
+			    			var cell2 = $("<td></td>").html(mu[0].member_music_list_content_id);
+			    			var cell3 = $("<td></td>").html(mu[0].member_music_list_content_music_id);
+			    			var cell4 = $("<td></td>").html(mu[1].music_id);
+			    			var cell5 = $("<td></td>").html(mu[1].music_link);
+			    			var cell6 = $("<td></td>").html(mu[1].music_member_id);
 			    			var cell7 = $("<td></td>").html('<button class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>');
 			    			var row = $("<tr></tr>").append([cell1,cell2,cell3,cell4,cell5,cell6,cell7]);			    			
 			    				docFrag.append(row);

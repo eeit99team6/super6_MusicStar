@@ -7,12 +7,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Music_Select</title>
   <jsp:include page="/includes/main_css.jsp" />
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!--   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+
   <style type="text/css">
   		/* Style the buttons */
-		.btn {
+		.music_selector .btn {
 		  border: none;
 		  outline: none;
 		  padding: 10px 16px;
@@ -20,33 +19,37 @@
  		  cursor: pointer;
  		} 
 		
+		.music_selector .fade.in {
+	   		 opacity: 1;
+		}
+		
 		/* Style the active class (and buttons on mouse-over) */
- 		.active, .btn:hover {
+ 		.music_selector .active,.music_selector .btn:hover {
  		  background-color: #666;
  		  color: white;
 		}
 		
-		.btn-color {
+		.music_selector .btn-color {
 		  background-color: #3C9DF2;
 		}
-		.btn-hover:hover {
+		.music_selector .btn-hover:hover {
 		  background-color: #0475d8;
  		  color: white;
 		}
 		
-		.btn-primary.raised {
+		.music_selector .btn-primary.raised {
 			box-shadow: 0 3px 0 0 #007299;
 		}
-		.btn-primary.raised:active, .btn-primary.raised.active {
+		.music_selector .btn-primary.raised:active, .btn-primary.raised.active {
 			background: #33a6cc;
 			box-shadow: none;
 			margin-bottom: -3px;
 			margin-top: 3px;
 		}
-		.nav-tabs{
+		.music_selector .nav-tabs{
   			background-color:white;
 		}
-		.tab-content{
+		.music_selector .tab-content{
 		    background-color:#666;
 		    color:#fff;
 		    padding:5px;
@@ -55,10 +58,12 @@
 			border-bottom-right-radius:10px;
 			border-bottom-left-radius:10px;
 		}
-		.nav-tabs > li > a{
+		.music_selector .nav-tabs > li > a{
 		  	border: medium none;
+		  	border-top-left-radius:10px;
+		    border-top-right-radius:10px;
 		}
-		.nav-tabs > li > a:hover{
+		.music_selector .nav-tabs > li > a:hover{
 		  	background-color: #666;
 		    border: medium none;
 		    border-radius: 0;
@@ -67,30 +72,34 @@
 		    border-top-right-radius:10px;
 		}
 		
-		#musicDiv:hover {
+		.music_selector #musicDiv:hover {
 			box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 		}
-		#litab {
+		.music_selector #litab {
 			background-color: transparent;
+			border-top-left-radius:10px;
+		    border-top-right-radius:10px;
 		}
-		label {
+		.music_selector label {
 			color: black;
 			margin: 5px;
 		}
   </style>
   <jsp:include page="/includes/main_js.jsp" />
+<!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+<!--   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
 </head>
 <body>
 <jsp:include page="/includes/main_header.jsp" />
 	<!-- main_container start -->
 	<div id="main_container" class="container-fuild">
-<div class="container" style="margin-top:50px;margin-bottom:25px">
-  <h2>MusicStar Selector</h2>
-  <p>You can click one tab to change selector =)</p>
-
+<div class="container" style="margin-top:75px;margin-bottom:25px">
+  <h2>MusicStar 音樂搜尋引擎</h2>
+  <p>請點選下方喜歡的搜尋方式~~</p>
+<div class="music_selector">
   <ul class="nav nav-tabs">
-    <li class="active" id="litab"><a data-toggle="tab" href="#home">Button</a></li>
-    <li id="litab"><a data-toggle="tab" href="#menu1">Input</a></li>
+    <li class="active" id="litab"><a data-toggle="tab" href="#home" class="btn">Button</a></li>
+    <li id="litab"><a data-toggle="tab" href="#menu1" class="btn">Input</a></li>
   </ul>
 
   <div class="tab-content">
@@ -296,47 +305,76 @@
 			</div>
 		</div>
     </div>
-  </div>
-  
-<c:if test="${not empty bean}">
-	<div class="container">
-        <div class="row">
-			<c:forEach var="beanVar" items="${bean}">
-				<div style="height:auto;width:200px;display:inline-block;margin:1em;border-color:chocolate;border-style:none solid solid none;border-width:1px;border-radius:7px;" class="col-xl-2" id="musicDiv">
-
-					<div style="margin:15px" class="view overlay">
-						<a href="${beanVar.music_link}">
-							<img style="max-width:100%;height:auto;height:100px;width:100px" class="img-fluid img-responsive center-block" src="${beanVar.music_photo}" title="${beanVar.music_name}">
-						</a>
-						<div class="mask rgba-orange-light"></div>
+	<c:if test="${not empty bean}">
+		<div class="container">
+	        <div class="row">
+				<c:forEach var="beanVar" items="${bean}">
+					<div style="height:auto;width:200px;display:inline-block;margin:1em;border-color:chocolate;border-style:none solid solid none;border-width:1px;border-radius:7px;" class="col-xl-2 musicDiv" id="musicDiv">
+	
+						<div style="margin:15px" class="view overlay">
+							<a href="${beanVar.music_link}">
+								<img style="max-width:100%;height:auto;height:100px;width:100px" class="img-fluid img-responsive center-block" src="${beanVar.music_photo}" title="${beanVar.music_name}">
+							</a>
+							<div class="mask rgba-orange-light"></div>
+						</div>
+						
+						<div><input type="hidden" name="music_id" value="${beanVar.music_id}"/></div>
+						
+						<div style="margin:5px">Singer: ${beanVar.music_member_id}</div>
+					
+						<div style="margin:5px">Style: ${beanVar.music_style_id}</div>
+						
+						<div style="margin:5px" class="like_music">Like: 
+							<i class="fa fa-heart like" style="font-size:20px;color:red;cursor:pointer"></i>
+							<span class="count">Count: </span>
+						</div>
+						
+						<div style="margin:5px">List:&nbsp;&nbsp;
+							<a href="#">
+          						<i class="fas fa-clipboard-list" style="font-size:20px;color:blue"></i>
+        					</a>
+						</div>
+								
+						<div style="margin:5px">Name: <a href="${beanVar.music_link}">${beanVar.music_name}</a></div>
+					
+						<div style="margin:5px">Description: ${beanVar.music_description}</div>
+					
 					</div>
-					
-					<div style="margin:5px">Singer: ${beanVar.music_member_id}</div>
-				
-					<div style="margin:5px">Style: ${beanVar.music_style_id}</div>
-					
-					<div style="margin:5px" id="like">Like: <img style="cursor: pointer" name="like" src="/FileSource/images/heart.gif"></div>
-				
-					<div style="margin:5px">Name: <a href="${beanVar.music_link}">${beanVar.music_name}</a></div>
-				
-					<div style="margin:5px">Description: ${beanVar.music_description}</div>
-				
-				</div>
-			</c:forEach>
+				</c:forEach>
+			</div>
 		</div>
+		</c:if>
+	</div>  
 	</div>
-	</c:if>
 </div>
-
 	<!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<!--     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
 
 	<script>
-		//When first loaded nothing radio
 		$(document).ready(function(){
+			
+			// Get like counts function
+			function getLikeCounts(){
+				$.getJSON(ctx + '/music/musicSelectCount',
+					function(data){
+					$(":input[name='music_id']").each(function(){
+						var key = $(this).val();		// $(this) -> $(":input[name='music_id']")
+						var count =  data[key] || "0";	// if data[key] == true -> save data[key] to count
+														// if data[key] == false -> save "0" to count
+											
+						$(this).parents("#musicDiv").find(".count:eq(0)").text("Count: " + count);
+														// find(".count:eq(0)") -> find array[0] by eq(0)
+					});
+				});
+			}
+			
+			// When loading this page, call getLikeCounts() function to give like counts
+			getLikeCounts();
+			
+			// When first loading this page nothing radio, give default button
 			if($(":radio")[0].checked == false && $(":radio")[1].checked == false
 					 && $(":radio")[2].checked == false && $(":radio")[3].checked == false
 					 && $(":radio")[4].checked == false && $(":radio")[5].checked == false
@@ -351,27 +389,42 @@
 				$("#styleDiv label")[$("#styleDiv input[checked*=checked]").val()].className += " active";
 				$("#singerDiv label")[$("#singerDiv input[checked*=checked]").index()].className += " active";
 			}
-
+			
+			//When loaded page, give default tag
+			$(".music_selector .nav-tabs > li > a:eq(0)").attr("class","btn active show");
+			
+			//When input has error massages, change default tag to input tag
 			if($("#errors").text() != ""){
 				$("ul li:eq(0)").attr("class","");
 				$("ul li:eq(1)").attr("class","active");
 				$("#home").attr("class","tab-pane fade");
-				$("#menu1").attr("class","tab-pane fade in active");
+				$("#menu1").attr("class","tab-pane fade in active");				
+				$(".music_selector .nav-tabs > li > a:eq(0)").attr("class","btn");
+				$(".music_selector .nav-tabs > li > a:eq(1)").attr("class","btn active show");
 			}
-		})
-		
-		// Like
-		var like = $("img[name*='like']");
-		for(var i = 0;i<$("img[name*='like']").length;i++){
-			like[i].addEventListener("click",function(){
-				var sure = confirm("您確定要按讚嗎?");
-				if(sure == true){
-					alert("您已按下讚");
-				}else{
-					alert("您取消按讚");
-				}
+			
+			//Like
+			$(".musicDiv").on('click','.like',function(){
+				var id = $(this).parents(".musicDiv").find("input[name=music_id]").val();
+				$.getJSON(ctx + '/music/musicSelectLike',{'likes_music_id':id},
+					function(data){
+						if(data.success){
+							alert(data.success);
+							
+						// Renew page to display update count
+							getLikeCounts();
+
+						}else if(data.error){
+							alert(data.error);
+						}else if(data.mustlogin){
+							alert(data.mustlogin);
+							//導向登入頁面
+						}
+				})
 			})
-		}
+			//Like End
+
+		})
 		
 		// Get the container element
 		var btnContainer = document.getElementById("styleDiv");

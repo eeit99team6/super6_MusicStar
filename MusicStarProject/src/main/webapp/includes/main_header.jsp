@@ -37,6 +37,7 @@
 							<li><a href="#">資料設定</a></li>
 							<li><a href="<c:url value='/pages/music/musicInsert.jsp'/>">上傳音樂</a></li>   
 							<li><a href="<c:url value='/pages/music/selectAllMsuicById.jsp'/>">我的音樂</a></li> 
+							<li><a href="<c:url value='/pages/mymusiclist.jsp'/>">我的歌單</a></li> 
 							<li><a href="<c:url value="/members/logout"/>">登出</a></li>
 						</ul> <i class="fas fa-align-justify" title="系統"></i></li>
 				</c:when>
@@ -73,6 +74,7 @@
 							<li><a href="#">帳戶設定</a></li>
 							<li><a href="<c:url value='/pages/music/musicInsert.jsp'/>">上傳音樂</a></li>
 							<li><a href="<c:url value='/pages/music/selectAllMsuicById.jsp'/>">我的音樂</a></li>
+							<li><a href="<c:url value='/pages/mymusiclist.jsp'/>">我的歌單</a></li> 
 							<li><a href="<c:url value="/members/logout"/>">登出</a></li>
 						</ul></li>
 				</c:when>

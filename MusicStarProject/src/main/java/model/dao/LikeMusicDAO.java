@@ -1,6 +1,7 @@
 package model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -60,5 +61,16 @@ public class LikeMusicDAO {
 		return null;
 	}
 	
+	/**
+	 * @author yeh 2018.03.15 10:30
+	 * @return 用在找likes數量
+	 */	
+	
+	//利用List<>裝Map, 並在HQL指令中new一個Map包住(取到的likes_music_id, count)當作(key, value)
+	//因此select group by取出的值(key, value)會對應到(likes_music_id, 與group by之後的count值)
+	public List<Map> selectLikeCount() {
+		Query query = this.getSession().createQuery("select new Map (likes_music_id as likes_music_id, count(*) as count) from LikeMusicBean group by likes_music_id",Map.class);
+		return query.list();	
+	}
 	
 }
