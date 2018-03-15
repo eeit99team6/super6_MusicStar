@@ -37,12 +37,31 @@ $(function() {
 		}
 	}}).selectable("disable");
 	
+	/* init drag event */
+    function dragEnter(e) {
+    	$slide_photo_box.addClass("drag_mask");
+    	$slide_photo_description.addClass("transparent");	
+    }
+    function dragLeave(e) {
+    	$slide_photo_box.removeClass("drag_mask");
+    	$slide_photo_description.removeClass("transparent");	
+    }
+    function dropHandler(e) {
+    	$slide_photo_box.removeClass("drag_mask");
+	    $slide_photo_description.addClass("hide");	
+    }
+    $(function () {
+    	$slide_photo_box.on("dragenter", dragEnter).on("dragleave", dragLeave).on("drop", dropHandler);
+    });
+    /* init drag event end */
+    
 	// reset modify form
 	function resetModifyForm() {
 		$slideNameError.html("");
 		$slideLinkError.html("");
 		$slideDescriptionError.html("");
 		$slidePhotoError.html("");
+		$slide_photo_description.removeClass("hide").removeClass("transparent");	
 		$slideshow_modify_form[0].reset();
 	}
 	
@@ -51,7 +70,7 @@ $(function() {
    	  if (input.files && input.files[0]) {
    	    var reader = new FileReader();
    	    reader.onload = function(e) {
-   	    	$slide_photo_box.css('background-image', "url("+e.target.result+")").attr("data-instruction","點擊更換圖片");
+   	    	$slide_photo_box.css('background-image', "url("+e.target.result+")").attr({"data-instruction":"點擊更換圖片","data-drag-instruction":"托放置此更換圖片"});
 	   	    $slide_photo_description.addClass("hide");
    	    }
    	    reader.readAsDataURL(input.files[0]);
@@ -111,10 +130,9 @@ $(function() {
        	
 	$slideshow_control_insert.click(function(e){
 		$slideshow_modify_modal_title.text("新增輪播圖");
-		$slide_modify_confirm.text("確認新增");
-	    $slide_photo_description.removeClass("hide");	   
+		$slide_modify_confirm.text("確認新增");   
 		$slide_modify_confirm.on("click",insertSlide);
-		$slide_photo_box.attr("data-instruction","點擊上傳圖片");
+		$slide_photo_box.attr({"data-instruction":"點擊上傳圖片","data-drag-instruction":"托放置此上傳圖片"});
 		$slideshow_modify_modal.modal("show")
 		.one("hidden.bs.modal", function (e) {
 			$slide_modify_confirm.off("click",insertSlide);
@@ -158,7 +176,7 @@ $(function() {
     function fillModifyForm(src) {
     	$slide_photo_description.addClass("hide");
     	$silde_id.val(src.val());
-    	$slide_photo_box.css('background-image', "url("+src.data("slide-photo")+")").attr("data-instruction","點擊更換圖片");
+    	$slide_photo_box.css('background-image', "url("+src.data("slide-photo")+")").attr({"data-instruction":"點擊更換圖片","data-drag-instruction":"托放置此更換圖片"});
     	$slide_name.val(src.text());
     	$slide_link.val(src.data("slide-link"));
     	$slide_description.val(src.data("slide-description"));

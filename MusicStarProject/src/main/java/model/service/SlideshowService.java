@@ -54,7 +54,7 @@ public class SlideshowService {
 		return false;
 	}
 
-	public boolean updateSlide(SlideshowBean sb) {
+	public boolean updateSlide(SlideshowBean sb, String sildeshowDirectoryPath) {
 		if (sb != null) {
 			List<SlideshowBean> slides = (List<SlideshowBean>) servletContext.getAttribute("slides");
 			for (SlideshowBean bean : slides) {
@@ -64,7 +64,13 @@ public class SlideshowService {
 					bean.setSlide_description(sb.getSlide_description());
 					String slidePhoto = sb.getSlide_photo();
 					if( slidePhoto != null) {
-						bean.setSlide_photo(slidePhoto);
+						String photoDirectory = bean.getSlide_photo();			
+						String fileName = photoDirectory.substring(photoDirectory.lastIndexOf("/")+1);
+						File file = new File(sildeshowDirectoryPath + fileName);
+						if (file.exists()){ 
+							file.delete(); 
+							} 
+						bean.setSlide_photo(slidePhoto);					
 					}
 					if (slideshowDAO.update(bean)) {
 						return true;
@@ -75,11 +81,10 @@ public class SlideshowService {
 		return false;
 	}
 
-	public synchronized List<String> removeSlide(List<Integer> slideIdList) {
+	public synchronized boolean removeSlide(List<Integer> slideIdList, String sildeshowDirectoryPath) {
 		
 		if (Checker.notEmpty(slideIdList)) {
 			List<SlideshowBean> slides = (List<SlideshowBean>) servletContext.getAttribute("slides");
-			List<String> fileNameList = new ArrayList<>();
 			Iterator<SlideshowBean> iterator = slides.iterator();
 			int i = 0;
 			while (iterator.hasNext()) {
@@ -88,14 +93,17 @@ public class SlideshowService {
 					slideshowDAO.delete(bean);
 					String photoDirectory = bean.getSlide_photo();			
 					String fileName = photoDirectory.substring(photoDirectory.lastIndexOf("/")+1);
-					fileNameList.add(fileName);
+					File file = new File(sildeshowDirectoryPath + fileName);
+					if (file.exists()){ 
+						file.delete(); 
+						} 
 					iterator.remove();
 					i++;
 				}
 			}			
-			return fileNameList;
+			return true;
 		}
-		return null;
+		return false;
 	}
 
 }

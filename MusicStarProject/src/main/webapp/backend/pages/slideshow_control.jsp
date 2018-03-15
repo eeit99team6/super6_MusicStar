@@ -35,7 +35,8 @@
         <li class="breadcrumb-item active">輪播牆後台</li>
       </ol>
 <div class="row">
- 	<div id="main_container" class="container card">
+	<!-- main_container start -->
+	<div id="main_container" class="container card">
 		<div class="row text-center slideshow_control_container">
 			<div class="col-md-6">
 				<div id="slideshow_control_insert" class="slideshow_control_btn button button-glow button-rounded button-highlight">新增輪播圖</div>
@@ -62,14 +63,14 @@
 					<form id="slideshow_modify_form" enctype="multipart/form-data">
 						<div class="form-group">
 							<label for="slide_photo">輪播圖:</label><span id="slidePhotoError" class="text-danger"></span>
-							<label for="slide_photo" id="slide_photo_box" data-instruction="" class="form-control slide_photo_box">
+							<div id="slide_photo_box" class="form-control slide_photo_box">
 								<input type="file" id="slide_photo" name="slidePhoto" accept="image/*"/>
-								<span id="slide_photo_description" class="">目前沒有圖片</span>
-							</label>
+								<span id="slide_photo_description" class="">請選擇輪播圖片</span>
+							</div>
 						</div>
 						<div class="form-group">
 							<label for="slide_name">輪播圖名稱:</label><span id="slideNameError" class="text-danger"></span>
-							<input type="text" id="slide_name" name="slideName" class="form-control">
+							<input type="text" id="slide_name" name="slideName" class="form-control" maxlength="20">
 						</div>
 						<div class="form-group">
 							<label for="slide_link">輪播圖連結:</label><span id="slideLinkError" class="text-danger"></span>
@@ -77,7 +78,7 @@
 						</div>
 						<div class="form-group">
 							<label for="slide_description">輪播圖敘述:</label><span id="slideDescriptionError" class="text-danger"></span>
-							<textarea rows="5" id="slide_description" name="slideDescription" class="form-control"></textarea>
+							<input type="text" id="slide_description" name="slideDescription" class="form-control" maxlength="40"/>
 						</div>
 						<input type="hidden" id="silde_id" name="slideId"/>
 					</form>
@@ -112,6 +113,7 @@
 		  </div>
 		</div>
 	</div>
+	<!-- main_container end -->
   </div>
  </div>  
 </div>
