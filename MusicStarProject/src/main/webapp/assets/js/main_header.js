@@ -74,7 +74,8 @@ $(function() {
 		$system_buttom = $("ul.menu li:last-child>i"),
 		$sub_menu = $("#sub_menu"), 
 		$sub_menu_close = $("#sub_menu a"),
-		$loginForm = $("#login_form");
+		$loginForm = $("#login_form"),
+		$rememberme = $("#rememberme");
 
 		/*Sub Menu*/
 		$system_buttom.on("click", function() {
@@ -100,6 +101,13 @@ $(function() {
 				}
 			});
 		});
+		
+		if($rememberme.prop("checked")){
+			$("#mbrId").one("keyup",function(){
+				$("#mbrPwd").val("");
+				$rememberme.prop("checked",false);
+			});
+		}
 		
 		//FB Login
 		$("#fb_login_btn").click(function() {

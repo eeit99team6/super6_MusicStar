@@ -38,6 +38,7 @@
 </script>
 </head>
 <body>
+<div class="wrapper scrollbar-dynamic">
 	<jsp:include page="/includes/main_header.jsp" />
 	<!-- main_container start -->
 	<div id="main_container" class="container-fuild">
@@ -60,5 +61,6 @@
 	<!-- main_container end -->
 	<jsp:include page="/includes/main_aside.jsp" />
 	<jsp:include page="/includes/main_footer.jsp" />
+</div>
 </body>
 </html>

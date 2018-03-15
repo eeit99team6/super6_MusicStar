@@ -15,5 +15,8 @@ $(function() {
 	$window.on('load', function() {
 		$body.removeClass('is-loading');
 	});
+	
+	// scroll bar
+	$('.scrollbar-dynamic').scrollbar();
 
 });
