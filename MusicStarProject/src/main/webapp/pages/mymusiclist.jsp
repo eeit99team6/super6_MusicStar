@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" type="text/css" href="../css/table.css" />
+<!-- <link rel="stylesheet" type="text/css" href="../css/table.css" /> -->
 <title>我的歌單</title>
 <jsp:include page="/includes/main_css.jsp" />
 <jsp:include page="/includes/main_js.jsp" />
@@ -43,7 +43,14 @@
                       
                        <tfoot>
                        <tr>
-
+                       <form name="myForm">
+                        <td><input type="hidden" id="ProductID" name="ProductID"><span></span></td>
+                        <td><input type="text" class="form-control" id="ProductName" name="ProductName" placeholder="產品名稱"></td>
+                        <td><input type="text" style="width:100px" class="form-control" id="UnitPrice" name="UnitPrice" placeholder="歌單名稱"></td>
+                        <td><input type="text" style="width:100px" class="form-control" id="UnitsInStock" name="UnitsInStock" placeholder="歌單描述"></td>
+                        <td><button id="buttonAdd" type="button" class="btn btn-primary"><i class="fas fa-plus"></i></button></td>
+                       </tr>
+                       </form>
                        </tfoot>
                    </table>
 				<!-- 每頁不同的內容到這裡結束 -->
@@ -55,8 +62,8 @@
     </div>
 	</main>
 
-	<script src="assets/js/jquery-3.3.1.min.js"></script>
-	<script src="assets/js/bootstrap.min.js"></script>
+<!-- 	<script src="assets/js/jquery-3.3.1.min.js"></script> -->
+<!-- 	<script src="assets/js/bootstrap.min.js"></script> -->
 	<script language="javascript">
 	$(document).ready(function() {
 		function createListTable(){
@@ -65,7 +72,10 @@
 	    		//datas = [{},{}];
 	    		console.log(datas)
 //		    		console.log(datas[1].member_music_list_description)
-
+				if(datas.fucknull){
+					alert(datas.fucknull);
+				}else{
+				
 	    		var docFrag = $(document.createDocumentFragment());
 	    		$.each(datas,function(idx,mu){			  	    		
 	    			//product = {}
@@ -80,8 +90,9 @@
 	    			
 	    			docFrag.append(row);
 	    		});
+
 				    //刪除歌單			    
-			   $('#like_table>tbody').on('click','tr button:nth-child(1)',function(){
+			$('#like_table>tbody').on('click','tr button:nth-child(1)',function(){
 	 			   var id = $(this).parents('tr').find('td:nth-child(1)').text();
 	 			   $.get(ctx+'/deletemymusiclist',{'member_music_list_id':datas[0].member_music_list_id},function(data){
 	 				   if(data.ok){		 					   
@@ -92,10 +103,23 @@
 	 			   })
 			  });
 	    	   		$('#like_table>tbody').html(docFrag);
-	    	});
-		}
-		createListTable();		    	
-	})	    	
+	    	}});}
+	    	 		
+		$('#buttonAdd').click(function(){
+	    	var datas = $('form[name="myForm"]').serialize();
+	    	//var datas = $('form[name="myForm"]').serializeArray();
+	    	//console.log(datas);
+	    	$.post(ctx+'/insertmymusiclist',datas,function(data){
+	    		 		    		
+	    		 		    		
+	    		$('#member_music_list_name').val('');
+				$('#member_music_list_description').val('');
+				alert(data.insertok);
+				createListTable();
+	    	});	
+	 	});
+		createListTable();
+		});	  
 </script>
 </div>
 	<!-- main_container end -->
