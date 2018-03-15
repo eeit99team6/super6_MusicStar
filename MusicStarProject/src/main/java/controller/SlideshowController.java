@@ -84,14 +84,8 @@ public class SlideshowController {
 		SlideIdList sil = Parser.parseJson(slideIdList, SlideIdList.class);
 		List<Integer> idList = sil.getIdList();
 		if (Checker.notEmpty(idList)) {
-			List<String> fileNameList = slideshowService.removeSlide(idList);
-			if (Checker.notEmpty(fileNameList)) {
-				for(String fileName : fileNameList) {
-					File file = new File(sildeshowDirectoryPath + fileName);
-					if (file.exists()){ 
-						file.delete(); 
-						} 
-				}
+			if (slideshowService.removeSlide(idList,sildeshowDirectoryPath)) {
+				
 				data.put("success", "刪除成功");
 			} else {
 				data.put("errMsg", "刪除失敗");
@@ -160,7 +154,7 @@ public class SlideshowController {
 					return Parser.toJson(data);
 				}
 			}
-			if (slideshowService.updateSlide(bean)) {
+			if (slideshowService.updateSlide(bean,sildeshowDirectoryPath)) {
 				data.put("success", "修改成功");
 			} else {
 				data.put("errMsg", "修改失敗");
@@ -178,7 +172,6 @@ public class SlideshowController {
 		if (Checker.notEmpty(sildeOrderMap)) {
 			try {
 				SlideOrderMap som = Parser.parseJson(sildeOrderMap, SlideOrderMap.class);
-				System.out.println("orderMap = " + som.getOrderMap());
 				if (slideshowService.changeSlidesOrder(som.getOrderMap())) {
 					data.put("success", "調整排序成功");
 				} else {

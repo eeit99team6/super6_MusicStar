@@ -76,7 +76,7 @@ public class MusicListService {
 		}
 		return result1;
 	}
-	
+	//用於搜尋會員的歌單
 	public List<MusicListBean> selectmemid(String mbrId){
 		if(mbrId !=null) {
 			List<MusicListBean> temp = musicListDAO.selectmemid(mbrId);

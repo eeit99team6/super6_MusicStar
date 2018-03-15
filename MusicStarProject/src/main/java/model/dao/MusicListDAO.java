@@ -44,7 +44,7 @@ public class MusicListDAO {
 			result.setMember_music_list_name(member_music_list_name);
 //			result.setMember_music_list_member_id(member_music_list_member_id);
 			result.setMember_music_list_description(member_music_list_description);
-			result.setMember_music_list_quantity(member_music_list_quantity);
+			//result.setMember_music_list_quantity(member_music_list_quantity);
 		}
 		return result;
 	}
@@ -56,13 +56,12 @@ public class MusicListDAO {
 		}
 		return false;
 	}
-	//用於搜尋我的歌單 謙0313
+	//	//用於搜尋會員的歌單  謙0313 
 	public List<MusicListBean> selectmemid(String member_music_list_member_id){
 		Query query = this.getSession().createQuery("from MusicListBean where member_music_list_member_id=?0");
 		query.setParameter("0", member_music_list_member_id);
 		return (List<MusicListBean>) query.list();
 	}
-	
 	
 }
 		

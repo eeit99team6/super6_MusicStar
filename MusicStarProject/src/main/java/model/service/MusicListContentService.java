@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import model.bean.MusicContestPlayerBean;
+import model.bean.MusicListBean;
 import model.bean.MusicListContentBean;
 import model.dao.MusicListContentDAO;
 
@@ -31,6 +32,7 @@ public class MusicListContentService {
 		}
 		return result;
 	}
+	//刪整個歌單
 	public boolean delete(MusicListContentBean bean) {
 		boolean result = false;
 		if(bean!=null) {
@@ -38,6 +40,16 @@ public class MusicListContentService {
 		}
 		return result;
 	}
+	
+	//山歌單禮之音樂
+	public boolean delete2(MusicListContentBean bean) {
+		boolean result = false;
+		if(bean!=null) {
+			result = musicListContentDAO.delete2(bean.getMember_music_list_content_id(), bean.getMember_music_list_content_music_id());
+		}
+		return result;
+	}
+	
 	
 
 	public List<MusicListContentBean> selectmusiclistiditem(MusicListContentBean bean){
@@ -53,6 +65,13 @@ public class MusicListContentService {
 		}
 		return result;
 	} 
-	
+	//insert音樂至歌單
 
+	public MusicListContentBean insert(MusicListContentBean bean) {
+		MusicListContentBean result = null;
+		if (bean != null) {
+			result = musicListContentDAO.insert(bean);
+		}
+		return result;
+	}
 }

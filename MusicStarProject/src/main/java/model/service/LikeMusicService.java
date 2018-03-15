@@ -1,7 +1,9 @@
 package model.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -55,5 +57,21 @@ public class LikeMusicService {
 		return false;
 	}
 	
+	
+	/**
+	 * @author yeh 2018.03.15 10:30
+	 * @return 用在找likes數量
+	 */
+	
+	//回傳值利用List<>裝Map,並在此方法內利用DAO呼叫selectLikeCount()將select出來的結果回傳
+	public List<Map> selectLikeCount(LikeMusicBean bean) {
+
+		List<Map> temp = likeMusicDAO.selectLikeCount();
+		if (temp != null) {
+			return temp;
+		}
+
+		return null;
+	}
 	
 }
