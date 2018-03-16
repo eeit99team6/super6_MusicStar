@@ -4,7 +4,7 @@
 
 .display_show {
 	width: 300px;
-	max-height: 250px;
+	max-height: 350px;
 	margin: 10px auto;
 	position: relative;
 	float: left;
@@ -78,7 +78,7 @@
 	box-shadow: 0 0 5px #000;
 	-webkit-box-shadow: 0 0 5px #000;
 }
-.view-description{
+.view-description, .view-votes{
 	text-align: center;
 	position: relative;
 }

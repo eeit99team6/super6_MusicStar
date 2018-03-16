@@ -12,11 +12,13 @@
         
     // Handle successful sign-in  
     var onSuccess = function(user) {
+		$("#ajax_mask").removeClass("ajax_hide");
         console.log('Signed in as ' + user.getBasicProfile().getName());
         var id_token = user.getAuthResponse().id_token;
 		$.post(ctx + "/members/googleLoginAjax", {
 			"idToken" : id_token
 		}, function(data) {
+			$("#ajax_mask").addClass("ajax_hide");	
 			if (data.success) {
 				location.href = data.success;
 			}else {
@@ -27,7 +29,6 @@
     
     // Handle sign-in failures.     
     var onFailure = function(error) {
-        console.log(error);
     }
     /*Google Login End*/
     
@@ -59,6 +60,7 @@
 		$.post(ctx + "/members/fbLoginAjax", {
 			"accessToken" : accessToken
 		}, function(data) {
+			$("#ajax_mask").addClass("ajax_hide");	
 			if (data.success) {
 				FB.logout();
 				location.href = data.success;
@@ -90,10 +92,12 @@ $(function() {
 		// Login Ajax
 		$loginForm.submit(function(e) {
 			e.preventDefault();
+			$("#ajax_mask").removeClass("ajax_hide");
 			var formData = $loginForm.serialize(), action = $loginForm
 					.attr("action"), $loginErr = $("#login_err");
 			$loginErr.empty();
 			$.post(action, formData, function(data) {
+				$("#ajax_mask").addClass("ajax_hide");	
 				if (data.success) {
 					location.href = data.success;
 				} else {
@@ -113,6 +117,7 @@ $(function() {
 		$("#fb_login_btn").click(function() {
 			FB.login(function(response) {
 				if (response.status === 'connected') {
+					$("#ajax_mask").removeClass("ajax_hide");
 					fbLoginAjax(response.authResponse.accessToken);
 				}
 			}, {

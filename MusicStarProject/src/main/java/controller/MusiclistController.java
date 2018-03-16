@@ -121,8 +121,8 @@ public class MusiclistController {
 	public String musiclistAjax() {
 		return Parser.toJson(musicListService.select());
 	}
+	
 	// 0313 抓自己歌單之controller 謙
-
 	@RequestMapping(path = { "/mymusiclistidid.controller" }, method = { RequestMethod.GET,
 			RequestMethod.POST }, produces = "application/json;charset=UTF-8")
 	@ResponseBody
@@ -137,8 +137,8 @@ public class MusiclistController {
 				System.out.println(beanList);
 				return Parser.toJson(beanList);
 			}else {
-				errors.put("fucknull", "沒有任何歌曲");
-				return Parser.toJson(beanList);				
+				errors.put("fucknull", "沒有任何歌單");
+				return Parser.toJson("");				
 			}
 		} else {
 			errors.put("mustLogin", "必須登入");

@@ -1,4 +1,42 @@
 @charset "UTF-8";
+
+/* ajax loading */
+#ajax_mask {
+	position: fixed;
+	top: 0;
+	left: 0;
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	width: 100%;
+	z-index: 10000;
+	background: -webkit-radial-gradient(ellipse, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.9));
+	background: -o-radial-gradient(ellipse, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.9));
+	background: -moz-radial-gradient(ellipse, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.9));
+	background: radial-gradient(ellipse, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.9));
+}
+
+.ajax_loding {
+	height: 100%;
+	width: 100%;
+	text-align: center;
+	background: -webkit-radial-gradient(ellipse, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0));
+	background: -o-radial-gradient(ellipse, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0));
+	background: -moz-radial-gradient(ellipse, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0));
+	background: radial-gradient(ellipse, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0));
+}
+
+.ajax_loding>img {
+	padding: 40vh 0;
+	width: 10vw;
+}
+
+.ajax_hide {
+	display: none;
+	visibility: hidden;
+}
+/* ajax loading end*/
+
 /*! Pink Flag Skin for jPlayer 2.9.2 ~ (c) 2009-2014 Happyworm Ltd ~ MIT License */
 .jp-audio *:focus,
 .jp-audio-stream *:focus,

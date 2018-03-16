@@ -1,24 +1,27 @@
 $(function(){
 			var contestId = $("#contestId").val();
+			$("#ajax_mask").removeClass("ajax_hide");
 			$.getJSON(ctx+"/contests/voting/Players?contestId="+contestId,function(data){		
-			var $docFrag = $(document.createDocumentFragment());
-			if(data.errMsg == null && data.length > 0){
-				$.each(data,function(index,value){
-					$docFrag.append(
-						"<div class='display_show card'>"+
-							"<div class='view view-eighth'>"+
-								"<img src='"+value.musicPhoto+"'/>"+
-								"<div class='mask'>"+
-									"<h2>"+value.musicName+"</h2>"+
-									"<p>"+value.musicDescription+"</p>"+
-									"<a data-music-link='"+value.musicLink+"' class='info play_music'>播放歌曲</a>"+
-									"<a data-player-id='"+value.musicCtstPlayerId+"' class='info voting'>投他一票</a>"+
+				$("#ajax_mask").addClass("ajax_hide");
+				var $docFrag = $(document.createDocumentFragment());
+				if(data.errMsg == null && data.length > 0){
+					$.each(data,function(index,value){
+						$docFrag.append(
+							"<div class='display_show card'>"+
+								"<div class='view view-eighth'>"+
+									"<img src='"+value.musicPhoto+"'/>"+
+									"<div class='mask'>"+
+										"<h2>"+value.musicName+"</h2>"+
+										"<p>"+value.musicDescription+"</p>"+
+										"<a data-music-link='"+value.musicLink+"' class='info play_music'>播放歌曲</a>"+
+										"<a data-player-id='"+value.musicCtstPlayerId+"' class='info voting'>投他一票</a>"+
+									"</div>"+
 								"</div>"+
-							"</div>"+
-							"<h5 class='view-description'>"+value.musicCtstPlayerId+" - "+value.musicName+"</h5>"+
-						"</div>");
-			});}else{
-				$("#display_area").after("<h2 class='text-center' style='margin-bottom:200px;'>很抱歉此賽事目前沒有任何參賽者</h2>");
+								"<h5 class='view-description'>"+value.musicCtstPlayerId+"　-　"+value.musicName+"</h5>"+
+								"<h5 class='view-votes'>目前票數：<span class='counter'>"+value.musicCtstPlayerVotes+"</span></h5>"+
+							"</div>");});
+					}else{
+					$("#display_area").after("<h2 class='text-center' style='margin-bottom:200px;'>很抱歉此賽事目前沒有任何參賽者</h2>");
 			}		
 			for(let i = 0; i < 3 ;i++){
 				$docFrag.append("<div class='display_show'></div>");
@@ -44,5 +47,8 @@ $(function(){
 									alert(data.errMsg);
 								}else if(data.success){							
 									alert(data.success);
-									alert("您投了 "+musicCtstPlayerId+" 一票~感謝您參與投票!!");}});}});
-			});});
+									alert("您投了 "+musicCtstPlayerId+" 一票~感謝您參與投票!!");}});}})
+			;});			
+			$(window).on("load",function(e){$(".counter").counterUp({ time: 1500 });
+		});	
+	});
