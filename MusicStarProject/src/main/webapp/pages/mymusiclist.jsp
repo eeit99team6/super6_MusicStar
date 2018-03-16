@@ -46,9 +46,8 @@
                        <tr>
                        <form name="myForm">
                         <td><input type="hidden" id="ProductID" name="ProductID"><span></span></td>
-                        <td><input type="text" class="form-control" id="ProductName" name="ProductName" placeholder="產品名稱"></td>
-                        <td><input type="text" style="width:100px" class="form-control" id="UnitPrice" name="UnitPrice" placeholder="歌單名稱"></td>
-                        <td><input type="text" style="width:100px" class="form-control" id="UnitsInStock" name="UnitsInStock" placeholder="歌單描述"></td>
+                        <td><input type="text" style="width:100px" class="form-control" id="member_music_list_name" name="member_music_list_name" placeholder="歌單名稱"></td>
+                        <td><input type="text" style="width:100px" class="form-control" id="member_music_list_description" name="member_music_list_description" placeholder="歌單描述"></td>
                         <td><button id="buttonAdd" type="button" class="btn btn-primary"><i class="fas fa-plus"></i></button></td>
                        </tr>
                        </form>
