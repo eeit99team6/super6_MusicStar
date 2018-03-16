@@ -58,9 +58,9 @@
 						<th>圖</th>
 						<th>歌曲</th>
 						<th>歌曲名稱</th>
+						<th>得票數</th>
 						<th>作者</th>
 						<th>敘述</th>
-						<th>得票數</th>
 					</tr>	
 				</thead>
 				<tbody class="leaderboards-1-tbody-2">
