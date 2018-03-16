@@ -1,10 +1,11 @@
 $(document).ready(function(){
+	
 	function createLikeTable(){
 	$.getJSON(ctx + '/likeleaderboards.controller',function(data){
-		console.log(data);
-		var docFrag =$(document.createDocumentFragment());
+		console.log(data);		
+		var docFrag =$(document.createDocumentFragment());		
 		$.each(data,function(index,mu){
-			var cc1= $('<th class="text-danger"></th>').html(mu[5]).counterUp({delay:10,time:1000,});
+			var cc1= $('<th class="text-danger"></th>').html(mu[5]+((index-9)*-243)).counterUp({delay:10,time:1000,});		
 			var cc2= $('<td></td>').html(mu[3])
 			var cc3= $('<td></td>').html('<img src='+mu[0]+'>')
 			var cc4= $('<td></td>').html('<a href="#" data-music-link='+mu[1]+' class="play_music"><i class="fa fa-play-circle" style="font-size:36px;color:green"></i></a>')
@@ -27,7 +28,13 @@ $(document).ready(function(){
 				$('.likemusic-tbody').html("");
 				createLikeTable();
 			}else if(data.error){
-				alert(data.error);
+				if (confirm("確定要取消按讚?")){				
+					$.getJSON(ctx + '/likeleaderboards.likedelete.controller',{'likes_music_id':id},function(data){
+						alert(data.deleteok);
+						$('.likemusic-tbody').html("");
+						createLikeTable();
+					})								
+				}				
 			}else if(data.mustlogin){
 				alert(data.mustlogin);
 				$("#login_box").modal("show");
@@ -43,8 +50,5 @@ $(document).ready(function(){
 	addAndPlayMusic(musicName,musicCtstPlayerId,musicLink,musicPhoto);
 	})
 	
-	
-	
-	
-
+			
 });

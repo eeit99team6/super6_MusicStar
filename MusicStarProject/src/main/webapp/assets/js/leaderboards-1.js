@@ -9,10 +9,10 @@ $(document).ready(function(){
 			var cc1=$('<td></td>').html('<img src='+mu[1].music_photo+'>')
 			var cc2=$('<td></td>').html('<a href="#" data-music-link='+mu[1].music_link+' class="play_music"><i class="fa fa-play-circle" style="font-size:36px;color:green"></i></a>')
 			var cc3=$('<td></td>').html(mu[1].music_name)
+			var cc6=$('<td></td>').html(mu[0].music_contest_players_votes).counterUp({delay:10,time:1000,});
 			var cc4=$('<td></td>').html(mu[0].music_contest_player_id)
 			var cc5=$('<td></td>').html(mu[1].music_description)
-			var cc6=$('<td></td>').html(mu[0].music_contest_players_votes).counterUp({delay:10,time:1000,});
-    		var row =$('<tr></tr>').append([cc1,cc2,cc3,cc4,cc5,cc6])
+    		var row =$('<tr></tr>').append([cc1,cc2,cc3,cc6,cc4,cc5])
     		docFrag.append(row);			
 		});
 		$('.leaderboards-1-tbody-2').append(docFrag);		
