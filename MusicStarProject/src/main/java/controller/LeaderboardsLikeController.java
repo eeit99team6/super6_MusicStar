@@ -60,7 +60,7 @@ public class LeaderboardsLikeController {
 			if(likeMusicService.insertLike(newbean)) {
 				data.put("success", "謝謝您支持這位歌手");
 			}else {				
-				data.put("error", "你已經按過讚了");
+				data.put("error", "你已經按過讚了,要取消嗎?");
 			}
 		}else {
 			data.put("mustlogin", "必須登入才可以按讚喔~");
@@ -68,8 +68,29 @@ public class LeaderboardsLikeController {
 		return Parser.toJson(data);				
 	}
 	
-	
-	
+	/**
+	 * @author james.pu 2018.03.16 15:40
+	 * @return 用在刪除likes
+	 */
+	@RequestMapping(path={"/likeleaderboards.likedelete.controller"},method={RequestMethod.GET,RequestMethod.POST},produces="application/json;charset=UTF-8")
+	@ResponseBody
+	public String DeleteLike(Integer likes_music_id, Model model, HttpSession session) {
+		Map<String,String> data = new HashMap<>();
+				
+		MemberBean mb =(MemberBean) session.getAttribute("loginOK");
+		if(mb!=null) {
+			String xxx =mb.getMbrId();
+			LikeMusicBean newbean = new LikeMusicBean(xxx,likes_music_id);
+			if(likeMusicService.deleteLike(newbean)) {
+				data.put("deleteok", "很遺憾");
+			}else {				
+				data.put("error", "必須登入才可以按讚喔~~");
+			}
+		}else {
+			data.put("mustlogin", "必須登入才可以按讚喔~");
+		}						
+		return Parser.toJson(data);				
+	}
 	
 	
 }

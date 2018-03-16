@@ -49,7 +49,7 @@ public class MusicContestVoteService
 	public boolean canVote(Integer musicCtstId) {
 		return musicContestDAO.checkCtstStatus(musicCtstId) == 3 ? true : false;
 	}
-
+	
 	/**
 	 * @author Phil 2018.03.13
 	 */

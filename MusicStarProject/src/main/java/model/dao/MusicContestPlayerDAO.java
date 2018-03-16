@@ -144,7 +144,7 @@ public class MusicContestPlayerDAO {
 			if(votes == null) {
 				votes = 0;
 			}
-			mcpb.setMusic_contest_players_votes(votes++);
+			mcpb.setMusic_contest_players_votes(++votes);
 		}
 	}
 	

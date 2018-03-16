@@ -31,7 +31,7 @@ color:orange;
 			<table class="table">
 			  <thead class="text-light bg-dark">
 			    <tr>
-			      <th scope="col">排行</th>
+			      <th scope="col">按讚數</th>
 			      <th scope="col">作者</th>
 			      <th scope="col">Cover</th>
 			      <th scope="col">歌曲</th>
