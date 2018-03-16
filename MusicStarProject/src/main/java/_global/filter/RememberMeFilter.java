@@ -78,10 +78,6 @@ public class RememberMeFilter implements Filter
 					bean.setMbrPwd(password);
 					if ((bean = memberService.login(bean)) != null) {
 						session.setAttribute("loginOK", bean);
-						String mbrPhoto = bean.getMbrPhoto();
-						if(Checker.notEmpty(mbrPhoto)) {
-							session.setAttribute("mbrProfile", mbrPhoto);
-						}
 					}
 				}
 			}

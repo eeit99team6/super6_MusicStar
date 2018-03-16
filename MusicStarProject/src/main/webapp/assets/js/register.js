@@ -18,7 +18,8 @@ $(function() {
 			cache : false,
 			processData : false,
 			success : function(data) {
-				if (data.success) {
+				$("#ajax_mask").addClass("ajax_hide");
+				setTimeout(function(){if (data.success) {
 					alert(data.success.message);
 					location.href = ctx + "/index.jsp";
 				} else {
@@ -29,8 +30,9 @@ $(function() {
 					$("#emailError").html(data.error.emailError || "");
 					$("#genderError").html(data.error.genderError || "");
 					$("#profileerror").html(data.error.profileError || "");				
-				}
-			}
+				}},100);			
+			},
+			beforeSend : function(){$("#ajax_mask").removeClass("ajax_hide");}
 		});		
 	});
 	

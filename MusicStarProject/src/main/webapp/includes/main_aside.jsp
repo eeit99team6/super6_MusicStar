@@ -1,8 +1,16 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
 <aside id="main_aside">
-	<div id="jplayer_container" class="jp-video jp-video-270p jp-container " role="application" aria-label="media player">
+	<div id="ajax_mask" class="ajax_hide">
+		<div class="ajax_loding">
+			<img src="${ctx}/assets/img/ajax/ajax-loading.gif" />
+		</div>
+	</div>
+	<div id="jplayer_container"
+		class="jp-video jp-video-270p jp-container " role="application"
+		aria-label="media player">
 		<div>
 			<i id="jp_toggle" class="fas fa-chevron-up"></i>
 			<h6>Audio Player</h6>
@@ -24,7 +32,8 @@
 					<div class="jp-controls-holder">
 						<div class="jp-volume-controls">
 							<button class="jp-mute" role="button" tabindex="0">mute</button>
-							<button class="jp-volume-max" role="button" tabindex="0">max volume</button>
+							<button class="jp-volume-max" role="button" tabindex="0">max
+								volume</button>
 							<div class="jp-volume-bar">
 								<div class="jp-volume-bar-value"></div>
 							</div>
@@ -38,7 +47,8 @@
 						<div class="jp-toggles">
 							<button class="jp-repeat" role="button" tabindex="0">repeat</button>
 							<button class="jp-shuffle" role="button" tabindex="0">shuffle</button>
-							<button class="jp-full-screen" role="button" tabindex="0">full screen</button>
+							<button class="jp-full-screen" role="button" tabindex="0">full
+								screen</button>
 						</div>
 					</div>
 				</div>
@@ -50,7 +60,10 @@
 				</ul>
 			</div>
 			<div class="jp-no-solution">
-				<span>Update Required</span> To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>.
+				<span>Update Required</span> To play the media you will need to
+				either update your browser to a recent version or update your <a
+					href="http://get.adobe.com/flashplayer/" target="_blank">Flash
+					plugin</a>.
 			</div>
 		</div>
 	</div>

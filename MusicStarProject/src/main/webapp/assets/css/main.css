@@ -35,3 +35,7 @@ body.is-loading *:after {
 	margin-bottom: 10px;
 	text-align: center;
 }
+
+#main_container{
+	min-height: 50vh;
+}
