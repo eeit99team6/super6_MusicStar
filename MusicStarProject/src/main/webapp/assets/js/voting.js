@@ -5,8 +5,11 @@ $(function(){
 			if(contestId){
 				$("#ajax_mask").removeClass("ajax_hide");			
 			$.getJSON(ctx+"/contests/voting/detail",{"contestId":contestId},function(data){
+				if(!data){
+					history.go(-1);
+				}
 				var now = new Date(),
-				$vote_description = $("#vote_description"),
+				$vote_description = $("#vote_description");
 				startDate = new Date(data.music_contest_vote_start_date);
 				finalDate = new Date (data.music_contest_end_date);
 				$("#main_container>.default_title").text(data.music_contest_name);			

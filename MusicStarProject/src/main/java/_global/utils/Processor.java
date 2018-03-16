@@ -52,8 +52,7 @@ public class Processor
 		try
 		{
 			Request request = new Request.Builder().url(url).build();
-			Response response;
-			response = okHttpClient.newCall(request).execute();
+			Response response = okHttpClient.newCall(request).execute();
 			return Parser.parseJson(response.body().charStream(), classOfT);
 		} catch (IOException e)
 		{
@@ -135,7 +134,7 @@ public class Processor
 	public static Cookie createCookie(String cookieName, String cookieValue,int cookieMaxAge,String contextPath)
 	{
 		Cookie cookie = new Cookie(cookieName, cookieValue);
-		cookie.setMaxAge(30 * 60 * 60);
+		cookie.setMaxAge(cookieMaxAge);
 		cookie.setPath(contextPath);
 		return cookie;
 	}

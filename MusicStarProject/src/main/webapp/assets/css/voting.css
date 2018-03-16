@@ -3,7 +3,7 @@
 }
 
 .display_show {
-	width: 300px;
+	width: 305px;
 	max-height: 350px;
 	margin: 10px auto;
 	position: relative;
@@ -71,8 +71,9 @@
 	margin: 25px 5px 0 0;
 }
 
-.view a.info: hover {
-	background-color: rgba(0, 0, 0, 0.5);
+.view a.info:hover {
+	color: #fff;
+	background-color: rgba(0, 0, 0, 0.7);
 	-webkit-box-shadow: 0 0 5px #000;
 	-moz-box-shadow: 0 0 5px #000;
 	box-shadow: 0 0 5px #000;
@@ -109,6 +110,7 @@
 }
 .view-eighth p {
    color: #333;
+   font-size:16px;
    -webkit-transform: translateY(-200px);
    -moz-transform: translateY(-200px);
    -o-transform: translateY(-200px);
