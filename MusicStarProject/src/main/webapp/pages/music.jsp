@@ -88,6 +88,7 @@
   <jsp:include page="/includes/main_js.jsp" />
 </head>
 <body>
+<div class="wrapper scrollbar-dynamic">
 <jsp:include page="/includes/main_header.jsp" />
 
 <!-- Modal -->
@@ -120,9 +121,8 @@
 
 	<!-- main_container start -->
 	<div id="main_container" class="container-fuild">
+  <div class="title-title">MusicStar 音樂搜尋引擎 </div>
 <div class="container" style="margin-top:75px;margin-bottom:25px">
-  <h2>MusicStar 音樂搜尋引擎</h2>
-  <p>請點選下方喜歡的搜尋方式~~</p>
 <div class="music_selector">
   <ul class="nav nav-tabs">
     <li class="active" id="litab"><a data-toggle="tab" href="#home" class="btn">Button</a></li>
@@ -581,9 +581,9 @@
 		}
 		
 	</script>
-	</div>
 	<!-- main_container end -->
 	<jsp:include page="/includes/main_aside.jsp" />
 	<jsp:include page="/includes/main_footer.jsp" />
+	</div>
 </body>
 </html>
