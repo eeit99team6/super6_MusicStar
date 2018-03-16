@@ -11,6 +11,10 @@
 
 <style type="text/css">
 
+.uperContainer{
+margin-top:30px;
+margin-bottom:150px;
+}
 
 .divImagContainer{
     position: relative;
@@ -74,7 +78,7 @@ font-weight: bold;
 	<div id="main_container" class="container-fuid">
 	 
 	 <div class="title-title">報名中</div>
-	 <div class="row">
+	 <div class="row uperContainer">
 	  <div id="music-contest-sing-up-container" class="card columns">
 	  
      </div>
