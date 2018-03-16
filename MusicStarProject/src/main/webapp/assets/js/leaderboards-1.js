@@ -7,7 +7,7 @@ $(document).ready(function(){
 		var docFrag =$(document.createDocumentFragment());
 		$.each(data,function(index,mu){
 			var cc1=$('<td></td>').html('<img src='+mu[1].music_photo+'>')
-			var cc2=$('<td></td>').html('<a data-music-link='+mu[1].music_link+' class="play_music"><i class="fa fa-play-circle" style="font-size:36px;color:green"></i></a>')
+			var cc2=$('<td></td>').html('<a href="#" data-music-link='+mu[1].music_link+' class="play_music"><i class="fa fa-play-circle" style="font-size:36px;color:green"></i></a>')
 			var cc3=$('<td></td>').html(mu[1].music_name)
 			var cc4=$('<td></td>').html(mu[0].music_contest_player_id)
 			var cc5=$('<td></td>').html(mu[1].music_description)

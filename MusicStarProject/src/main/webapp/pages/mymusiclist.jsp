@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
@@ -5,9 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" type="text/css" href="../css/table.css" />
-<link href="${ctx}/assets/css/common_style/allPages.css" rel="stylesheet"/>
-
+<!-- <link rel="stylesheet" type="text/css" href="../css/table.css" /> -->
 <title>我的歌單</title>
 <jsp:include page="/includes/main_css.jsp" />
 <jsp:include page="/includes/main_js.jsp" />
@@ -19,7 +18,6 @@
 <jsp:include page="/includes/main_header.jsp" />
 <!-- main_container start -->
 	<div id="main_container" class="container-fuild">
-		<div class="title-title">我的歌單</div> 
 	<main role="main" class="container mt-2">
     <div class="row">
        <div class="col-lg-3">
@@ -27,6 +25,7 @@
      <br>
       <br>
        <br>
+       <h3>我的歌單</h3>
 		<div class="card">
 			<div class="card-body">
 				<!-- 每頁不同的內容從這裡開始 -->
@@ -45,7 +44,13 @@
                       
                        <tfoot>
                        <tr>
-
+                       <form name="myForm">
+                        <td><input type="hidden" id="ProductID" name="ProductID"><span></span></td>
+                        <td><input type="text" style="width:100px" class="form-control" id="member_music_list_name" name="member_music_list_name" placeholder="歌單名稱"></td>
+                        <td><input type="text" style="width:100px" class="form-control" id="member_music_list_description" name="member_music_list_description" placeholder="歌單描述"></td>
+                        <td><button id="buttonAdd" type="button" class="btn btn-primary"><i class="fas fa-plus"></i></button></td>
+                       </tr>
+                       </form>
                        </tfoot>
                    </table>
 				<!-- 每頁不同的內容到這裡結束 -->
@@ -57,8 +62,8 @@
     </div>
 	</main>
 
-	<script src="assets/js/jquery-3.3.1.min.js"></script>
-	<script src="assets/js/bootstrap.min.js"></script>
+<!-- 	<script src="assets/js/jquery-3.3.1.min.js"></script> -->
+<!-- 	<script src="assets/js/bootstrap.min.js"></script> -->
 	<script language="javascript">
 	$(document).ready(function() {
 		function createListTable(){
@@ -67,7 +72,10 @@
 	    		//datas = [{},{}];
 	    		console.log(datas)
 //		    		console.log(datas[1].member_music_list_description)
-
+				if(datas.fucknull){
+					alert(datas.fucknull);
+				}else{
+				
 	    		var docFrag = $(document.createDocumentFragment());
 	    		$.each(datas,function(idx,mu){			  	    		
 	    			//product = {}
@@ -82,8 +90,9 @@
 	    			
 	    			docFrag.append(row);
 	    		});
+
 				    //刪除歌單			    
-			   $('#like_table>tbody').on('click','tr button:nth-child(1)',function(){
+			$('#like_table>tbody').on('click','tr button:nth-child(1)',function(){
 	 			   var id = $(this).parents('tr').find('td:nth-child(1)').text();
 	 			   $.get(ctx+'/deletemymusiclist',{'member_music_list_id':datas[0].member_music_list_id},function(data){
 	 				   if(data.ok){		 					   
@@ -94,10 +103,23 @@
 	 			   })
 			  });
 	    	   		$('#like_table>tbody').html(docFrag);
-	    	});
-		}
-		createListTable();		    	
-	})	    	
+	    	}});}
+	    	 		
+		$('#buttonAdd').click(function(){
+	    	var datas = $('form[name="myForm"]').serialize();
+	    	//var datas = $('form[name="myForm"]').serializeArray();
+	    	//console.log(datas);
+	    	$.post(ctx+'/insertmymusiclist',datas,function(data){
+	    		 		    		
+	    		 		    		
+	    		$('#member_music_list_name').val('');
+				$('#member_music_list_description').val('');
+				alert(data.insertok);
+				createListTable();
+	    	});	
+	 	});
+		createListTable();
+		});	  
 </script>
 </div>
 	<!-- main_container end -->
