@@ -17,11 +17,14 @@ import _global.utils.Parser;
 import model.bean.MemberBean;
 import model.bean.MusicContestVoteBean;
 import model.service.MusicContestPlayerService;
+import model.service.MusicContestService;
 import model.service.MusicContestVoteService;
 
 @Controller
 public class MusicContestVoteController {
 
+	@Autowired
+	private MusicContestService musicContestService;
 	@Autowired
 	private MusicContestVoteService musicContestVoteService;
 	@Autowired
@@ -75,7 +78,7 @@ public class MusicContestVoteController {
 	 * 取得指定投票中賽事的參賽者資料
 	 * @author Phil 2018.03.15
 	 */
-	@RequestMapping(path = "/contests/voting/Players", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
+	@RequestMapping(path = "/contests/voting/players", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
 	@ResponseBody
 	public String getContestPlayersAjax(String contestId) {
 		Map<String, String> data = new HashMap<>();
@@ -89,9 +92,31 @@ public class MusicContestVoteController {
 		return Parser.toJson(musicContestPlayerService.getContestPlayers(id));
 	}
 
+	/**
+	 * 取得指定狀態的賽事資料
+	 * @author Phil 2018.03.16
+	 */
 	@RequestMapping(path = "/contests/{status}", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
 	@ResponseBody
-	public String contestAtVotingAjax(@PathVariable("status") String status) {	
+	public String getContestByStatus(@PathVariable("status") String status) {	
 		return Parser.toJson(musicContestVoteService.getContests(status));	
+	}
+	
+	/**
+	 * 取得指定ID的賽事資料
+	 * @author Phil 2018.03.16
+	 */
+	@RequestMapping(path = "/contests/voting/detail", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
+	@ResponseBody
+	public String contestAtVotingAjax(String contestId) {	
+		Map<String, String> data = new HashMap<>();
+		Integer id = Parser.parseInt(contestId);
+		if (id == null) {
+			data.put("errMsg", "contestId格式錯誤");
+		}
+		if (Checker.notEmpty(data)) {
+			return Parser.toJson(data);
+		}		
+		return Parser.toJson(musicContestService.select(id));
 	}
 }
