@@ -26,13 +26,15 @@ import _global.utils.Parser;
 import model.bean.MemberBean;
 import model.bean.MusicBean;
 import model.service.MusicService;
+import model.service.MusicStyleService;
 
 @Controller
 public class MusicController
 {
 	@Autowired
 	MusicService musicservice;
-
+	@Autowired
+	MusicStyleService musicStyleService;
 	@Autowired
 	String profilesDirectoryPath;
 	@Autowired
@@ -171,7 +173,7 @@ public class MusicController
 	   } 
      	return null;
 	}
-    }
+    
 	
 	/**
 	 * 取得音樂型態的Map<styleId,styleName>
