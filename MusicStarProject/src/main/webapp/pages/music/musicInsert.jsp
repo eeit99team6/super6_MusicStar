@@ -8,156 +8,12 @@
 <title>Default Page</title>
 <jsp:include page="/includes/main_css.jsp" />
 <link href="${ctx}/assets/css/music-upload-muisc/site.css" rel="stylesheet" />
+<link href="${ctx}/assets/css/common_style/allPages.css" rel="stylesheet"/>
+<link href="${ctx}/assets/css/musicInsert.css" rel="stylesheet"/>
+
 <script src="${ctx}/assets/js/music-upload-muisc/site.js"> </script>
 
 <style type="text/css">
-.title{
-margin-top:5%;
-text-align: center;
-font-size:300%;
-font-weight:bold;
-}
-
-#formContainer{
- width: 600px;
-margin:0 auto;
-}
-
-input{
-display:block;
-}
-
-.file-upload {
-  background-color: #ffffff;
-  width: 600px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
-.file-upload-btn {
-  width: 100%;
-  margin: 0;
-  color: #fff;
-  background: #1FB264;
-  border: none;
-  padding: 10px;
-  border-radius: 4px;
-  border-bottom: 4px solid #15824B;
-  transition: all .2s ease;
-  outline: none;
-  text-transform: uppercase;
-  font-weight: 700;
-}
-
-.file-upload-btn:hover {
-  background: #C0C0C0;
-  color: #C0C0C0;
-  transition: all .2s ease;
-  cursor: pointer;
-}
-
-.file-upload-btn:active {
-  border: 0;
-  transition: all .2s ease;
-}
-
-.file-upload-content {
-  display: none;
-  text-align: center;
-}
-
-.file-upload-input {
-  position: absolute;
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  height: 100%;
-  outline: none;
-  opacity: 0;
-  cursor: pointer;
-}
-
-.image-upload-wrap {
-  margin-top: 5px;
-  border: 4px dashed #E0E0E0;
-  position: relative;
-}
-
-.image-dropping,
-.image-upload-wrap:hover {
-  background-color: #C0C0C0;
-  border: 4px dashed #ffffff;
-}
-
-.image-title-wrap {
-  padding: 0 15px 15px 15px;
-  color: #222;
-}
-
-.drag-text {
-  text-align: center;
-}
-
-.drag-text h3 {
-  font-weight: 100;
-  text-transform: uppercase;
-  color: black;
-  padding: 60px 0;
-}
-
-.file-upload-image {
-  max-height: 200px;
-  max-width: 200px;
-  margin: auto;
-  padding: 20px;
-}
-
-.remove-image {
-  width: 200px;
-  margin: 0;
-  color: #fff;
-  background: #C0C0C0;
-  border: none;
-  padding: 10px;
-  border-radius: 4px;
-  border-bottom: 4px solid #C0C0C0;
-  transition: all .2s ease;
-  outline: none;
-  text-transform: uppercase;
-  font-weight: 700;
-}
-
-.remove-image:hover {
-  background: #E0E0E0;
-  color: #ffffff;
-  transition: all .2s ease;
-  cursor: pointer;
-}
-
-.remove-image:active {
-  border: 0;
-  transition: all .2s ease;
-}
-
-h6{
-font-size:65%;
-}
-
-form{
-margin-bottom:10px;
-border:.5px solid  #C0C0C0;
-padding:8px;
-}
-
-form button{
-margin-top:5px;
-}
-
-#buttonDiv{
-text-align:center;
-}
-
-
 </style>
 <jsp:include page="/includes/main_js.jsp" />
 <script>
@@ -170,7 +26,7 @@ text-align:center;
 	<div id="main_container" class="container-fuild">
 	
 	 
-	 <div class="title">上傳音樂</div>	 
+	<div class="title-title">上傳音樂</div>	 
 	<div id="formContainer">
 	<form method="POST" action="<c:url value='/musicInsert'/>" enctype="multipart/form-data">
 	<label for="music_member_id">會員ID:</label><input name="music_member_id" type="text" value="${loginOK.mbrId}" class="col-xl-4" required readonly>

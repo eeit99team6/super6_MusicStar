@@ -133,12 +133,12 @@ public class MusiclistController {
 		if (mb != null) {
 			String beanId = mb.getMbrId();
 			List<MusicListBean> beanList = musicListService.selectmemid(beanId);
-			if (beanList == null) {
-				errors.put("action", "UnKnow Action");
-				return Parser.toJson(errors);
-			} else {
-				// model.addAttribute("data", beanList);
+			if (beanList != null && !beanList.isEmpty()) {
+				System.out.println(beanList);
 				return Parser.toJson(beanList);
+			}else {
+				errors.put("fucknull", "沒有任何歌曲");
+				return Parser.toJson(errors);				
 			}
 		} else {
 			errors.put("mustLogin", "必須登入");
@@ -153,10 +153,10 @@ public class MusiclistController {
 	public String method(MusicListBean bean, Model model) {
 		Map<String, String> data = new HashMap<>();
 		boolean result = musicListService.delete(bean);
-		if (!result) {
-			data.put("fail", "刪除失敗");
-		} else {
+		if (result) {
 			data.put("ok", "刪除成功");
+		} else {
+			data.put("fail", "刪除失敗");
 		}
 		return Parser.toJson(data);
 	}
@@ -175,4 +175,22 @@ public class MusiclistController {
 		}
 		return Parser.toJson(data);
 	}
+	// 新增歌單 謙0315 謙
+
+		@RequestMapping(path = { "/insertmymusiclist" }, method = { RequestMethod.GET,
+				RequestMethod.POST }, produces = "application/json;charset=UTF-8")
+		@ResponseBody
+		public String insertmethod(MusicListBean bean, Model model, HttpSession session) {
+			Map<String, String> data = new HashMap<>();
+			MemberBean temp = (MemberBean) session.getAttribute("loginOK");
+			String mId = temp.getMbrId();
+			bean.setMember_music_list_member_id(mId);
+			MusicListBean result = musicListService.insert(bean);
+			if (result == null) {
+				data.put("action", "insert fail");
+			} else {
+				data.put("insertok", "insert success");
+			}
+			return Parser.toJson(data);
+		}
 }

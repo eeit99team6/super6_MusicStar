@@ -7,7 +7,7 @@
 			<li><a href="<c:url value="/index.jsp"/>"><img style="padding-bottom:5%" width="60" src="${ctx}/assets/img/pagesUsage/music-star.png"/>MusicStar</a></li>
 			<li><a href="<c:url value="/pages/contest.jsp#title"/>">賽事專區</a>
 				<ul>
-					<li><a href="<c:url value="/pages/contest.jsp#rule"/>">賽事規則</a></li>
+					<li><a href="<c:url value="/pages/contestrule.jsp"/>">賽事規則</a></li> 
 					<li><a href="<c:url value="/pages/contestSignUp.jsp"/>">報名中</a></li>
 					<li><a href="<c:url value="/pages/contests/contest_voting.jsp"/>">投票中</a></li>
 					<li><a href="<c:url value="/pages/contest.jsp#end"/>">歷史賽事</a></li>
@@ -48,7 +48,7 @@
 		<ul class="links">
 			<li><a href="<c:url value="/pages/contest.jsp#title"/>">賽事專區</a>
 				<ul>
-					<li><a href="<c:url value="/pages/contest.jsp#rule"/>">賽事規則</a></li>
+					<li><a href="<c:url value="/pages/contestrule.jsp"/>">賽事規則</a></li>
 					<li><a href="<c:url value="/pages/contest.jsp#applying"/>">報名中</a></li>
 					<li><a href="<c:url value="/pages/contests/contest_voting.jsp"/>">投票中</a></li>
 					<li><a href="<c:url value="/pages/contest.jsp#end"/>">歷史賽事</a></li>
