@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import model.bean.LikeMusicBean;
+import model.bean.MusicListContentBean;
 
 @Repository
 public class LikeMusicDAO {	
@@ -71,6 +72,22 @@ public class LikeMusicDAO {
 	public List<Map> selectLikeCount() {
 		Query query = this.getSession().createQuery("select new Map (likes_music_id as likes_music_id, count(*) as count) from LikeMusicBean group by likes_music_id",Map.class);
 		return query.list();	
+	}
+	
+	/**
+	 * @author james.pu 2018.03.16 15:40
+	 * @return 用在刪除likes
+	 */
+	public boolean deletelike(String likes_member_id, Integer likes_music_id) {
+		Query query = this.getSession().createQuery("from LikeMusicBean where likes_member_id= :site1 and likes_music_id= :site2");
+		query.setParameter("site1", likes_member_id);
+		query.setParameter("site2", likes_music_id);
+		LikeMusicBean result= (LikeMusicBean) query.uniqueResult();
+		if(result!=null) {
+			this.getSession().delete(result);
+			return true;
+		}
+		return false;
 	}
 	
 }

@@ -74,4 +74,17 @@ public class LikeMusicService {
 		return null;
 	}
 	
+	/**
+	 * @author james.pu 2018.03.16 15:40
+	 * @return 用在刪除likes
+	 */
+	public boolean deleteLike(LikeMusicBean bean) {
+		boolean result =false;
+		if(bean!=null) {
+			result = likeMusicDAO.deletelike(bean.getLikes_member_id(), bean.getLikes_music_id());
+			return true;
+		}
+		return result;
+	}
+	
 }
