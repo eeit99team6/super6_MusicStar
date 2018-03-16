@@ -66,7 +66,8 @@ public class MemberController {
 		Map<String, String> error = new HashMap<>();
 		data.put("error", error);
 
-		if (!Checker.notEmpty(bean.getMbrId())) {
+		String mbrId = bean.getMbrId();
+		if (!Checker.notEmpty(mbrId)) {
 			error.put("idError", "帳號必須填寫");
 		}
 		if (!Checker.notEmpty(bean.getMbrName())) {
@@ -84,20 +85,23 @@ public class MemberController {
 			error.put("genderError", "性別必須選擇");
 		}
 
+		String fileName = null;
 		String contentType = mbrProfile.getContentType();
 		if (!mbrProfile.isEmpty()) {
 			if (contentType.indexOf("image") == -1) {
 				error.put("profileError", "上傳必須為圖檔");
+			}else {
+				fileName = mbrId + "." + contentType.split("/")[1];				
+				bean.setMbrPhoto(Constant.profilesDirectory + fileName);				
 			}
 		}
 
 		if (!Checker.notEmpty(error)) {
-			String mbrId = bean.getMbrId();
-			String fileName = mbrId + "." + contentType.split("/")[1];				
-			bean.setMbrPhoto(Constant.profilesDirectory + fileName);
 			if (memberService.register(bean)) {
 				try {
-					mbrProfile.transferTo(new File(profilesDirectoryPath + fileName));
+					if(fileName != null) {
+						mbrProfile.transferTo(new File(profilesDirectoryPath + fileName));						
+					}
 					File coverDir = new File(coverDirectoryPath + mbrId);
 					if (!coverDir.exists()) {
 						coverDir.mkdir();
@@ -136,10 +140,6 @@ public class MemberController {
 
 		if ((mb = memberService.login(bean)) != null) {
 			session.setAttribute("loginOK", mb);
-			String mbrPhoto = mb.getMbrPhoto();
-			if (mbrPhoto != null) {
-				session.setAttribute("mbrProfile", mbrPhoto);
-			}
 			Cookie cookieUser = null;
 			Cookie cookiePassword = null;
 			Cookie cookieRememberMe = null;
@@ -186,7 +186,6 @@ public class MemberController {
 	public String logout(Model model, HttpServletResponse response, HttpSession session, MemberBean bean) {
 		String contextPath = servletContext.getContextPath();
 		session.removeAttribute("loginOK");
-		session.removeAttribute("mbrProfile");
 		Cookie cookieAutoLogin = Processor.createCookie("autologin", "disabled", 0, contextPath);
 		response.addCookie(cookieAutoLogin);
 		return "r.index";
@@ -221,9 +220,6 @@ public class MemberController {
 			if ((mb = memberService.googleLogin(bean)) != null) {
 				session.setAttribute("loginOK", mb);
 				String mbrPhoto = mb.getMbrPhoto();
-				if (mbrPhoto != null) {
-					session.setAttribute("mbrProfile", mb.getMbrPhoto());
-				}
 				data.put("success", referer);
 			} else {
 				bean.setMbrId(email.split("@")[0]);
@@ -246,7 +242,6 @@ public class MemberController {
 					audioDir.mkdir();
 				}
 				session.setAttribute("loginOK", bean);
-				session.setAttribute("mbrProfile", pictureUrl);
 				data.put("success", referer);
 			}
 		} else {
@@ -286,9 +281,6 @@ public class MemberController {
 			if ((mb = memberService.fbLogin(bean)) != null) {
 				session.setAttribute("loginOK", mb);
 				String mbrPhoto = mb.getMbrPhoto();
-				if (mbrPhoto != null) {
-					session.setAttribute("mbrProfile", mbrPhoto);
-				}
 				data.put("success", referer);
 			} else {
 				if (Checker.notEmpty(email)) {
@@ -315,7 +307,6 @@ public class MemberController {
 					audioDir.mkdir();
 				}
 				session.setAttribute("loginOK", bean);
-				session.setAttribute("mbrProfile", pictureUrl);
 				data.put("success", referer);
 			}
 		} else {

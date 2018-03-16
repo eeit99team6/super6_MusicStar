@@ -107,7 +107,7 @@ public class MusicContestPlayerDAO {
 	 */
 	public List<Map> selectPlayersByMusicCtstId(Integer musicCtstId)
 	{
-		String query = "select new Map (m.music_name as musicName, m.music_photo as musicPhoto, m.music_description as musicDescription, m.music_lyrics as musicLyrics, m.music_link as musicLink, m.music_member_id as musicCtstPlayerId, mcp.music_contest_players_votes as musicCtstVotes) from MusicContestPlayerBean mcp join MusicBean m on mcp.music_id = m.music_id where mcp.music_contest_id = :musicCtstId";
+		String query = "select new Map (m.music_name as musicName, m.music_photo as musicPhoto, m.music_description as musicDescription, m.music_lyrics as musicLyrics, m.music_link as musicLink, m.music_member_id as musicCtstPlayerId, mcp.music_contest_players_votes as musicCtstPlayerVotes) from MusicContestPlayerBean mcp join MusicBean m on mcp.music_id = m.music_id where mcp.music_contest_id = :musicCtstId";
 		return musicCtstId != null ? getSession().createQuery(query,Map.class).setParameter("musicCtstId", musicCtstId).list(): null;
 	}
 	

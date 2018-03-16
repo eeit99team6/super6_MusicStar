@@ -31,10 +31,10 @@ public class MusicController
 {
 	@Autowired
 	MusicService musicservice;
-  
+     
 	@Autowired
 	MusicStyleService musicStyleService;
-	 
+	
 	@Autowired
 	String profilesDirectoryPath;
 	@Autowired
@@ -173,7 +173,6 @@ public class MusicController
 	   } 
      	return null;
 	}
-    
 	
 	/**
 	 * 取得音樂型態的Map<styleId,styleName>

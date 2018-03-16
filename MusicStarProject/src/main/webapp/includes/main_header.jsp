@@ -23,11 +23,11 @@
 			<c:choose>
 				<c:when test="${not empty loginOK}">
 					<li><a href="#l"> ${loginOK.mbrName} <c:choose>
-								<c:when test="${not empty mbrProfile}">
-									<img src="${mbrProfile}" class="rounded-circle" />
+								<c:when test="${loginOK.mbrPhoto eq null}">
+									<img src="${ctx}/assets/img/profile/init_profile.png" class="rounded-circle" />
 								</c:when>
 								<c:otherwise>
-									<img src="${ctx}/assets/img/profile/init_profile.png" class="rounded-circle" />
+									<img src="${loginOK.mbrPhoto}" class="rounded-circle" />
 								</c:otherwise>
 							</c:choose></a>
 						<ul>
