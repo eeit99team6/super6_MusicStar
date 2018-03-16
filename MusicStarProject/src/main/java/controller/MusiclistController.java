@@ -138,7 +138,7 @@ public class MusiclistController {
 				return Parser.toJson(beanList);
 			}else {
 				errors.put("fucknull", "沒有任何歌曲");
-				return Parser.toJson(errors);				
+				return Parser.toJson(beanList);				
 			}
 		} else {
 			errors.put("mustLogin", "必須登入");

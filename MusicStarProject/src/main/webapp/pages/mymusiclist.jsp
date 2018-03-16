@@ -45,7 +45,6 @@
                        <tfoot>
                        <tr>
                        <form name="myForm">
-                        <td><input type="hidden" id="ProductID" name="ProductID"><span></span></td>
                         <td><input type="text" style="width:100px" class="form-control" id="member_music_list_name" name="member_music_list_name" placeholder="歌單名稱"></td>
                         <td><input type="text" style="width:100px" class="form-control" id="member_music_list_description" name="member_music_list_description" placeholder="歌單描述"></td>
                         <td><button id="buttonAdd" type="button" class="btn btn-primary"><i class="fas fa-plus"></i></button></td>
@@ -79,6 +78,7 @@
 	    		var docFrag = $(document.createDocumentFragment());
 	    		$.each(datas,function(idx,mu){			  	    		
 	    			//product = {}
+	    			//var cell1 = $("<td></td>").html(mu.member_music_list_id);
 	    			var cell1 = $("<td></td>").html(mu.member_music_list_id);
 	    			var cell2 = $("<td></td>").html('<a href="'+ctx+'/pages/mymusiclistcontent.jsp?member_music_list_content_id='+mu.member_music_list_id+'">' + mu.member_music_list_name + '</a>');
 	    			var cell3 = $("<td></td>").html(mu.member_music_list_description);
@@ -94,7 +94,7 @@
 				    //刪除歌單			    
 			$('#like_table>tbody').on('click','tr button:nth-child(1)',function(){
 	 			   var id = $(this).parents('tr').find('td:nth-child(1)').text();
-	 			   $.get(ctx+'/deletemymusiclist',{'member_music_list_id':datas[0].member_music_list_id},function(data){
+	 			   $.get(ctx+'/deletemymusiclist',{'member_music_list_id':id},function(data){
 	 				   if(data.ok){		 					   
 	 				   alert(data.ok);
 	 				  	createListTable();
