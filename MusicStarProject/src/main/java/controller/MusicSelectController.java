@@ -47,7 +47,7 @@ public class MusicSelectController {
 			}
 			else if(Style.equals(Style) && "9527".equals(Singer) && !"0".equals(Style)){
 				integer = Integer.parseInt(Style);					// Style + 9527
-				bean = service.selectSingerStyle(Style, integer);
+				bean = service.selectSingerStyle(Singer, integer);
 			}
 			else if("0".equals(Style) && Singer.equals(Singer)){	// AllStyle + Singer
 				bean = service.selectSinger(Singer);

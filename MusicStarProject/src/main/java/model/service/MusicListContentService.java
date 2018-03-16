@@ -3,6 +3,7 @@ package model.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -71,6 +72,19 @@ public class MusicListContentService {
 		MusicListContentBean result = null;
 		if (bean != null) {
 			result = musicListContentDAO.insert(bean);
+		}
+		return result;
+	}
+	
+	/**
+	 * @author Yeh
+	 * @return 2018/3/16 16:00
+	 */
+	//搜尋歌單是否重覆
+	public MusicListContentBean select(Integer member_music_list_content_id,Integer member_music_list_content_music_id) {
+		MusicListContentBean result = null;
+		if(member_music_list_content_id !=null && member_music_list_content_music_id != null) {
+			 result = musicListContentDAO.select(member_music_list_content_id, member_music_list_content_music_id);
 		}
 		return result;
 	}

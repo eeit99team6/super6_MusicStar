@@ -42,18 +42,11 @@ public class MusicListContentDAO {
 			return  true;
 		}
 		return  false;
-		
-		
-
 	}
-		
-	
-	
-		
 	
 	public List<MusicListContentBean> select(Integer member_music_list_content_id) {
 		return this.getSession().createQuery("from MusicListContentBean",MusicListContentBean.class).list();
-				}
+	}
 	
 	//搜尋歌單id裡的音樂 
 	//謙 0313
@@ -68,6 +61,19 @@ public class MusicListContentDAO {
 		
 		this.getSession().save(bean);
 		return bean;
-
-}
+	}
+	
+	/**
+	 * @author Yeh
+	 * @return 2018/3/16 16:00
+	 */
+	//搜尋歌單是否重覆
+	public MusicListContentBean select(Integer member_music_list_content_id,Integer member_music_list_content_music_id) {
+		Query query = this.getSession().createQuery("from MusicListContentBean where member_music_list_content_id = :listid and member_music_list_content_music_id = :musicid");
+		query.setParameter("listid", member_music_list_content_id);
+		query.setParameter("musicid", member_music_list_content_music_id);
+		
+		return (MusicListContentBean)query.uniqueResult();
+	}
+	
 }

@@ -10,9 +10,6 @@
 <link href="${ctx}/assets/css/common_style/allPages.css" rel="stylesheet"/>
 
   <style type="text/css">
-         .title-title span{
-         font-size:20px;
-         }
   		/* Style the buttons */
 		.music_selector .btn {
 		  border: none;
@@ -92,10 +89,40 @@
 </head>
 <body>
 <jsp:include page="/includes/main_header.jsp" />
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">加入歌單</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span id="close" aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="">
+        	<table>
+        		<tbody>
+        			<tr><td id="music_list_music_name">歌曲名稱: </td></tr>
+        			<tr><td id="listname">歌單名稱: <select id="listselect"><option value="0">請選擇</option></select></td></tr>
+        		</tbody>
+        	</table>
+	        <div class="modal-footer">
+	           <button type="button" class="btn btn-primary" id="musicListSubmit">送出</button>
+	           <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+	        </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
 	<!-- main_container start -->
 	<div id="main_container" class="container-fuild">
-	<div class="title-title">MusicStar 音樂搜尋引擎   <span>請點選下方喜歡的搜尋方式~~</span>   </div> 
 <div class="container" style="margin-top:75px;margin-bottom:25px">
+  <h2>MusicStar 音樂搜尋引擎</h2>
+  <p>請點選下方喜歡的搜尋方式~~</p>
 <div class="music_selector">
   <ul class="nav nav-tabs">
     <li class="active" id="litab"><a data-toggle="tab" href="#home" class="btn">Button</a></li>
@@ -326,16 +353,16 @@
 						
 						<div style="margin:5px" class="like_music">Like: 
 							<i class="fa fa-heart like" style="font-size:20px;color:red;cursor:pointer"></i>
-							<span class="count">Count: </span>
+							<div style="display:inline">Count:<span class="count"></span></div>
 						</div>
 						
 						<div style="margin:5px">List:&nbsp;&nbsp;
-							<a href="#">
-          						<i class="fas fa-clipboard-list" style="font-size:20px;color:blue"></i>
+							<a data-toggle="modal" data-target="#exampleModal" class="list">
+          						<i class="fas fa-clipboard-list" style="font-size:20px;color:blue;cursor: pointer"></i>
         					</a>
 						</div>
 								
-						<div style="margin:5px">Name: <a href="${beanVar.music_link}">${beanVar.music_name}</a></div>
+						<div style="margin:5px">Name: <a href="${beanVar.music_link}" id="music_name">${beanVar.music_name}</a></div>
 					
 						<div style="margin:5px">Description: ${beanVar.music_description}</div>
 					
@@ -365,7 +392,7 @@
 						var count =  data[key] || "0";	// if data[key] == true -> save data[key] to count
 														// if data[key] == false -> save "0" to count
 											
-						$(this).parents("#musicDiv").find(".count:eq(0)").text("Count: " + count);
+						$(this).parents("#musicDiv").find(".count:eq(0)").text(count);
 														// find(".count:eq(0)") -> find array[0] by eq(0)
 					});
 				});
@@ -373,6 +400,11 @@
 			
 			// When loading this page, call getLikeCounts() function to give like counts
 			getLikeCounts();
+			
+			$('.count').counterUp({
+                delay: 10,
+                time: 1000
+            });
 			
 			// When first loading this page nothing radio, give default button
 			if($(":radio")[0].checked == false && $(":radio")[1].checked == false
@@ -390,10 +422,10 @@
 				$("#singerDiv label")[$("#singerDiv input[checked*=checked]").index()].className += " active";
 			}
 			
-			//When loaded page, give default tag
+			// When loaded page, give default tag
 			$(".music_selector .nav-tabs > li > a:eq(0)").attr("class","btn active show");
 			
-			//When input has error massages, change default tag to input tag
+			// When input has error massages, change default tag to input tag
 			if($("#errors").text() != ""){
 				$("ul li:eq(0)").attr("class","");
 				$("ul li:eq(1)").attr("class","active");
@@ -403,7 +435,7 @@
 				$(".music_selector .nav-tabs > li > a:eq(1)").attr("class","btn active show");
 			}
 			
-			//Like
+			// Like
 			$(".musicDiv").on('click','.like',function(){
 				var id = $(this).parents(".musicDiv").find("input[name=music_id]").val();
 				$.getJSON(ctx + '/music/musicSelectLike',{'likes_music_id':id},
@@ -418,12 +450,60 @@
 							alert(data.error);
 						}else if(data.mustlogin){
 							alert(data.mustlogin);
-							//導向登入頁面
+							// show login page
+							$("#login_box").modal("show");
 						}
 				})
 			})
-			//Like End
-
+			
+			// Like End
+						
+			// Click List
+			$(".musicDiv").on("click",".list",function(){
+				$("#musicDiv").find("a[class='list']").removeAttr('data-target');
+				$("#musicDiv").find("a[class='list']").removeAttr('data-toggle');
+				var music_name = $(this).parents(".musicDiv").find("a[id='music_name']").text();
+				var music_id = $(this).parents("#musicDiv").find("input[name='music_id']").val();
+				$.getJSON(ctx + '/music/musicSelectList',
+					function(data){
+						if(data.mustlogin==null){
+							$(".modal-content").find("td[id='music_list_music_name']").text("歌曲名稱: " + music_name);
+							$(".modal-content").find("h5[class='modal-title']").after("<input type='hidden' name='music_id' value='" + music_id + "'></input>");
+							
+							if($('#listselect > option').length == 1){
+								var docFrag =$(document.createDocumentFragment());
+								$.each(data,function(index,mu){		
+									var cc1= $("<option value='" +index + "'" + " " + "name='option'"+ "></option>").html(mu);
+									docFrag.append(cc1);
+								})
+								$('#listselect').append(docFrag);								
+							}
+							
+							// show add list page
+							$("#exampleModal").modal("show");
+						}else if(data.mustlogin!=null){
+							alert(data.mustlogin);
+							// show login page
+							$("#login_box").modal("show");
+						}
+				})
+			})
+			
+			// Submit List
+			$(".modal-content").on("click","#musicListSubmit",function(){
+				var member_music_list_content_music_id = $(this).parents(".modal-content").find("input[name='music_id']").val();
+				var member_music_list_content_id = $(this).parents(".modal-content").find("select[id='listselect']").val();
+				
+				$.getJSON(ctx + '/music/musicInsertList',{'member_music_list_content_id':member_music_list_content_id,'member_music_list_content_music_id':member_music_list_content_music_id},
+					function(data){
+						if(data.insertListSuccess != null){
+							alert(data.insertListSuccess);
+							$("#exampleModal").modal("hide");							
+						}else{
+							alert(data.insertListFailed);
+						}
+					})
+			})
 		})
 		
 		// Get the container element
