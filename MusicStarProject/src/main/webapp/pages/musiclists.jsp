@@ -19,8 +19,7 @@
 	<!-- main_container start -->
 	<div id="main_container" class="container-fuild">
 	<div class="title-title">歌單總覽 </div> 
-	<main role="main" class="container mt-2">
-    <div class="row">
+	<main role="main" class="container">
        <div class="col-lg-3">
        <div class="col-lg-9">
      <br>
@@ -91,4 +90,5 @@
 	<!-- main_container end -->
 	<jsp:include page="/includes/main_aside.jsp" />
 	<jsp:include page="/includes/main_footer.jsp" />
+	</body>
 </html>

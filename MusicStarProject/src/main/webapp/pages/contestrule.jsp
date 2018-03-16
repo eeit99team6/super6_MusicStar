@@ -10,7 +10,8 @@
 <jsp:include page="/includes/main_css.jsp" />
 <style type="text/css">
 .marginTest {
-	margin-top: 20px;
+	margin-top: 30px;
+	margin-left:100px;
 }
 
 </style>
