@@ -26,10 +26,11 @@ $(function(){
 					$("#ajax_mask").addClass("ajax_hide");
 					var $docFrag = $(document.createDocumentFragment());
 					if(data.errMsg == null && data.length > 0){
+						var order = 1;
 						$.each(data,function(index,value){
 							var votes = value.musicCtstPlayerVotes || 0;
 							$docFrag.append(
-								"<div class='display_show card'>"+
+								"<div class='display_show card border border-info'>"+
 									"<div class='view view-eighth'>"+
 										"<img src='"+value.musicPhoto+"'/>"+
 										"<div class='mask'>"+
@@ -39,7 +40,7 @@ $(function(){
 											"<a data-player-id='"+value.musicCtstPlayerId+"' class='info voting'>投他一票</a>"+
 										"</div>"+
 									"</div>"+
-									"<h5 class='view-description'>"+value.musicCtstPlayerId+"　-　"+value.musicName+"</h5>"+
+									"<h5 class='view-description'>"+ order++ +".　"+value.musicCtstPlayerId+" － "+value.musicName+"</h5>"+
 									"<h5 class='view-votes'>目前票數：<span class='counter'>"+votes+"</span></h5>"+
 								"</div>");});
 						}else{
