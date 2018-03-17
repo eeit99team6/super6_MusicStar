@@ -41,14 +41,11 @@
 						<div class="jp-controls">
 							<button class="jp-previous" role="button" tabindex="0">previous</button>
 							<button class="jp-play" role="button" tabindex="0">play</button>
-							<button class="jp-stop" role="button" tabindex="0">stop</button>
 							<button class="jp-next" role="button" tabindex="0">next</button>
 						</div>
 						<div class="jp-toggles">
 							<button class="jp-repeat" role="button" tabindex="0">repeat</button>
 							<button class="jp-shuffle" role="button" tabindex="0">shuffle</button>
-							<button class="jp-full-screen" role="button" tabindex="0">full
-								screen</button>
 						</div>
 					</div>
 				</div>

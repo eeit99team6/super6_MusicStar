@@ -7,26 +7,29 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>歌單總覽</title>
 <jsp:include page="/includes/main_css.jsp" />
+<style type="text/css">
+.centerContainer{
+margin:0 auto;
+padding-top:50px;
+text-align: center;
+}
+#productTable th{
+padding-left:60px;
+padding-right:60px;
+}
 
-<link rel="stylesheet" href="assets/css/bootstrap.min.css">
-<link rel="stylesheet" href="assets/css/jumbotron.css">
+</style>
+
 <link href="${ctx}/assets/css/common_style/allPages.css" rel="stylesheet"/>
 <jsp:include page="/includes/main_js.jsp" />
-<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 </head>
 <body>
 	<jsp:include page="/includes/main_header.jsp" />
+	
 	<!-- main_container start -->
-	<div id="main_container" class="container-fuild">
 	<div class="title-title">歌單總覽 </div> 
-	<main role="main" class="container">
-       <div class="col-lg-3">
-       <div class="col-lg-9">
-     <br>
-      <br>
-       <br>
-		<div class="card">
-			<div class="card-body">
+  <div class="row">
+     <div class="centerContainer">				
 				<!-- 每頁不同的內容從這裡開始 -->
 				 <table id="productTable" class="table table-bordered">
                        <thead>
@@ -35,7 +38,7 @@
 							<th>歌單名稱</th>
 							<th>歌單描述</th>
 							<th>歌單會員</th>
-							<th>歌曲數量</th>
+<!-- 							<th>歌曲數量</th> -->
                           </tr>
                        </thead>
                        <tbody>
@@ -46,17 +49,13 @@
 
                        </tfoot>
                    </table>
-				<!-- 每頁不同的內容到這裡結束 -->
-			</div>
-		</div>
-
-
+				<!-- 每頁不同的內容到這裡結束 -->					
        </div>
+        </div>
     </div>
-	</main>
 
-	<script src="assets/js/jquery-3.3.1.min.js"></script>
-	<script src="assets/js/bootstrap.min.js"></script>
+ </div>
+
 	<script>
 		$(document).ready(function() {		
 			    //讀取歌單
@@ -72,7 +71,7 @@
 			    			//product = {}           '<a href=/pages/musiclistcontent> + 'mu.member_music_list_name'+ </a>'
 //			    			                           .text('<a href='/pages/musiclistcontent+'>mu.member_music_list_name</a>
 	// 		    			var cc2=$('<td></td>')     .html('<a href='+mu[1].music_link+'><i class="fa fa-play-circle" style="font-size:36px;color:green"></i></a>')
-			    			var cell1 = $("<td></td>").html(mu.member_music_list_id);
+			    			var cell1 = $("<td ></td>").html(mu.member_music_list_id);
 			    			var cell2 = $("<td></td>").html('<a href="'+ctx+'/pages/musiclistcontent.jsp?member_music_list_content_id='+mu.member_music_list_id+'">' + mu.member_music_list_name + '</a>');
 			    			var cell3 = $("<td></td>").html(mu.member_music_list_description);
 			    			var cell4 = $("<td></td>").html(mu.member_music_list_member_id);
@@ -86,7 +85,7 @@
 			})	    	
 	</script>
     
-	</div>
+
 	<!-- main_container end -->
 	<jsp:include page="/includes/main_aside.jsp" />
 	<jsp:include page="/includes/main_footer.jsp" />

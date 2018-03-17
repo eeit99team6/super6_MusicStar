@@ -102,6 +102,7 @@ $(function() {
 	 	
     /* inset slideshow */
     function insertSlide(){
+    	$slide_modify_confirm.prop("disabled",true);
     	var formData = new FormData($slideshow_modify_form[0]);
     	$.ajax({
 			type : 'POST',
@@ -124,6 +125,7 @@ $(function() {
 					$slideDescriptionError.html(data.descriptionErr || "");
 					$slidePhotoError.html(data.photoErr || "");
 	    		}
+				$slide_modify_confirm.prop("disabled",false);
 			}
 		});	
     }
@@ -144,6 +146,7 @@ $(function() {
     
 	/* update slideshow */
 	function updateSlide() {
+    	$slide_modify_confirm.prop("disabled",true);
 		var formData = new FormData($slideshow_modify_form[0]);
 		$.ajax({
 			type : 'POST',
@@ -169,6 +172,7 @@ $(function() {
 					$slideDescriptionError.html(data.descriptionErr || "");
 					$slidePhotoError.html(data.photoErr || "");
 	    		}
+		    	$slide_modify_confirm.prop("disabled",false);
 			}
 		});	
 	}
@@ -193,6 +197,7 @@ $(function() {
 			singleSelected = false;
 		});
 		$slide_select_confirm.text("確認選擇").on("click",function(e){
+			if($(".slide_selected").length == 1){
 			fillModifyForm($(".slide_selected").first());
 			$slideshow_select_modal.modal("hide")
 			.one("hidden.bs.modal", function (e) {
@@ -206,12 +211,16 @@ $(function() {
 		   	    	resetModifyForm();
 				});
 			});
+			}else{
+				alert("沒有選擇任何項目");
+			}	
 		});
 	});
 	/* update slideshow end*/
 	
 	/* change slideshow order */
 	 function changeSlideOrder(){
+	    	$slide_select_confirm.prop("disabled",true);
 	    	var i = 1,
 	    	orderMap = new Object;
 	    	$slide_list.find('li').each(function(){
@@ -224,7 +233,8 @@ $(function() {
 	    			$slideshow_select_modal.modal("hide");
 	    		}else if(data.errMsg){
 	    			alert(data.errMsg);	    			
-	    		}	    		
+	    		}
+		    	$slide_select_confirm.prop("disabled",false);
 	    	});	    	
 	    }
 	
@@ -248,6 +258,7 @@ $(function() {
 			idList.push($(this).val());
 		});
 		if(idList.length > 0){
+			$slide_select_confirm.prop("disabled",true);
     	var slideIdList = {"idList":idList}
 			$.getJSON(ctx + "/slideshow/remove",{"slideIdList":JSON.stringify(slideIdList)},function(data){
 	    		if(data.success){
@@ -256,7 +267,8 @@ $(function() {
 					refreshSlideshowList();
 	    		}else if(data.errMsg){
 	    			alert(data.errMsg);	    			
-	    		}	    		
+	    		}
+		    	$slide_select_confirm.prop("disabled",false);
 	    	});	  
 		}else{
 			alert("你沒有選擇任何要刪除的項目");
