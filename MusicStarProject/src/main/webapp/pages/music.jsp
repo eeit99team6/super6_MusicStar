@@ -55,7 +55,7 @@
 
   <div class="tab-content">
     <div id="home" class="tab-pane fade in active">    
-	<form action="<c:url value="/music/radioSelect" />" method="get" class="card border-primary mb-3">
+	<form action="<c:url value="/pages/radioSelect" />" method="get" class="card border-primary mb-3">
 	<div class="card-header">
 		<div>
 			<h4>Style(曲風):</h4>
@@ -267,7 +267,7 @@
     <div id="menu1" class="tab-pane fade">
       <div class="card border-primary mb-3">
 			<div class="card-header" id="input_title">請輸入歌名搜尋</div>
-				<form name="myData" action="<c:url value="/music/autoComplete" />" method="get">
+				<form name="myData" action="<c:url value="/pages/autoComplete" />" method="get">
 					<div class="card-body" id="input_keyword">
 						<input type="text" class="form-control" id="txtSearch" name="keyword" placeholder="ex:追光者">
 						<div id="div1"></div>

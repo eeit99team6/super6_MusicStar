@@ -27,7 +27,7 @@ public class MusicAutoCompleteController {
 	private MusicService service;
 	
 	@RequestMapping(
-		path={"/music/autoComplete"},
+		path={"/pages/autoComplete"},
 		method={RequestMethod.GET, RequestMethod.POST}
 	)
 	protected String method(String keyword,Model model,HttpSession session){
