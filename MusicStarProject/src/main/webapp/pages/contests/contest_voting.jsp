@@ -23,10 +23,8 @@ margin-bottom: 20px;
 
 </style>
 <jsp:include page="/includes/main_js.jsp" />
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/locale/bootstrap-table-zh-TW.min.js"></script>
+<script	src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.js"></script>
+<script	src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/locale/bootstrap-table-zh-TW.min.js"></script>
 <script>
 	var musicStyleMap;
 	$.getJSON(ctx + "/music/styleMap",function(data){

@@ -74,7 +74,7 @@
   padding: 20px 20px 10px 20px; }
 
 .jp-video-270p {
-  width: 480px; }
+  width: 401px; }
 
 .jp-video-360p {
   width: 640px; }
@@ -127,7 +127,7 @@
 /* @group CONTROLS */
 .jp-video .jp-controls-holder {
   clear: both;
-  width: 440px;
+  width: 400px;
   margin: 0 auto 10px auto;
   position: relative;
   overflow: hidden; }
@@ -142,7 +142,7 @@
   background: url("../img/jpskin/jplayer.pink.flag.jpg") 0 0 no-repeat;
   padding: 1px 0 2px 1px;
   overflow: hidden;
-  width: 201px;
+  width: 151px;
   height: 34px; }
 
 .jp-audio .jp-controls,
@@ -153,7 +153,7 @@
   width: 100px; }
 
 .jp-video .jp-controls {
-  margin: 0 0 0 115px;
+  margin: 0 0 0 130px;
   float: left;
   display: inline;
   /* need this to fix IE6 double margin */ }
@@ -247,8 +247,8 @@
 
 .jp-video .jp-toggles {
   float: left;
-  width: 105px;
-  margin: 10px 0 0 15px; }
+  width: 65px;
+  margin: 10px 0 0 30px; }
 
 .jp-toggles button {
   display: block;
@@ -370,11 +370,11 @@ div.jp-video .jp-progress {
 
 .jp-video .jp-volume-controls .jp-mute,
 .jp-video .jp-volume-controls .jp-unmute {
-  left: 0;
+  left: 10px;
   top: 14px; }
 
 .jp-video .jp-volume-controls .jp-volume-max {
-  left: 84px;
+  left: 81px;
   top: 14px; }
 
 .jp-volume-controls .jp-mute {
@@ -416,8 +416,8 @@ div.jp-video .jp-progress {
 
 .jp-video .jp-volume-bar {
   top: 0;
-  left: 0;
-  width: 95px;
+  left: 10px;
+  width: 85px;
   border-right: 1px solid #180920;
   padding-right: 1px;
   margin-top: 30px; }
