@@ -7,8 +7,18 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>歌單內容</title>
 <jsp:include page="/includes/main_css.jsp" />
-<link rel="stylesheet" href="assets/css/bootstrap.min.css">
-<link rel="stylesheet" href="assets/css/jumbotron.css">
+<style>
+#productTable img{
+width:60px;
+	height:60px;
+}
+.play_music{
+cursor: pointer;
+}
+.centerContainer{
+margin:0 auto;
+}
+</style>
 <jsp:include page="/includes/main_js.jsp" />
 <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 </head>
@@ -16,9 +26,8 @@
 	<jsp:include page="/includes/main_header.jsp" />
 	<!-- main_container start -->
 	<div id="main_container" class="container-fuild">
-	
-	<main role="main" class="container mt-2">
-    <div class="row">
+	    <div class="row">
+	    <div class="centerContainer">
        <div class="col-lg-3">
        <div class="col-lg-9">
      <br>
@@ -40,23 +49,18 @@
                        </thead>
                        <tbody>
                        </tbody>
-                      
                        <tfoot>
                        <tr>
-
                        </tfoot>
                    </table>
 				<!-- 每頁不同的內容到這裡結束 -->
 			</div>
 		</div>
-
-
        </div>
     </div>
-	</main>
-
-	<script src="assets/js/jquery-3.3.1.min.js"></script>
-	<script src="assets/js/bootstrap.min.js"></script>
+      </div>
+</div>
+</div>
 	<script>
 		$(document).ready(function() {		
 			    //讀取歌單
@@ -67,11 +71,12 @@
 			    		var docFrag = $(document.createDocumentFragment());
 			    		$.each(datas,function(idx,mu){
 			    			//product = {}
-			    			var cell1 = $("<td></td>").html(mu[1].music_photo);
+			    			
+			    			var cell1 = $("<td></td>").html('<img src='+mu[1].music_photo+'>')
 			    			var cell2 = $("<td></td>").html(mu[0].member_music_list_content_id);
 			    			var cell3 = $("<td></td>").html(mu[0].member_music_list_content_music_id);
-			    			var cell4 = $("<td></td>").html(mu[1].music_id);
-			    			var cell5 = $("<td></td>").html(mu[1].music_link);
+			    			var cell4 = $("<td></td>").html(mu[1].music_name);
+			    			var cell5 = $("<td></td>").html('<span data-music-link='+mu[1].music_link+' class="play_music"><i class="fa fa-play-circle" style="font-size:36px;color:green"></i></span>')
 			    			var cell6 = $("<td></td>").html(mu[1].music_member_id);
 			    			var row = $("<tr></tr>").append([cell1,cell2,cell3,cell4,cell5,cell6]);
 			    			
@@ -79,7 +84,18 @@
 			    	})
 			    	   		$('#productTable>tbody').html(docFrag);
 			    	})
-			})	    	
+			
+		
+			 $('#productTable>tbody').on('click','.play_music',function(){
+				var $this = $(this),
+				musicName = $this.parents('tr').find('td:nth-child(4)').text(),
+				musicCtstPlayerId = $this.parents('tr').find('td:nth-child(6)').text(),
+				musicLink = $this.data('music-link'),
+				musicPhoto = $this.parents('tr').find('img').attr('src')
+			addAndPlayMusic(musicName,musicCtstPlayerId,musicLink,musicPhoto);
+			})
+		})	
+			
 	</script>
  	</div>
 	<!-- main_container end -->
