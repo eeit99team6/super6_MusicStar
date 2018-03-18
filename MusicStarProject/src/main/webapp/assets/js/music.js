@@ -68,23 +68,40 @@ $(document).ready(function(){
 		$.getJSON(ctx + '/music/musicSelectLike',{'likes_music_id':id},
 			function(data){
 				if(data.success){
-					alert(data.success);
+					$(".modal-msg").eq(0).html("<span>"+ data.success +"</span>");
+					$("#checkList").modal("show");
 					
 				// Renew page to display update count
 					getLikeCounts();
 
 				}else if(data.error){
-					alert(data.error);
-					if (confirm("確定要取消按讚?")){				
-						$.getJSON(ctx + '/likeleaderboards.likedelete.controller',{'likes_music_id':id},function(data){
-							alert(data.deleteok);
-							getLikeCounts();
-						})								
-					}	
+					$("#modal-msg").eq(0).html("<span style='color:red'>"+ data.error +"</span>");
+					$("#checkClick").modal("show");
+					
+					$("#checkClick").on("click","#checkClickLike",function(){
+						$("#checkLike").modal("show");
+						$("#checkLike").on("click","#checkLikeOKButton",function(){
+							$.getJSON(ctx + '/likeleaderboards.likedelete.controller',{'likes_music_id':id},function(data){
+								$(".modal-msg").eq(0).html("<span style='color:red'>"+ data.deleteok +"</span>");				
+								getLikeCounts();
+							})
+						})
+					})
+					
+//					if (confirm("確定要取消按讚?")){				
+//						$.getJSON(ctx + '/likeleaderboards.likedelete.controller',{'likes_music_id':id},function(data){
+//							alert(data.deleteok);
+//							getLikeCounts();
+//						})
+//					}
 				}else if(data.mustlogin){
-					alert(data.mustlogin);
-					// show login page
-					$("#login_box").modal("show");
+					$(".modal-msg").eq(0).html("<span style='color:red'>"+ data.mustlogin +"</span>");
+					$("#checkList").modal("show");
+					
+					$("#checkList").on("click","#mustLoginButton",function(){
+						// show login page
+						$("#login_box").modal("show");
+					})
 				}
 		})
 	})
@@ -92,11 +109,11 @@ $(document).ready(function(){
 	// Like End
 				
 	// Click List
-	$(".musicDiv").on("click",".list",function(){
-		$("#musicDiv").find("a[class='list']").removeAttr('data-target');
-		$("#musicDiv").find("a[class='list']").removeAttr('data-toggle');
+	$(".musicDiv").on("click",".list",function(e){
+		$(".musicDiv").find("a[class='list']").removeAttr('data-target');
+		$(".musicDiv").find("a[class='list']").removeAttr('data-toggle');
 		var music_name = $(this).parents(".musicDiv").find("a[id='music_name']").text();
-		var music_id = $(this).parents("#musicDiv").find("input[name='music_id']").val();
+		var music_id = $(this).parents(".musicDiv").find("input[name='music_id']").val();
 		$.getJSON(ctx + '/music/musicSelectList',
 			function(data){
 				if(data.mustlogin==null){
@@ -115,25 +132,34 @@ $(document).ready(function(){
 					// show add list page
 					$("#exampleModal").modal("show");
 				}else if(data.mustlogin!=null){
-					alert(data.mustlogin);
-					// show login page
-					$("#login_box").modal("show");
+					$(".modal-msg").eq(0).html("<span style='color:red'>"+ data.mustlogin +"</span>");
+					$("#checkList").modal("show");
+					
+					$("#checkList").on("click","#mustLoginButton",function(){
+						// show login page
+						$("#login_box").modal("show");
+					})
 				}
 		})
 	})
 	
 	// Submit List
 	$(".modal-content").on("click","#musicListSubmit",function(){
+		$(".modal-content").find("button[id='musicListSubmit']").removeAttr('data-target');
+		$(".modal-content").find("button[id='musicListSubmit']").removeAttr('data-toggle');
+		
 		var member_music_list_content_music_id = $(this).parents(".modal-content").find("input[name='music_id']").val();
 		var member_music_list_content_id = $(this).parents(".modal-content").find("select[id='listselect']").val();
 		
 		$.getJSON(ctx + '/music/musicInsertList',{'member_music_list_content_id':member_music_list_content_id,'member_music_list_content_music_id':member_music_list_content_music_id},
 			function(data){
 				if(data.insertListSuccess != null){
-					alert(data.insertListSuccess);
-					$("#exampleModal").modal("hide");							
+					$(".modal-msg").eq(0).html("<span>"+ data.insertListSuccess +"</span>");
+					$("#checkList").modal("show");
+					$("#exampleModal").modal("hide");
 				}else{
-					alert(data.insertListFailed);
+					$(".modal-msg").eq(0).html("<span style='color:red'>"+ data.insertListFailed +"</span>");
+					$("#checkList").modal("show");
 				}
 			})
 		})

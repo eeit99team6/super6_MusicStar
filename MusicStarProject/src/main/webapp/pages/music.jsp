@@ -17,7 +17,7 @@
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">加入歌單</h5>
@@ -42,6 +42,70 @@
     </div>
   </div>
 </div>
+
+<!-- Modal-Msg -->
+<div class="modal fade" id="checkList" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="checkList">提示訊息</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+		<div class="modal-msg"></div>
+	  </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" id="mustLoginButton" data-dismiss="modal" aria-label="Close">確認</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal-Msg-2 -->
+<div class="modal fade" id="checkClick" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="checkClick">提示訊息</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+		<div class="modal-msg" id="modal-msg"></div>
+	  </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" id="checkClickLike" data-dismiss="modal" aria-label="Close">確認</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal-Msg3 -->
+<div class="modal fade" id="checkLike" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="checkLike">提示訊息</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+		<div class="modal-msg">
+			<span>確定要取消按讚嗎?</span>
+		</div>
+	  </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" id="checkLikeOKButton" data-dismiss="modal" aria-label="Close">確認</button>
+      	<button type="button" class="btn btn-secondary" id="checkLikeNGButton" data-dismiss="modal">取消</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 	<!-- main_container start -->
 	<div id="main_container" class="container-fuild">
@@ -269,7 +333,7 @@
 			<div class="card-header" id="input_title">請輸入歌名搜尋</div>
 				<form name="myData" action="<c:url value="/pages/autoComplete" />" method="get">
 					<div class="card-body" id="input_keyword">
-						<input type="text" class="form-control" id="txtSearch" name="keyword" placeholder="ex:追光者">
+						<input type="text" class="form-control" id="txtSearch" name="keyword" placeholder="ex:紀念">
 						<div id="div1"></div>
 					</div>
 					<div class="card-footer" id="input_submit">
@@ -303,7 +367,7 @@
 						
 						<div id="singer">歌手: <div id="music_member_id">${beanVar.music_member_id}</div></div>
 						
-						<div id="song">歌名: <a href="" id="music_name">${beanVar.music_name}</a></div>
+						<div id="song">歌名: <a style="color:DodgerBlue" id="music_name">${beanVar.music_name}</a></div>
 					
 						<div><input type="hidden" name="music_style_id" value="${beanVar.music_style_id}"/></div>
 						
