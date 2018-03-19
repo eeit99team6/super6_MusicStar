@@ -23,6 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken.Payload;
+import com.google.api.client.http.HttpResponse;
 
 import _global.utils.Checker;
 import _global.utils.Constant;
@@ -316,4 +317,105 @@ public class MemberController {
 		return Parser.toJson(data);
 	}
 
+	@RequestMapping(path = "/members/update/name", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
+	@ResponseBody
+	public String updateMemberName(HttpSession session, String newName) {
+		Map<String, String> data = new HashMap<>();
+		MemberBean member =  (MemberBean) session.getAttribute("loginOK");
+		if(member != null) {
+			if (Checker.notEmpty(newName))
+			{
+				member.setMbrName(newName);
+				memberService.update(member);
+				data.put("success", "修改成功!");
+			} else
+			{
+				data.put("errMsg", "名稱不可為空白!");
+			}
+		}else {
+			data.put("errMsg", "會員未登入!");
+		}
+		return Parser.toJson(data);		
+	}
+	@RequestMapping(path = "/members/update/photo", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
+	@ResponseBody
+	public String updateMemberPhoto(HttpSession session, @RequestPart(name="newPhoto") MultipartFile newPhoto) {
+		Map<String, String> data = new HashMap<>();
+		MemberBean member =  (MemberBean) session.getAttribute("loginOK");
+		if(member != null) {
+			if (!newPhoto.isEmpty())
+			{
+				String contentType = newPhoto.getContentType();
+				if(contentType.indexOf("image") == 0) {
+					String fileName = member.getMbrId() + "." + contentType.split("/")[1];
+					try
+					{
+						newPhoto.transferTo(new File(profilesDirectoryPath + fileName));
+					} catch (IllegalStateException | IOException e)
+					{
+						e.printStackTrace();
+						data.put("errMsg", "圖片上傳失敗!");
+						return Parser.toJson(data);	
+					}	
+					member.setMbrPhoto(Constant.profilesDirectory + fileName);
+					memberService.update(member);
+					data.put("success", "修改成功!");
+				}else {					
+					data.put("errMsg", "圖片格式不正確!");
+				}
+			} else
+			{
+				data.put("errMsg", "未上傳圖片!");
+			}
+		}else {
+			data.put("errMsg", "會員未登入!");
+		}
+		return Parser.toJson(data);		
+	}
+	@RequestMapping(path = "/members/update/gender", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
+	@ResponseBody
+	public String updateMemberGender(HttpSession session,String newGender) {
+		Map<String, String> data = new HashMap<>();
+		MemberBean member =  (MemberBean) session.getAttribute("loginOK");
+		if(member != null) {
+			if (Checker.notEmpty(newGender))
+			{
+				member.setMbrGender(newGender.charAt(0));
+				memberService.update(member);
+				data.put("success", "修改成功!");
+			} else
+			{
+				data.put("errMsg", "性別選擇錯誤!");
+			}
+		}else {
+			data.put("errMsg", "會員未登入!");
+		}
+		return Parser.toJson(data);		
+	}
+	@RequestMapping(path = "/members/update/pwd", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
+	@ResponseBody
+	public String updateMemberPwd(HttpSession session, HttpServletResponse response, String mbrOldPwd, String mbrNewPwd) {
+		Map<String, String> data = new HashMap<>();
+		MemberBean member =  (MemberBean) session.getAttribute("loginOK");
+		if(member != null) {
+			if(member.getMbrPwd() == null || member.getMbrPwd().equals(mbrOldPwd)) {
+				if(Checker.notEmpty(mbrNewPwd)) {					
+					member.setMbrPwd(mbrNewPwd);
+					memberService.update(member);
+					session.setAttribute("rmPassword",mbrNewPwd);
+					response.addCookie(Processor.createCookie("password", Parser.encryptString(mbrNewPwd), 30 * 60 * 60, servletContext.getContextPath()));
+					data.put("success", "修改成功!");
+				}else {					
+					data.put("newPwdError", "新密碼不可為空白!");
+				}
+			}else {
+				data.put("oldPwdError", "原密碼不正確!");				
+			}
+		}else {
+			data.put("errMsg", "會員未登入!");
+		}
+			
+		return Parser.toJson(data);		
+	}
+	
 }

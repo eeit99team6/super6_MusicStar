@@ -10,8 +10,15 @@
 <title>我的歌單內容</title>
 <jsp:include page="/includes/main_css.jsp" />
 <style type="text/css">
-
+.centerContainer{
+margin:0 auto;
+}
+#productTable img{
+width:60px;
+	height:60px;
+}
 </style>
+
 <jsp:include page="/includes/main_js.jsp" />
 <link rel="stylesheet" href="assets/css/bootstrap.min.css">
 <link rel="stylesheet" href="assets/css/jumbotron.css">
@@ -21,6 +28,7 @@
 	<jsp:include page="/includes/main_header.jsp" />
 	<main role="main" class="container mt-2">
     <div class="row">
+     <div class="centerContainer">
        <div class="col-lg-3">
        <div class="col-lg-9">
      <br>
@@ -54,6 +62,7 @@
 
 
        </div>
+       </div>
     </div>
 	</main>
 
@@ -67,11 +76,11 @@
 			    		var docFrag = $(document.createDocumentFragment());
 			    		$.each(datas,function(idx,mu){
 			    			//product = {}
-			    			var cell1 = $("<td></td>").html(mu[1].music_photo);
+			    			var cell1 = $("<td></td>").html('<img src='+mu[1].music_photo+'>')
 			    			var cell2 = $("<td></td>").html(mu[0].member_music_list_content_id);
 			    			var cell3 = $("<td></td>").html(mu[0].member_music_list_content_music_id);
-			    			var cell4 = $("<td></td>").html(mu[1].music_id);
-			    			var cell5 = $("<td></td>").html(mu[1].music_link);
+			    			var cell4 = $("<td></td>").html(mu[1].music_name);
+			    			var cell5 = $("<td></td>").html('<a href="#" data-music-link='+mu[1].music_link+' class="play_music"><i class="fa fa-play-circle" style="font-size:36px;color:green"></i></a>')
 			    			var cell6 = $("<td></td>").html(mu[1].music_member_id);
 			    			var cell7 = $("<td></td>").html('<button class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>');
 			    			var row = $("<tr></tr>").append([cell1,cell2,cell3,cell4,cell5,cell6,cell7]);			    			
@@ -92,6 +101,16 @@
  				  }
  			   })
 		  });
+		   
+		   $('.productTable-tbody').on('click','.play_music',function(){
+				var $this = $(this),
+				musicName = $this.parents('tr').find('td:nth-child(4)').text(),
+				musicCtstPlayerId = $this.parents('tr').find('td:nth-child(6)').text(),
+				musicLink = $this.data('music-link'),
+				musicPhoto = $this.parents('tr').find('img').attr('src')
+			addAndPlayMusic(musicName,musicCtstPlayerId,musicLink,musicPhoto);
+			})
+			
 		
 						
 	})	    	

@@ -36,13 +36,13 @@ public class MusicContestDAO {
 	{
 		MusicContestBean bean = getSession().createQuery("from MusicContestBean where music_contest_id = :musicCtstId", MusicContestBean.class).setParameter("musicCtstId", musicCtstId).uniqueResult();
 		Date today = Processor.getCurrentTwDate();
-		if (today.after(bean.getMusic_contest_end_date()))
+		if (today.compareTo(bean.getMusic_contest_end_date()) >= 0)
 			return 4;
-		else if (today.after(bean.getMusic_contest_vote_start_date()))
+		else if (today.compareTo(bean.getMusic_contest_vote_start_date()) >= 0)
 			return 3;
-		else if (today.after(bean.getMusic_contest_validate_date()))
+		else if (today.compareTo(bean.getMusic_contest_validate_date()) >= 0)
 			return 2;
-		else if (today.after(bean.getMusic_contest_apply_start_date()))
+		else if (today.compareTo(bean.getMusic_contest_apply_start_date()) >= 0)
 			return 1;
 		else
 			return 0;		

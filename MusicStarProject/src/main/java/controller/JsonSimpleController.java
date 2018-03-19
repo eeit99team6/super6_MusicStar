@@ -27,7 +27,7 @@ public class JsonSimpleController {
 	private MusicService service;
 	
 	@RequestMapping(
-			path={"/music/jsonSimple"},
+			path={"/pages/jsonSimple"},
 			method={RequestMethod.GET, RequestMethod.POST},
 			produces="application/json; charset=utf-8"
 	)

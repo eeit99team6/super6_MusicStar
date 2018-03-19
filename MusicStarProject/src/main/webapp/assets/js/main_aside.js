@@ -40,5 +40,9 @@ $(function() {
 			poster:musicPhoto
 		});
 		audioPlaylist.play(-1);
+		if($("#jp_player_list").hasClass("jp-hide")){
+			$("#jp_player_list").removeClass("jp-hide");
+			$("#jp_toggle").addClass("fa-chevron-down").removeClass("fa-chevron-up");			
+		}
 	}
 });

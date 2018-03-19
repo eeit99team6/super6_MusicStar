@@ -42,11 +42,11 @@ visibility:hidden;
 				 <table id="like_table" class="table table-bordered">
                        <thead>
                           <tr>
-                            <th>歌單ID</th>
+                            <th>歌單編號</th>
 							<th>歌單名稱</th>
 							<th>歌單描述</th>
 							<th>歌單會員</th>
-							<th>歌曲數量</th>
+<!-- 							<th>歌曲數量</th> -->
                           </tr>
                        </thead>
                        <tbody>
@@ -87,25 +87,26 @@ visibility:hidden;
 				if(datas.fucknull){
 					alert(datas.fucknull);
 				}else{
-				
+				var i=1;
 	    		var docFrag = $(document.createDocumentFragment());
 	    		$.each(datas,function(idx,mu){			  	    		
 	    			//product = {}
-	    			var cell1 = $("<td></td>").html(mu.member_music_list_id).addClass("idTd");
+	    			var cell1 = $("<td></td>").html(i);
 	    			var cell2 = $("<td></td>").html('<a href="'+ctx+'/pages/mymusiclistcontent.jsp?member_music_list_content_id='+mu.member_music_list_id+'">' + mu.member_music_list_name + '</a>');
 	    			var cell3 = $("<td></td>").html(mu.member_music_list_description);
 	    			var cell4 = $("<td></td>").html(mu.member_music_list_member_id);
 	    			var cell5 = $("<td></td>").html(mu.member_music_list_quantity);
 	    			var cell6 = $("<td></td>").html('<button class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>');
-	    		
-	    			var row = $("<tr></tr>").append([cell1,cell2,cell3,cell4,cell5,cell6]);
-	    			
+	    			var cell7 = $("<td style='visibility:hidden'></td>").html(mu.member_music_list_id);//.addClass("idTd");
+
+	    			var row = $("<tr></tr>").append([cell1,cell2,cell3,cell4,cell5,cell6,cell7]);
+	    			i++;
 	    			docFrag.append(row);
 	    		});
 
 				    //刪除歌單			    
 			$('#like_table>tbody').on('click','tr button:nth-child(1)',function(){
-	 			   var id = $(this).parents('tr').find('td:nth-child(1)').text();
+	 			   var id = $(this).parents('tr').find('td:nth-child(7)').text();
 	 			   $.get(ctx+'/deletemymusiclist',{'member_music_list_id':id},function(data){
 	 				   if(data.ok){		 					   
 	 				   alert(data.ok);

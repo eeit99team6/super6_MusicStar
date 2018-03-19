@@ -39,7 +39,7 @@ public class MusicSelectLikeController {
 			LikeMusicBean newbean = new LikeMusicBean(MbrId,bean.getLikes_music_id());
 			if(likeMusicService.insertLike(newbean)) {
 				data.put("success", "謝謝您支持這位歌手");
-			}else {				
+			}else {
 				data.put("error", "您已經按過讚了");
 			}
 		}else {

@@ -37,6 +37,7 @@ color:orange;
 			      <th scope="col">歌曲</th>
 			      <th scope="col">歌名</th>
 			      <th scope="col">喜歡請點</th>
+			      <th scope="col">加入我的歌單</th>
 			    </tr>
 			  </thead>
 			  <tbody class="likemusic-tbody">
@@ -56,6 +57,62 @@ color:orange;
 			</div>
 			
 		</div><!-- leaderboards-like-table -->
+		
+		<!-- Modal -->
+		<div class="modal fade" id="ModalCenter" tabindex="-1" role="dialog" aria-labelledby="ModalCenterTitle" aria-hidden="true">
+		  <div class="modal-dialog modal-dialog-centered" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="ModalLongTitle">加入歌單</h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-body">
+			      <table >
+				      	<tr>
+				      		<td></td>
+				      	</tr>
+				      	<tr>
+				      		<td></td>
+				      	</tr>
+				      	<tr style="visibility:hidden">
+				      		<td></td>
+				      	</tr>
+						<tr>
+							<td>歌單名稱&nbsp：&nbsp<select id="listselect"><option value="0">請選擇</option></select></td>
+							<td>&nbsp&nbsp<a href="${ctx}/pages/mymusiclist.jsp">還沒有歌單請點</a></td>
+						</tr>
+			      </table>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-secondary" id="musicListSubmit">送出</button>
+		        <button type="button" class="btn btn-primary" data-dismiss="modal">取消</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		
+		<!-- Modal-Msg -->
+		<div class="modal fade" id="Modal-Msg" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="exampleModalLabel">提示訊息</h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-body">
+		        <div class="modal-msg"></div>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-primary" data-dismiss="modal">確認</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		
 		
 	</div>
 	<!-- main_container end -->

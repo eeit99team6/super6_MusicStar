@@ -5,11 +5,14 @@ $(function(){
 			if(contestId){
 				$("#ajax_mask").removeClass("ajax_hide");			
 			$.getJSON(ctx+"/contests/voting/detail",{"contestId":contestId},function(data){
+				if(!data){
+					history.go(-1);
+				}
 				var now = new Date(),
-				$vote_description = $("#vote_description"),
+				$vote_description = $("#vote_description");
 				startDate = new Date(data.music_contest_vote_start_date);
 				finalDate = new Date (data.music_contest_end_date);
-				$("#main_container>.default_title").text(data.music_contest_name);			
+				$("#contest_title").text(data.music_contest_name);			
 				if(startDate > now){
 					$vote_description.text("投票尚未開始");
 					
@@ -23,10 +26,11 @@ $(function(){
 					$("#ajax_mask").addClass("ajax_hide");
 					var $docFrag = $(document.createDocumentFragment());
 					if(data.errMsg == null && data.length > 0){
+						var order = 1;
 						$.each(data,function(index,value){
 							var votes = value.musicCtstPlayerVotes || 0;
 							$docFrag.append(
-								"<div class='display_show card'>"+
+								"<div class='display_show card border border-info'>"+
 									"<div class='view view-eighth'>"+
 										"<img src='"+value.musicPhoto+"'/>"+
 										"<div class='mask'>"+
@@ -36,7 +40,7 @@ $(function(){
 											"<a data-player-id='"+value.musicCtstPlayerId+"' class='info voting'>投他一票</a>"+
 										"</div>"+
 									"</div>"+
-									"<h5 class='view-description'>"+value.musicCtstPlayerId+"　-　"+value.musicName+"</h5>"+
+									"<h5 class='view-description'>"+ order++ +".　"+value.musicCtstPlayerId+" － "+value.musicName+"</h5>"+
 									"<h5 class='view-votes'>目前票數：<span class='counter'>"+votes+"</span></h5>"+
 								"</div>");});
 						}else{
@@ -70,7 +74,7 @@ $(function(){
 										alert("您投了 "+musicCtstPlayerId+" 一票~感謝您參與投票!!");
 										var votes = thisPlayerVotes.text();
 										thisPlayerVotes.text(++votes);
-										$(".counter").counterUp({beginAt: votes, time: 500 });}});}})
+										}});}})
 				;});
 			});
 			}else{
@@ -86,7 +90,7 @@ $(function(){
                    $example = $('#main-counter');
                  
                  // num counterup
-                 $(".counter").counterUp({ time: 1500 });
+                 $(".counter").counterUp({ time: 3000 });
                  // Parse countdown string to an object
                  function strfobj(str) {
                    var parsed = str.match(parser),
