@@ -12,6 +12,13 @@
 <style type="text/css">
 .centerContainer{
 margin:0 auto;
+
+th{
+min-width:110px
+}
+td{
+margin:0 auto;
+}
 }
 #productTable img{
 width:60px;

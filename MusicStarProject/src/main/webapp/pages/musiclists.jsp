@@ -17,7 +17,12 @@ text-align: center;
 padding-left:60px;
 padding-right:60px;
 }
-
+th{
+min-width:110px
+}
+td{
+margin:0 auto;
+}
 </style>
 
 <link href="${ctx}/assets/css/common_style/allPages.css" rel="stylesheet"/>

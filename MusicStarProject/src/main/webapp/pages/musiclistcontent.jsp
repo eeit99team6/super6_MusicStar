@@ -17,6 +17,13 @@ cursor: pointer;
 }
 .centerContainer{
 margin:0 auto;
+
+}
+th{
+min-width:110px
+}
+td{
+margin:0 auto;
 }
 </style>
 <jsp:include page="/includes/main_js.jsp" />
