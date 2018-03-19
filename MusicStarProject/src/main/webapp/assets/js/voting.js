@@ -12,7 +12,7 @@ $(function(){
 				$vote_description = $("#vote_description");
 				startDate = new Date(data.music_contest_vote_start_date);
 				finalDate = new Date (data.music_contest_end_date);
-				$("#main_container>.default_title").text(data.music_contest_name);			
+				$("#contest_title").text(data.music_contest_name);			
 				if(startDate > now){
 					$vote_description.text("投票尚未開始");
 					
@@ -74,7 +74,7 @@ $(function(){
 										alert("您投了 "+musicCtstPlayerId+" 一票~感謝您參與投票!!");
 										var votes = thisPlayerVotes.text();
 										thisPlayerVotes.text(++votes);
-										$(".counter").counterUp({beginAt: votes, time: 500 });}});}})
+										}});}})
 				;});
 			});
 			}else{
@@ -90,7 +90,7 @@ $(function(){
                    $example = $('#main-counter');
                  
                  // num counterup
-                 $(".counter").counterUp({ time: 1500 });
+                 $(".counter").counterUp({ time: 3000 });
                  // Parse countdown string to an object
                  function strfobj(str) {
                    var parsed = str.match(parser),

@@ -69,23 +69,14 @@ public class MemberDAO
 	/**
 	 * @author Phil 2018.03.12
 	 */
-	public MemberBean update(MemberBean bean)
+	public boolean update(MemberBean bean)
 	{
-		MemberBean mb = null;
-		String mbrId = null;
-		if (bean != null && (mbrId = bean.getMbrId()) != null && (mb = selectById(mbrId)) != null)
-		{
-			mb.setMbrPwd(bean.getMbrPwd());
-			mb.setMbrName(bean.getMbrName());
-			mb.setMbrEmail(bean.getMbrEmail());
-			mb.setMbrPhoto(bean.getMbrPhoto());
-			mb.setMbrGender(bean.getMbrGender());
-			mb.setMbrGoogleId(bean.getMbrGoogleId());
-			mb.setMbrFbId(bean.getMbrFbId());
-			mb.setMbrEmailVerify(bean.getMbrEmailVerify());
-			return mb;
-		}
-		return null;
+		if(bean != null) {			
+			getSession().update(bean);
+			return true;
+		}else {
+			return false;
+		}	
 	}
 
 	/**

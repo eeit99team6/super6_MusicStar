@@ -27,7 +27,7 @@ public class MusicSelectController {
 	private MusicService service;
 	
 	@RequestMapping(
-		path={"/music/radioSelect"},
+		path={"/pages/radioSelect"},
 		method={RequestMethod.GET, RequestMethod.POST}
 	)
 	protected String method(String Style,String Singer,Model model,HttpSession session){
