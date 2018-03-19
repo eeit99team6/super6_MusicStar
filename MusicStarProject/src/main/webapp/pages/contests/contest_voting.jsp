@@ -8,19 +8,17 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>投票中的賽事</title>
 <jsp:include page="/includes/main_css.jsp" />
-<link
-	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.css"
-	rel="stylesheet" />
-<link href="${ctx}/assets/css/common_style/allPages.css" rel="stylesheet"/>	
+<link	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.css" rel="stylesheet" />
 <style type="text/css">
+#main_container{
+	background-color: #fafafa;
+}
 #contests_table * {
 	text-align: center;
 }
-
 .title-title{
 margin-bottom: 20px;
 }
-
 </style>
 <jsp:include page="/includes/main_js.jsp" />
 <script	src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.js"></script>

@@ -99,4 +99,18 @@ public class MemberService
 		}
 	}
 
+	/**
+	 * @author Phil 2018.03.17
+	 */
+	public boolean update(MemberBean bean)
+	{
+		if (bean != null)
+		{
+			return memberDAO.update(bean);
+		} else
+		{
+			return false;
+		}
+	}
+	
 }

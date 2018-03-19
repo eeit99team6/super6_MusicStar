@@ -8,14 +8,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>進行投票</title>
 <jsp:include page="/includes/main_css.jsp" />
+<link href="${ctx}/assets/css/voting.css" rel="stylesheet" />
 <style type="text/css">
 .title-title {
     margin-bottom: 20px;
 }
 </style>
-<link href="${ctx}/assets/css/voting.css" rel="stylesheet" />
-<link href="${ctx}/assets/css/common_style/allPages.css"
-	rel="stylesheet" />
 <jsp:include page="/includes/main_js.jsp" />
 <script src="${ctx}/assets/js/lodash.min.js"></script>
 <script src="${ctx}/assets/js/jquery.countdown.min.js"></script>
@@ -26,7 +24,7 @@
 		<jsp:include page="/includes/main_header.jsp" />
 		<!-- main_container start -->
 		<div id="main_container" class="container-fuild">
-			<h1 class="default_title display-2 title-title">賽事投票中</h1>
+			<h1 id="contest_title" class="display-2 title-title">賽事投票中</h1>
 			<div class="container">
 				<h3 id="vote_description" class="text-center"></h3>
 				<div class="counter_container">

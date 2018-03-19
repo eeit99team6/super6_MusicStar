@@ -35,37 +35,37 @@
 					<div class="card-body">
 						<div class="list-group">
 							<div class="list-group-item">
-								<label for="mbrRegisterId">會員帳號：</label> <span id="idError"
+								<label for="mbrRegisterId">*會員帳號：</label> <span id="idError"
 									class="text-danger"></span> <input type="text"
 									id="mbrRegisterId" name="mbrId" placeholder="請輸入帳號"
 									class="form-control" required="required" />
 							</div>
 							<div class="list-group-item">
-								<label for="mbrRegisterName">會員姓名：</label> <span id="nameError"
+								<label for="mbrRegisterName">*會員姓名：</label> <span id="nameError"
 									class="text-danger"></span> <input type="text"
 									id="mbrRegisterName" name="mbrName" placeholder="請輸入姓名"
 									class="form-control" required="required" />
 							</div>
 							<div class="list-group-item">
-								<label for="mbrRegisterPwd">會員密碼：</label> <span id="pwdError"
+								<label for="mbrRegisterPwd">*會員密碼：</label> <span id="pwdError"
 									class="text-danger"></span> <input type="password"
 									id="mbrRegisterPwd" name="mbrPwd" placeholder="請輸入密碼"
 									class="form-control" required="required" />
 							</div>
 							<div class="list-group-item">
-								<label for="mbrRegisterPwdCheck">確認密碼：</label> <span
+								<label for="mbrRegisterPwdCheck">*確認密碼：</label> <span
 									id="pwdCheckError" class="text-danger"></span> <input
 									type="password" id="mbrRegisterPwdCheck" name="mbrPwdCheck"
 									placeholder="請確認密碼" class="form-control" required="required" />
 							</div>
 							<div class="list-group-item">
-								<label for="mbrRegisterEmail">會員信箱：</label> <span
+								<label for="mbrRegisterEmail">*會員信箱：</label> <span
 									id="emailError" class="text-danger"></span> <input type="email"
 									id="mbrRegisterEmail" name="mbrEmail" placeholder="請輸入電子郵箱"
 									class="form-control" required="required" />
 							</div>
 							<div class="list-group-item">
-								<label>會員性別：</label> <input type="radio" id="male"
+								<label>*會員性別：</label> <input type="radio" id="male"
 									name="mbrGender" value="M" class="radio-inline"
 									required="required" /><label for="male">男</label> <input
 									type="radio" id="female" name="mbrGender" value="F"
