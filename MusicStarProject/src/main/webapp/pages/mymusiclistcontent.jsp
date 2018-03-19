@@ -20,9 +20,6 @@ width:60px;
 </style>
 
 <jsp:include page="/includes/main_js.jsp" />
-<link rel="stylesheet" href="assets/css/bootstrap.min.css">
-<link rel="stylesheet" href="assets/css/jumbotron.css">
-<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 </head>
 <body>
 	<jsp:include page="/includes/main_header.jsp" />
@@ -46,6 +43,8 @@ width:60px;
 							<th>歌曲名稱</th>
 							<th>歌曲連結</th>
 							<th>歌曲作者ID</th>
+							<th><button type=button class=btn id="all" btn-primary>全部播放</button></th>
+							
                           </tr>
                        </thead>
                        <tbody class="productTable-tbody">
@@ -66,14 +65,13 @@ width:60px;
     </div>
 	</main>
 
-	<script src="assets/js/jquery-3.3.1.min.js"></script>
-	<script src="assets/js/bootstrap.min.js"></script>
 	<script>
 		$(document).ready(function() {	
 			function createListMusicIdTable(){
 			    //讀取歌單
 			    	$.getJSON(ctx+'/musiclistiditem.controller',{'member_music_list_content_id':'${param.member_music_list_content_id}'},function(datas){
-			    		var docFrag = $(document.createDocumentFragment());
+			    		var docFrag = $(document.createDocumentFragment()),
+			    		playlist = [];
 			    		$.each(datas,function(idx,mu){
 			    			//product = {}
 			    			var cell1 = $("<td></td>").html('<img src='+mu[1].music_photo+'>')
@@ -85,7 +83,12 @@ width:60px;
 			    			var cell7 = $("<td></td>").html('<button class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>');
 			    			var row = $("<tr></tr>").append([cell1,cell2,cell3,cell4,cell5,cell6,cell7]);			    			
 			    				docFrag.append(row);
-			    		});			    				
+				    			playlist.push(music(mu[1].music_name,mu[1].music_member_id,mu[1].music_link,mu[1].music_photo));
+
+			    		})
+			    		$("#all").click(function(){
+								setNewPlaylistAndPlayMusic(playlist);
+							});	    
 			    	   	$('#productTable>tbody').html(docFrag);
 			    	});
 			}
