@@ -17,6 +17,13 @@ cursor: pointer;
 }
 .centerContainer{
 margin:0 auto;
+
+}
+th{
+min-width:110px
+}
+td{
+margin:0 auto;
 }
 </style>
 <jsp:include page="/includes/main_js.jsp" />
@@ -45,6 +52,7 @@ margin:0 auto;
 							<th>歌曲名稱</th>
 							<th>歌曲連結</th>
 							<th>歌曲作者ID</th>
+							<th><button type=button class=btn id="all" btn-primary>全部播放</button></th>
                           </tr>
                        </thead>
                        <tbody>
@@ -62,13 +70,14 @@ margin:0 auto;
 </div>
 </div>
 	<script>
-		$(document).ready(function() {		
+		$(document).ready(function() {			
 			    //讀取歌單
 			    	$.getJSON(ctx+'/musiclistiditem.controller',{'member_music_list_content_id':'${param.member_music_list_content_id}'},function(datas){
 			    		//datas = [{},{}];
 			    		console.log(datas)
 // 			    		console.log(datas[1].member_music_list_description)
-			    		var docFrag = $(document.createDocumentFragment());
+			    		var docFrag = $(document.createDocumentFragment()),
+			    			playlist = [];
 			    		$.each(datas,function(idx,mu){
 			    			//product = {}
 			    			
@@ -81,11 +90,18 @@ margin:0 auto;
 			    			var row = $("<tr></tr>").append([cell1,cell2,cell3,cell4,cell5,cell6]);
 			    			
 			    			docFrag.append(row);
+			    			
+			    			playlist.push(music(mu[1].music_name,mu[1].music_member_id,mu[1].music_link,mu[1].music_photo));
 			    	})
+							$("#all").click(function(){
+								setNewPlaylistAndPlayMusic(playlist);
+							});	    	
+		    	
 			    	   		$('#productTable>tbody').html(docFrag);
-			    	})
-			
+			    	});
 		
+		
+			    	
 			 $('#productTable>tbody').on('click','.play_music',function(){
 				var $this = $(this),
 				musicName = $this.parents('tr').find('td:nth-child(4)').text(),
