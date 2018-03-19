@@ -12,14 +12,23 @@
 <link rel="stylesheet" href="assets/css/jumbotron.css">
 <link href="${ctx}/assets/css/common_style/allPages.css" rel="stylesheet"/>
 <jsp:include page="/includes/main_js.jsp" />
+<style> 
+.containerMusicList{
+width:300px;
+margin:0 auto;
+}
+
+</style>
 <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+
 </head>
 <body>
 	<jsp:include page="/includes/main_header.jsp" />
 	<!-- main_container start -->
 	<div id="main_container" class="container-fuild">
 	<div class="title-title">歌單總覽 </div> 
-	<main role="main" class="container">
+	
+  <div class='containerMusicList'>
        <div class="col-lg-3">
        <div class="col-lg-9">
      <br>
@@ -53,7 +62,7 @@
 
        </div>
     </div>
-	</main>
+	</div>
 
 	<script src="assets/js/jquery-3.3.1.min.js"></script>
 	<script src="assets/js/bootstrap.min.js"></script>
