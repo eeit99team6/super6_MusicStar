@@ -5,7 +5,7 @@ $(document).ready(function(){
 //		console.log(data);		
 		var docFrag =$(document.createDocumentFragment());		
 		$.each(data,function(index,mu){
-			var cc1= $('<th class="text-danger"></th>').html(mu[5]+((index-9)*-243)).counterUp({delay:10,time:1000,});		
+			var cc1= $('<th class="text-danger"></th>').html(mu[5]+((index-19)*-243)).counterUp({delay:10,time:1000,});		
 			var cc2= $('<td></td>').html(mu[3])
 			var cc3= $('<td></td>').html('<img src='+mu[0]+'>')
 			var cc4= $('<td></td>').html('<a href="#" data-music-link='+mu[1]+' class="play_music"><i class="fa fa-play-circle" style="font-size:36px;color:green"></i></a>')

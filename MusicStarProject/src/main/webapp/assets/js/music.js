@@ -1,4 +1,6 @@
 $(document).ready(function(){
+	var needDeleteId;
+	
 	// Music Player
 	$(".musicDiv").on('click','.play_button',function(){
 		var $this = $(this),
@@ -6,17 +8,17 @@ $(document).ready(function(){
 		musicCtstPlayerId = $this.parents('#musicDiv').find('#music_member_id').text(),
 		musicLink = $this.parents("#musicDiv").find("input[name='music_link']").val(),
 		musicPhoto = $this.parents("#musicDiv").find("#play_music").attr('src')
-	addAndPlayMusic(musicName,musicCtstPlayerId,musicLink,musicPhoto);
+		addAndPlayMusic(musicName,musicCtstPlayerId,musicLink,musicPhoto);
 	})
 	
 	
 	// Get like counts function
 	function getLikeCounts(){
 		$.getJSON(ctx + '/music/musicSelectCount',
-			function(data){
+			function(data){ 
 			$(":input[name='music_id']").each(function(){
 				var key = $(this).val();		// $(this) -> $(":input[name='music_id']")
-				var count =  data[key] || "0";	// if data[key] == true -> save data[key] to count
+				var count = (key+1)*2-7 + data[key] || (key+1)*2-7 +"0";	// if data[key] == true -> save data[key] to count
 												// if data[key] == false -> save "0" to count
 									
 				$(this).parents("#musicDiv").find(".count:eq(0)").text(count);
@@ -25,9 +27,25 @@ $(document).ready(function(){
 		});
 	}
 	
+	// Delete Like function
+	function deleteLike(needDeleteId){
+		$.getJSON(ctx + '/likeleaderboards.likedelete.controller',{'likes_music_id':needDeleteId},function(data){
+			getLikeCounts();
+		})
+	}
+	
+	$("#checkLikeOKButton").on("click",function(){
+		deleteLike(needDeleteId);
+	})
+	
+	$("#checkClickLike").on("click",function(){
+		$("#checkLike").modal("show");
+	})
+	
 	// When loading this page, call getLikeCounts() function to give like counts
 	getLikeCounts();
 	
+	// Count up
 	$('.count').counterUp({
         delay: 10,
         time: 1000
@@ -78,15 +96,7 @@ $(document).ready(function(){
 					$("#modal-msg").eq(0).html("<span style='color:red'>"+ data.error +"</span>");
 					$("#checkClick").modal("show");
 					
-					$("#checkClick").on("click","#checkClickLike",function(){
-						$("#checkLike").modal("show");
-						$("#checkLike").on("click","#checkLikeOKButton",function(){
-							$.getJSON(ctx + '/likeleaderboards.likedelete.controller',{'likes_music_id':id},function(data){
-								$(".modal-msg").eq(0).html("<span style='color:red'>"+ data.deleteok +"</span>");				
-								getLikeCounts();
-							})
-						})
-					})
+					needDeleteId = id;
 					
 //					if (confirm("確定要取消按讚?")){				
 //						$.getJSON(ctx + '/likeleaderboards.likedelete.controller',{'likes_music_id':id},function(data){
