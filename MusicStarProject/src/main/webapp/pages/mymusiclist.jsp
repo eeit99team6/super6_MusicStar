@@ -46,7 +46,7 @@ visibility:hidden;
 							<th>歌單名稱</th>
 							<th>歌單描述</th>
 							<th>歌單會員</th>
-							<th>歌曲數量</th>
+<!-- 							<th>歌曲數量</th> -->
                           </tr>
                        </thead>
                        <tbody>

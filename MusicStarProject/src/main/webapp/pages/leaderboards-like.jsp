@@ -81,6 +81,7 @@ color:orange;
 				      	</tr>
 						<tr>
 							<td>歌單名稱&nbsp：&nbsp<select id="listselect"><option value="0">請選擇</option></select></td>
+							<td>&nbsp&nbsp<a href="${ctx}/pages/mymusiclist.jsp">還沒有歌單請點</a></td>
 						</tr>
 			      </table>
 		      </div>
