@@ -7,12 +7,16 @@
 		class="org.springframework.web.servlet.view.InternalResourceView">
 		<property name="url" value="/index.jsp"></property>
 	</bean>
-	
+		
 	<bean id="r.index" class="org.springframework.web.servlet.view.RedirectView">
 		<property name="contextRelative" value="true"></property>
 		<property name="url" value="/index.jsp"></property>
 	</bean>
 	
+	<bean id="f.resetPwd" class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/pages/security/reset_password.jsp"></property>
+	</bean>
+			
 	<bean id="leaderboards.UnKnow" class="org.springframework.web.servlet.view.InternalResourceView">
 		<property name="url" value="/pages/leaderboards.jsp"></property>
 	</bean>
@@ -41,7 +45,6 @@
 		<property name="contextRelative" value="true"></property>
 		<property name="url" value="/backend/index.jsp"></property>
 	</bean>
-	
 	
 	<bean id="f.musicinsert.notOk"
 		class="org.springframework.web.servlet.view.InternalResourceView">

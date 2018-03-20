@@ -1,6 +1,7 @@
 package model.service;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,7 +67,7 @@ public class MemberService
 		}
 		return null;
 	}
-	
+
 	/**
 	 * @author Phil 2018.03.15
 	 */
@@ -107,10 +108,35 @@ public class MemberService
 		if (bean != null)
 		{
 			return memberDAO.update(bean);
-		} else
-		{
-			return false;
 		}
+		return false;
 	}
-	
+
+	/**
+	 * @author Phil 2018.03.19
+	 */
+	public MemberBean setMbrPwdResetLink(String mbrId, String mbrEmail, String mbrPwdResetLink)
+	{
+		if (mbrId != null && mbrEmail != null && mbrPwdResetLink != null)
+		{
+			Calendar calendar = Calendar.getInstance();
+			calendar.setTime(Processor.getCurrentTwDate());
+			calendar.add(Calendar.DAY_OF_MONTH, 1);
+			return memberDAO.addResetLink(mbrId, mbrEmail, mbrPwdResetLink, calendar.getTime());
+		}
+		return null;
+	}
+
+	/**
+	 * @author Phil 2018.03.19
+	 */
+	public MemberBean checkResetPwdLink(String mbrPwdResetLink)
+	{
+		if (mbrPwdResetLink != null)
+		{
+			return memberDAO.selectByResetLink(mbrPwdResetLink);
+		}
+		return null;
+	}
+
 }

@@ -27,13 +27,13 @@ public class LikeMusicDAO {
 	}
 	
 	/**
-	 * @author james.pu 2018.03.13 11:00
+	 * @author james.pu 2018.03.20 11:45
 	 * @return 用在leaderboards-like排行
 	 */
 	public List<LikeMusicBean> selectTotalLike(){
 		Query query =this.getSession().createQuery(
-				"select mc.music_photo, mc.music_link, mc.music_name, mc.music_member_id, mk.likes_music_id, count(*) as total from LikeMusicBean mk join MusicBean mc on mk.likes_music_id=mc.music_id\r\n" + 
-				"group by mk.likes_music_id, mc.music_name, mc.music_photo, mc.music_link, mc.music_member_id order by total desc");
+				"select mc.music_photo, mc.music_link, mc.music_name, mc.music_member_id, mk.likes_music_id, (count(*)+ISNULL(mc.music_likes,0)) as total from LikeMusicBean mk join MusicBean mc on mk.likes_music_id=mc.music_id\r\n" + 
+				"group by mk.likes_music_id, mc.music_name, mc.music_photo, mc.music_link, mc.music_member_id, mc.music_likes order by total desc");
 		return (List<LikeMusicBean>) query.list();	
 		}
 	
@@ -70,7 +70,7 @@ public class LikeMusicDAO {
 	//利用List<>裝Map, 並在HQL指令中new一個Map包住(取到的likes_music_id, count)當作(key, value)
 	//因此select group by取出的值(key, value)會對應到(likes_music_id, 與group by之後的count值)
 	public List<Map> selectLikeCount() {
-		Query query = this.getSession().createQuery("select new Map (likes_music_id as likes_music_id, count(*) as count) from LikeMusicBean group by likes_music_id",Map.class);
+		Query query = this.getSession().createQuery("select new Map (lmb.likes_music_id as likes_music_id, (count(lmb.likes_member_id) + ISNULL(mb.music_likes,0)) as count) from LikeMusicBean lmb join MusicBean mb on lmb.likes_music_id = mb.music_id group by lmb.likes_music_id, mb.music_likes",Map.class);
 		return query.list();	
 	}
 	

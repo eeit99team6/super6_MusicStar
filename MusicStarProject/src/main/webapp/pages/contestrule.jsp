@@ -58,10 +58,10 @@
 
 								<ol>
 									<li>將 Demo 以個人帳號上傳至
-										StreetVoice「第五屆台大音樂節學生樂團野台徵選」徵選活動，並於報名系統中附上音檔連結。</li>
+										MusicStar「第五屆台大音樂節學生樂團野台徵選」徵選活動，並於報名系統中附上音檔連結。</li>
 									<li>Demo 時間長度及錄製方法不限。</li>
-									<li>若作品有歌詞，請於 StreetVoice 音檔之「歌詞」欄位附上完整歌詞。</li>
-									<li>每團於報名系統中只得附上一份 Demo 之 StreetVoice 連結。</li>
+									<li>若作品有歌詞，請於 MusicStar 音檔之「歌詞」欄位附上完整歌詞。</li>
+									<li>每團於報名系統中只得附上一份 Demo 之 MusicStar 連結。</li>
 									<li>Demo 如需重新錄製、上傳，須主動將新的 Demo 連結寄信至官方信箱，並不得更改曲目。</li>
 									<li>徵選結果共錄取八組。</li>
 								</ol>
@@ -77,7 +77,7 @@
 								</p>
 
 								<ol>
-									<li>前往 StreetVoice 上傳 Demo請先註冊加入 StreetVoice
+									<li>前往 MusicStar 上傳 Demo請先註冊加入 MusicStar
 										會員，並依系統指示完成會員帳號啟用（已是會員者可直接進入下一步驟）</li>
 									<li>點選頁面右方的「我要參加徵選」按鈕</li>
 									<li>詳讀比賽辦法、同意相關規定後，點選「下一步」</li>
@@ -149,17 +149,9 @@
 			<!-- /p-top-4 p-bottom-6 -->
 		</div>
 		<!-- /container -->
-
-
-
-
-
-
-
-	</div>
 	<!-- main_container end -->
 	<jsp:include page="/includes/main_aside.jsp" />
 	<jsp:include page="/includes/main_footer.jsp" />
-	</div>
+</div>
 </body>
 </html>

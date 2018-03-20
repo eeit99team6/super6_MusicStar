@@ -1,5 +1,6 @@
 package model.dao;
 
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -7,6 +8,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import _global.utils.Processor;
 import model.bean.MemberBean;
 
 @Repository
@@ -26,6 +28,14 @@ public class MemberDAO
 	public MemberBean selectById(String mbrId)
 	{
 		return mbrId != null ? getSession().get(MemberBean.class, mbrId) : null;
+	}
+	
+	/**
+	 * @author Phil 2018.03.19
+	 */
+	public MemberBean selectByIdAndEmail(String pwdForgetId, String pwdForgetEmail)
+	{
+		return pwdForgetId != null && pwdForgetEmail != null ? getSession().createQuery("from MemberBean where mbrId = :pwdForgetId and mbrEmail = :pwdForgetEmail", MemberBean.class).setParameter("pwdForgetId", pwdForgetId).setParameter("pwdForgetEmail", pwdForgetEmail).uniqueResult() : null;
 	}
 
 	/**
@@ -92,5 +102,30 @@ public class MemberDAO
 		}
 		return false;
 	}
-
+	
+	/**
+	 * @author Phil 2018.03.19
+	 */
+	public MemberBean addResetLink(String mbrId, String mbrEmail ,String mbrPwdResetLink, Date mbrPwdResetLimit) {
+		if (mbrId != null && mbrEmail != null)
+		{
+			MemberBean bean = getSession().createQuery("from MemberBean where mbrId = :mbrId and mbrEmail = :mbrEmail", MemberBean.class).setParameter("mbrId", mbrId).setParameter("mbrEmail", mbrEmail).uniqueResult();
+			if (bean != null && mbrPwdResetLink != null && mbrPwdResetLimit != null)
+			{
+				bean.setMbrPwdResetLink(mbrPwdResetLink);
+				bean.setMbrPwdResetLimit(mbrPwdResetLimit);
+				return bean;
+			}
+		}
+		return null;
+	}
+	
+	/**
+	 * @author Phil 2018.03.19
+	 */
+	public MemberBean selectByResetLink(String mbrPwdResetLink) {		
+		return mbrPwdResetLink != null ? getSession().createQuery("from MemberBean where mbrPwdResetLink = :mbrPwdResetLink and mbrPwdResetLimit >= :today", MemberBean.class).setParameter("mbrPwdResetLink", mbrPwdResetLink).setParameter("today", Processor.getCurrentTwDate()).uniqueResult() : null;
+	}
+	
+	
 }
