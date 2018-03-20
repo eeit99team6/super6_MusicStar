@@ -11,6 +11,7 @@
 <link href="${ctx}/assets/css/common_style/allPages.css" rel="stylesheet"/>
 <link href="${ctx}/assets/css/musicInsert.css" rel="stylesheet"/>
 
+
 <script src="${ctx}/assets/js/music-upload-muisc/site.js"> </script>
 
 <style type="text/css">
@@ -135,6 +136,7 @@
 			    	$("#musicStarSong").attr("src", URL.createObjectURL(files[0]));
 			    	document.getElementById("musicStarAudio").load();
 			    };
+			    
 	
 		
 	</script>

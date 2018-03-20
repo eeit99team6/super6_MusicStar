@@ -24,32 +24,35 @@ $(function(){
 				}
 				$.getJSON(ctx+"/contests/voting/players",{"contestId":contestId},function(data){		
 					$("#ajax_mask").addClass("ajax_hide");
-					var $docFrag = $(document.createDocumentFragment());
+					var docFrag = $(document.createDocumentFragment());
 					if(data.errMsg == null && data.length > 0){
 						var order = 1;
 						$.each(data,function(index,value){
 							var votes = value.musicCtstPlayerVotes || 0;
-							$docFrag.append(
-								"<div class='display_show card border border-info'>"+
-									"<div class='view view-eighth'>"+
-										"<img src='"+value.musicPhoto+"'/>"+
-										"<div class='mask'>"+
-											"<h2>"+value.musicName+"</h2>"+
-											"<p>"+value.musicDescription+"</p>"+
-											"<a data-music-link='"+value.musicLink+"' class='info play_music'>播放歌曲</a>"+
-											"<a data-player-id='"+value.musicCtstPlayerId+"' class='info voting'>投他一票</a>"+
-										"</div>"+
-									"</div>"+
-									"<h5 class='view-description'>"+ order++ +".　"+value.musicCtstPlayerId+" － "+value.musicName+"</h5>"+
-									"<h5 class='view-votes'>目前票數：<span class='counter'>"+votes+"</span></h5>"+
-								"</div>");});
+							var mainDiv = $("<div></div>").addClass("display_show card border border-info");
+							var viewDiv = $("<div></div>").addClass("view view-eighth");
+							var viewImg = $("<img/>").attr("src",value.musicPhoto);
+							var viewMask = $("<div></div>").addClass("mask"); 
+							var musicName = $("<h2></h2>").text(value.musicName);
+							var musicDescription = $("<p></p>").text(value.musicDescription);
+							var viewPlayMusic = $("<a></a>").attr("data-music-link",value.musicLink).addClass("info play_music").text("播放歌曲");
+							var viewVoting = $("<a></a>").attr("data-player-id",value.musicCtstPlayerId).addClass("info voting").text("投他一票");
+							var viewDescription = $("<h5></h5>").addClass("view-description").text(order++ +".　"+value.musicCtstPlayerId+" － "+value.musicName);
+							var viewVotesDiv = $("<h5></h5>").addClass("view-votes").text("目前票數：");
+							var viewVotesSpan = $("<span></span>").addClass("playerVotes").html(votes).counterUp({ beginAt: 0, time: 2000 });
+							viewMask.append(musicName).append(musicDescription).append(viewPlayMusic).append(viewVoting);
+							viewDiv.append(viewImg).append(viewMask);
+							viewVotesDiv.append(viewVotesSpan);
+							mainDiv.append(viewDiv).append(viewDescription).append(viewVotesDiv);		
+							docFrag.append(mainDiv);
+							});
 						}else{
 						$("#display_area").after("<h2 class='text-center' style='margin-bottom:200px;'>很抱歉此賽事目前沒有任何參賽者</h2>");
 						}		
 				for(let i = 0; i < 3 ;i++){
-					$docFrag.append("<div class='display_show'></div>");
+					docFrag.append("<div class='display_show'></div>");
 				}	
-				$("#display_area").append($docFrag)
+				$("#display_area").append(docFrag)
 				.on("click",".play_music",function(e){
 					var $this = $(this),
 						musicName = $this.parent().find("h2").eq(0).text(),
@@ -60,7 +63,7 @@ $(function(){
 					})			
 		 		.on("click",".voting",function(e){
 					var musicCtstPlayerId = $(this).data("player-id"),
-						thisPlayerVotes = $(this).parents(".display_show").find(".counter:eq(0)");
+						thisPlayerVotes = $(this).parents(".display_show").find(".playerVotes:eq(0)");
 					if(confirm("確定要投票嗎?請注意:投票後就不能再更改囉!!")){
 						$.getJSON(ctx + "/contests/voting/vote",{"musicCtstPlayerId":musicCtstPlayerId,"musicCtstId":contestId},
 								function(data){
@@ -72,7 +75,7 @@ $(function(){
 									}else if(data.success){							
 										alert(data.success);
 										alert("您投了 "+musicCtstPlayerId+" 一票~感謝您參與投票!!");
-										var votes = thisPlayerVotes.text();
+										var votes = thisPlayerVotes.text();									
 										thisPlayerVotes.text(++votes);
 										}});}})
 				;});
@@ -87,10 +90,8 @@ $(function(){
                    currDate = '00:00:00:00:00',
                    nextDate = '00:00:00:00:00',
                    parser = /([0-9]{2})/gi,
-                   $example = $('#main-counter');
-                 
-                 // num counterup
-                 $(".counter").counterUp({ time: 3000 });
+                   $mainCounter = $('#main-counter');
+                                  
                  // Parse countdown string to an object
                  function strfobj(str) {
                    var parsed = str.match(parser),
@@ -113,14 +114,14 @@ $(function(){
                  // Build the layout
                  var initData = strfobj(currDate);
                  labels.forEach(function (label, i) {
-                   $example.append(template({
+                   $mainCounter.append(template({
                      curr: initData[label],
                      next: initData[label],
                      label: label
                    }));
                  });
                  // Starts the countdown
-                 $example.countdown(finalDate, function (event) {
+                 $mainCounter.countdown(finalDate, function (event) {
                    var newDate = event.strftime('%w:%d:%H:%M:%S'),
                      data;
                    if (newDate !== nextDate) {
@@ -134,7 +135,7 @@ $(function(){
                      // Apply the new values to each node that changed
                      diff(data.curr, data.next).forEach(function (label) {
                        var selector = '.%s'.replace(/%s/, label),
-                         $node = $example.find(selector);
+                         $node = $mainCounter.find(selector);
                        // Update the node
                        $node.removeClass('flip');
                        $node.find('.curr').text(data.curr[label]);
