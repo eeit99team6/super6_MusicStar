@@ -32,7 +32,7 @@ margin-bottom: 20px;
 		return "<h5>"+musicStyleMap[value]+"</h5>";
 	}
 	function formatImg(value, row, index){
-		return "<img src='"+value+"' height='100px'/>";
+		return "<img src='"+value+"' height='100px' width='150px'/>";
 	}
 	function formatLink(value, row, index){
 		return "<a href='"+ctx+"/pages/contests/contest_voting_players.jsp?contestId="+value+"'>前往投票</a>";
