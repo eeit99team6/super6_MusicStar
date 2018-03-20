@@ -129,7 +129,11 @@ public class MusicContestDAO {
 			temp.setMusic_contest_description(bean.getMusic_contest_description());
 			temp.setMusic_contest_end_date(bean.getMusic_contest_end_date());
 			temp.setMusic_contest_name(bean.getMusic_contest_name());
-			temp.setMusic_contest_photo(bean.getMusic_contest_photo());
+			String tempPhoto =bean.getMusic_contest_photo();
+			if(tempPhoto != null) 
+			{
+				temp.setMusic_contest_photo(tempPhoto);
+			}
 			temp.setMusic_contest_status(bean.getMusic_contest_status());
 			temp.setMusic_contest_style_id(bean.getMusic_contest_style_id());
 			temp.setMusic_contest_validate_date(bean.getMusic_contest_validate_date());
