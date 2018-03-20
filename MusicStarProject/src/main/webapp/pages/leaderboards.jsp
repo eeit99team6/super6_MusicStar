@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>賽事排行</title>
 <jsp:include page="/includes/main_css.jsp" />
 <link href="${ctx}/assets/css/leaderboards.css" rel="stylesheet" />
@@ -24,7 +25,7 @@
 	
 		<div class="title-title">經典賽事排行榜</div>
 			
-		<div id="leaderboard-outer" class="container">
+		<div id="leaderboard-outer" class=" row">
 <!-- 			<div id='leaderboard-max1' class="container border border-danger"> -->
 <!-- 				<h2 class="leaderboard-title1"><i class="fa fa-play" style="font-size:48px;color:red"></i></h2> -->
 <!-- 				<ol class="leaderboard-ol"> -->
