@@ -32,6 +32,10 @@ $(function() {
 		$(this).toggleClass("fa-chevron-down").toggleClass("fa-chevron-up");
 	});
 	
+	music = function(musicName,playerId,musicLink,musicPhoto){
+		return {"musicName":musicName, "playerId":playerId, "musicLink":musicLink, "musicPhoto":musicPhoto}
+	}
+	
 	addAndPlayMusic = function (musicName,playerId,musicLink,musicPhoto){
 		audioPlaylist.add({
 			title:musicName,
@@ -45,4 +49,24 @@ $(function() {
 			$("#jp_toggle").addClass("fa-chevron-down").removeClass("fa-chevron-up");			
 		}
 	}
+	
+	setNewPlaylistAndPlayMusic = function (playlist){
+		var data = [];
+		$.each(playlist,function(index,value){
+			data.push({
+				title: value.musicName,
+				artist:value.playerId,
+				mp3:value.musicLink,
+				poster:value.musicPhoto
+			});
+		});	
+		audioPlaylist.setPlaylist(data);
+		audioPlaylist.play(0);
+		if($("#jp_player_list").hasClass("jp-hide")){
+			$("#jp_player_list").removeClass("jp-hide");
+			$("#jp_toggle").addClass("fa-chevron-down").removeClass("fa-chevron-up");			
+		}
+	}
+	
+	
 });

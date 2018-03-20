@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -14,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,7 +25,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken.Payload;
-import com.google.api.client.http.HttpResponse;
 
 import _global.utils.Checker;
 import _global.utils.Constant;
@@ -418,4 +419,88 @@ public class MemberController {
 		return Parser.toJson(data);		
 	}
 	
+	@RequestMapping(path = "/members/forgetPwdAjax", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
+	@ResponseBody
+	public String forgetPwdAjax(HttpSession session, HttpServletRequest request, String pwdForgetId, String pwdForgetEmail) {
+		Map<String, String> data = new HashMap<>();
+		
+		if(!Checker.notEmpty(pwdForgetId)) {
+			data.put("idError", "帳號不可為空白");
+		}
+		if(!Checker.notEmpty(pwdForgetEmail)) {
+			data.put("emailError", "電子郵件不可為空白");
+		}
+		if(!Checker.notEmpty(data)) {
+			String link = Parser.encryptString(pwdForgetId + System.currentTimeMillis() + pwdForgetEmail);
+			MemberBean mb = memberService.setMbrPwdResetLink(pwdForgetId, pwdForgetEmail, link);
+			if(mb != null) {
+			String contextPath = servletContext.getContextPath();
+			String path = request.getRequestURL().toString().split(contextPath)[0] + contextPath ;
+			String name = mb.getMbrName();	
+			StringBuffer htmlDoc = new StringBuffer();
+			htmlDoc.append("<h2>");
+			htmlDoc.append("重置密碼:");
+			htmlDoc.append("</h2>");
+			htmlDoc.append("<h3>");
+			htmlDoc.append(name);		
+			htmlDoc.append(" 您好，請於24小時內點選以下連結以重置密碼:");		
+			htmlDoc.append("</h3>");
+			htmlDoc.append("<h5>");
+			htmlDoc.append("連結:");		
+			htmlDoc.append("<a rel='noopener noreferrer' title='點我重置密碼' target='_blank' href='"); 	
+			htmlDoc.append(path);		
+			htmlDoc.append("/security/resetPassord?link=");		
+			htmlDoc.append(link);		
+			htmlDoc.append("'>請點我重置密碼</a>");
+			htmlDoc.append("</h5>");
+			htmlDoc.append("<h3>");
+			htmlDoc.append("若您未要求要重置密碼，請忽略本信。");		
+			htmlDoc.append("</h3>");
+			Processor.sendHtmlMail(pwdForgetEmail, "重置 MusicStar帳戶密碼", htmlDoc.toString());	
+			}
+			data.put("success", "如果  "+ pwdForgetId+"－"+ pwdForgetEmail +" 已有 MusicStar帳戶，系統將以電子郵件傳送進一步的操作指示。");
+		}	
+		return Parser.toJson(data);		
+	}
+	
+	@RequestMapping(path = "/security/resetPassord", method = RequestMethod.GET)
+	public String resetpassord(String link, HttpSession session) {			
+		if(link != null) {
+			MemberBean mb = memberService.checkResetPwdLink(link);
+			if(mb != null) {
+				session.setAttribute("forgetPwdMbr", mb);
+				return "f.resetPwd";
+			}
+		}
+		return "r.index";
+	}
+	
+	@RequestMapping(path = "/security/resetPwdAjax", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
+	@ResponseBody
+	public String resetPwdAjax(HttpSession session, String newPwd, String checkNewPwd) {
+		Map<String, String> data = new HashMap<>();
+		MemberBean mb = (MemberBean) session.getAttribute("forgetPwdMbr");
+		if(mb != null) {
+			if(!Checker.notEmpty(newPwd)) {
+				data.put("newPwdError", "新密碼不可為空白");
+			}
+			if(!Checker.notEmpty(checkNewPwd)) {
+				data.put("checkNewPwdError", "必須確認新密碼");
+			}else if(!checkNewPwd.equals(newPwd)) {
+				data.put("checkNewPwdError", "密碼不相符");
+			}
+			if(!Checker.notEmpty(data)) {
+				mb.setMbrPwd(newPwd);
+				mb.setMbrPwdResetLink(null);
+				mb.setMbrPwdResetLimit(null);
+				if(memberService.update(mb)) {
+					session.removeAttribute("forgetPwdMbr");
+					data.put("success", "密碼修改成功");
+				}
+			}
+		}else {
+			data.put("errMsg", "無法修改密碼!!請依照忘記密碼流程進行密碼重設作業!!!");
+		}
+		return Parser.toJson(data);
+	}
 }

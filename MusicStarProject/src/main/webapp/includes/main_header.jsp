@@ -105,6 +105,9 @@
 							</div>
 							<div class="modal-body">
 								<h6>
+									忘記密碼了嗎? <a href="<c:url value="/pages/security/forget_password.jsp"/>">重設密碼</a>
+								</h6>
+								<h6>
 									還不是會員? <a href="<c:url value="/pages/security/register.jsp"/>">註冊會員</a>
 								</h6>
 							</div>

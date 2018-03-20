@@ -34,6 +34,10 @@ public class MemberBean
 	Boolean mbrEmailVerify;
 	@Column(name = "MEMBER_REGISTER_DATE")
 	Date mbrRegisterDate;
+	@Column(name = "MEMBER_PASSWORD_RESET_LINK")
+	String mbrPwdResetLink;
+	@Column(name = "MEMBER_PASSWORD_RESET_LIMIT")
+	Date mbrPwdResetLimit;
 
 	public String getMbrId()
 	{
@@ -115,8 +119,6 @@ public class MemberBean
 		this.mbrFbId = mbrFbId;
 	}
 
-
-
 	public Boolean getMbrEmailVerify()
 	{
 		return mbrEmailVerify;
@@ -135,6 +137,26 @@ public class MemberBean
 	public void setMbrRegisterDate(Date mbrRegisterDate)
 	{
 		this.mbrRegisterDate = mbrRegisterDate;
+	}
+
+	public String getMbrPwdResetLink()
+	{
+		return mbrPwdResetLink;
+	}
+
+	public void setMbrPwdResetLink(String mbrPwdResetLink)
+	{
+		this.mbrPwdResetLink = mbrPwdResetLink;
+	}
+
+	public Date getMbrPwdResetLimit()
+	{
+		return mbrPwdResetLimit;
+	}
+
+	public void setMbrPwdResetLimit(Date mbrPwdResetLimit)
+	{
+		this.mbrPwdResetLimit = mbrPwdResetLimit;
 	}
 
 	@Override
