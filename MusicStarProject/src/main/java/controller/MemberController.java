@@ -15,7 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -431,7 +430,7 @@ public class MemberController {
 			data.put("emailError", "電子郵件不可為空白");
 		}
 		if(!Checker.notEmpty(data)) {
-			String link = Parser.encryptString(pwdForgetId + System.currentTimeMillis() + pwdForgetEmail);
+			String link = Parser.getMD5Endocing(pwdForgetId + System.currentTimeMillis());
 			MemberBean mb = memberService.setMbrPwdResetLink(pwdForgetId, pwdForgetEmail, link);
 			if(mb != null) {
 			String contextPath = servletContext.getContextPath();

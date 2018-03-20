@@ -2,6 +2,7 @@ package _global.utils;
 
 import java.io.Reader;
 import java.security.InvalidKeyException;
+import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -172,5 +173,30 @@ public class Parser
 		return null;
 	}
 	
+	/**
+     * 依MD5演算法將參數字串message轉換為128位元(16個位元組)的資料。
+     * 
+     * @param message : 要加密的字串
+     * @return : 128位元資料的16進位表示法所構成的字串
+     */
+	public static String getMD5Endocing(String message) {
+		final StringBuffer buffer = new StringBuffer();
+		try {
+			MessageDigest md = MessageDigest.getInstance("MD5");
+			md.update(message.getBytes());
+			byte[] digest = md.digest();
+			
+			for (int i = 0; i < digest.length; ++i) {
+				final byte b = digest[i];
+				final int value = (b & 0x7F) + (b < 0 ? 128 : 0);
+				buffer.append(value < 16 ? "0" : "");
+				buffer.append(Integer.toHexString(value));
+			}
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+			return null;
+		}
+		return buffer.toString();
+	}
 	
 }
