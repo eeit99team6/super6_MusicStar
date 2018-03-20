@@ -233,8 +233,9 @@ font-weight: bold;
 			
 			$.getJSON("musicContesetSignUpAjax", {}, function(json_data){
 				  
+				 $(".selectOption").remove();
 				$.each(json_data,function(index,item){
-					 var option = $("<option></option>").val(item.music_contest_id);
+					 var option = $("<option></option>").val(item.music_contest_id).addClass("selectOption");
 					 
 					 option.text(item.music_contest_name).addClass("col-xl-12");
 					

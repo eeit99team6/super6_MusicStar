@@ -59,11 +59,11 @@
   font-family: Verdana, Arial, sans-serif;
   line-height: 1.6;
   color: #fff;
-  border-top: 1px solid #554461;
-  border-left: 1px solid #554461;
-  border-right: 1px solid #180a1f;
-  border-bottom: 1px solid #180a1f;
-  background-color: rgba(229, 0, 255, 0.5); }
+  border-top: 1px solid #C0C0C0;
+  border-left: 1px solid #C0C0C0;
+  border-right: 1px solid #A0A0A0;
+  border-bottom: 1px solid #A0A0A0;
+  background-color: rgba(96, 96, 96); }
 
 .jp-audio {
   width: 201px;
@@ -431,7 +431,7 @@ div.jp-video .jp-progress {
 .jp-current-time, .jp-duration {
   width: 70px;
   font-size: .5em;
-  color: #8c7a99; }
+  color: #fff; }
 
 .jp-current-time {
   float: left;
@@ -482,7 +482,7 @@ div.jp-video .jp-progress {
 .jp-playlist li {
   position: relative;
   padding: 2px 0;
-  border-top: 1px solid #554461;
+  border-top: 1px solid #fff;
   border-bottom: 1px solid #180a1f;
   overflow: hidden; }
 
@@ -501,18 +501,18 @@ div.jp-type-playlist div.jp-playlist a {
 
 div.jp-type-playlist div.jp-playlist a:hover {
 /*   color: #e892e9;  */
-  color:blue;
+  color:#E0E0E0;
   }
 
 div.jp-type-playlist div.jp-playlist li.jp-playlist-current {
   background-color: rgba(0,0,0,0.5);
   margin: 0 -20px;
   padding: 2px 20px;
-  border-top: 1px solid #26102e;
+  border-top: 1px solid #fff;
   border-bottom: 1px solid #26102e; }
 
 div.jp-type-playlist div.jp-playlist li.jp-playlist-current a {
-  color: #e892e9; }
+  color: #C0C0C0; }
 
 div.jp-type-playlist div.jp-playlist a.jp-playlist-item-remove {
   float: right;
@@ -520,26 +520,26 @@ div.jp-type-playlist div.jp-playlist a.jp-playlist-item-remove {
   text-align: right;
   margin-left: 10px;
   font-weight: bold;
-  color: #8C7A99; }
+  color: #fff; }
 
 div.jp-type-playlist div.jp-playlist a.jp-playlist-item-remove:hover {
-  color: #E892E9; }
+  color: #E0E0E0; }
 
 div.jp-type-playlist div.jp-playlist span.jp-free-media {
   float: right;
   display: inline;
   text-align: right;
-  color: #8C7A99; }
+  color: #A0A0A0; }
 
 div.jp-type-playlist div.jp-playlist span.jp-free-media a {
-  color: #8C7A99; }
+  color: #A0A0A0; }
 
 div.jp-type-playlist div.jp-playlist span.jp-free-media a:hover {
-  color: #E892E9; }
+  color: #E0E0E0; }
 
 /* 歌單作者 顏色大小*/
 span.jp-artist {
-  font-size: .12em;
+  font-size: .5em;
   color: #ffff00; 
   font-weight:bold;
   }

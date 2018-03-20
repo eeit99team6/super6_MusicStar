@@ -17,11 +17,18 @@ text-align: center;
 padding-left:60px;
 padding-right:60px;
 }
-
+th{
+min-width:110px
+}
+td{
+margin:0 auto;
+}
 </style>
 
 <link href="${ctx}/assets/css/common_style/allPages.css" rel="stylesheet"/>
 <jsp:include page="/includes/main_js.jsp" />
+
+
 </head>
 <body>
 	<jsp:include page="/includes/main_header.jsp" />
@@ -52,9 +59,6 @@ padding-right:60px;
 				<!-- 每頁不同的內容到這裡結束 -->					
        </div>
         </div>
-    </div>
-
- </div>
 
 	<script>
 		$(document).ready(function() {		

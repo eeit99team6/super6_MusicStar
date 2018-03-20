@@ -108,14 +108,14 @@
 
 
 	<!-- main_container start -->
-	<div id="main_container" class="container-fuild">
-  <div class="title-title">音樂搜尋引擎 </div>
-<div class="container">
-<div class="music_selector">
-  <ul class="nav nav-tabs">
-    <li class="active" id="litab"><a data-toggle="tab" href="#home" class="btn">按鈕搜尋</a></li>
-    <li id="litab"><a data-toggle="tab" href="#menu1" class="btn">文字搜尋</a></li>
-  </ul>
+<div id="main_container" class="container-fuild">
+<div class="title-title">音樂搜尋引擎 </div>
+	<div class="container">
+	<div class="music_selector">
+	  <ul class="nav nav-tabs">
+	    <li class="active" id="litab"><a data-toggle="tab" href="#home" class="btn">按鈕搜尋</a></li>
+	    <li id="litab"><a data-toggle="tab" href="#menu1" class="btn">文字搜尋</a></li>
+	  </ul>
 
   <div class="tab-content">
     <div id="home" class="tab-pane fade in active">    

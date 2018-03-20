@@ -20,6 +20,12 @@ margin:0 auto;
 color:snow;
 visibility:hidden;
 } 
+th{
+min-width:110px
+}
+td{
+margin:0 auto;
+}
 </style>
 </head>
 <body>

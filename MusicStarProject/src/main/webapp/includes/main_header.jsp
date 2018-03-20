@@ -5,12 +5,12 @@
 	<nav class="main_nav">
 		<ul class="menu">
 			<li><a href="<c:url value="/index.jsp"/>"><img style="padding-bottom:5%" width="60" src="${ctx}/assets/img/pagesUsage/music-star.png"/>MusicStar</a></li>
-			<li><a href="<c:url value="/pages/contest.jsp#title"/>">賽事專區</a>
+			<li><a href="#">賽事專區</a>
 				<ul>
 					<li><a href="<c:url value="/pages/contestrule.jsp"/>">賽事規則</a></li> 
 					<li><a href="<c:url value="/pages/contestSignUp.jsp"/>">報名中</a></li>
 					<li><a href="<c:url value="/pages/contests/contest_voting.jsp"/>">投票中</a></li>
-					<li><a href="<c:url value="/pages/contest.jsp#end"/>">歷史賽事</a></li>
+					<li><a href="<c:url value="/pages/contesthistosy.jsp"/>">歷史賽事</a></li>
 				</ul></li>
 			<li><a href="#">歌曲排行</a>
 				<ul>
@@ -46,12 +46,12 @@
 	</nav>
 	<nav id="sub_menu">
 		<ul class="links">
-			<li><a href="<c:url value="/pages/contest.jsp#title"/>">賽事專區</a>
+			<li><a href="#">賽事專區</a>
 				<ul>
 					<li><a href="<c:url value="/pages/contestrule.jsp"/>">賽事規則</a></li>
-					<li><a href="<c:url value="/pages/contest.jsp#applying"/>">報名中</a></li>
+					<li><a href="<c:url value="/pages/contestSignUp.jsp"/>">報名中</a></li>
 					<li><a href="<c:url value="/pages/contests/contest_voting.jsp"/>">投票中</a></li>
-					<li><a href="<c:url value="/pages/contest.jsp#end"/>">歷史賽事</a></li>
+					<li><a href="<c:url value="/pages/contesthistosy.jsp"/>">歷史賽事</a></li>
 				</ul></li>
 			<li><a href="#">歌曲排行</a>
 				<ul>
