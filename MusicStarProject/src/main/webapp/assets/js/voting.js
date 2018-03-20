@@ -39,7 +39,7 @@ $(function(){
 							var viewVoting = $("<a></a>").attr("data-player-id",value.musicCtstPlayerId).addClass("info voting").text("投他一票");
 							var viewDescription = $("<h5></h5>").addClass("view-description").text(order++ +".　"+value.musicCtstPlayerId+" － "+value.musicName);
 							var viewVotesDiv = $("<h5></h5>").addClass("view-votes").text("目前票數：");
-							var viewVotesSpan = $("<span></span>").html(votes).counterUp({ beginAt: 0, time: 2000 });
+							var viewVotesSpan = $("<span></span>").addClass("playerVotes").html(votes).counterUp({ beginAt: 0, time: 2000 });
 							viewMask.append(musicName).append(musicDescription).append(viewPlayMusic).append(viewVoting);
 							viewDiv.append(viewImg).append(viewMask);
 							viewVotesDiv.append(viewVotesSpan);
@@ -63,7 +63,7 @@ $(function(){
 					})			
 		 		.on("click",".voting",function(e){
 					var musicCtstPlayerId = $(this).data("player-id"),
-						thisPlayerVotes = $(this).parents(".display_show").find(".counter:eq(0)");
+						thisPlayerVotes = $(this).parents(".display_show").find(".playerVotes:eq(0)");
 					if(confirm("確定要投票嗎?請注意:投票後就不能再更改囉!!")){
 						$.getJSON(ctx + "/contests/voting/vote",{"musicCtstPlayerId":musicCtstPlayerId,"musicCtstId":contestId},
 								function(data){
@@ -75,7 +75,7 @@ $(function(){
 									}else if(data.success){							
 										alert(data.success);
 										alert("您投了 "+musicCtstPlayerId+" 一票~感謝您參與投票!!");
-										var votes = thisPlayerVotes.text();
+										var votes = thisPlayerVotes.text();									
 										thisPlayerVotes.text(++votes);
 										}});}})
 				;});
