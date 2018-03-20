@@ -248,12 +248,7 @@
         <option value="12">Independent</option>
       </select>
     </div>
-      
-    <div class="modal-body">
-      <label for="music_contest_status">賽事狀況</label>
-      <input id="update_status" type="text" placeholder="請輸入比賽狀況" name="music_contest_status" class="col-xl-12">
-    </div>
-      
+    
     <div class="modal-body">  
       <label for="music_contest_apply_start_date">報名開始日期</label>
       <input type="text" placeholder="請選擇報名開始日期" name="music_contest_apply_start_date" id="update_start_date" class="col-xl-12">
@@ -272,7 +267,14 @@
     <div class="modal-body">  
       <label for="music_contest_end_date">比賽結束日期</label>  
       <input type="text" placeholder="請選擇比賽結束日期" name="music_contest_end_date" id="update_end_date" class="col-xl-12">
-    </div>  
+    </div> 
+    
+       
+    <div class="modal-body">
+      <label for="music_contest_status">賽事狀況</label>
+      <input id="update_status" type="text" placeholder="請輸入比賽狀況" name="music_contest_status" class="col-xl-12" readonly>
+    </div>
+     
       <div class="modal-footer ">
       <button type="submit" name="music_contest_update" class="col-xl-12">送出</button>
      </div> 
@@ -306,6 +308,39 @@
 		
  		$("#music_contest_apply_start_date,#music_contest_validate_date,#music_contest_vote_start_date,#music_contest_end_date").datepicker({dateFormat: "yy-mm-dd"})
 		$("#update_start_date,#update_validate_date,#update_vote_date,#update_end_date").datepicker({dateFormat: "yy-mm-dd"})
+		                                                                                .on("change",function(){
+		                                                                                
+		                                                                                	// star 
+		                                                                                	  var startTemp =  $("#update_start_date").val();
+		                                                                                	     var startDate = new Date(startTemp).getTime();
+		                                                                                	// validate
+		                                                                                	  var validateTemp = $("#update_validate_date").val();
+		                                                                                	     var validateDate = new Date(validateTemp).getTime();
+		                                                                                	// voting
+		                                                                                	  var voteTemp = $("#update_vote_date").val();
+		                                                                                	     var voteDate = new Date(voteTemp).getTime();
+		                                                                                	// end
+		                                                                                	  var endTemp =  $("#update_end_date").val();
+		                                                                                	     var endDate = new Date(endTemp).getTime();
+		                                                                                	// compare            
+		                                                                                	var updateStatus = $("#update_status");
+		                                                                                        updateStatus.empty();
+		                                                                                	// current time
+		                                                                                	   var currentTime = new Date().getTime();
+		                                                                                		alert("currentTime"+currentTime)
+		                                                                                		
+		                                                                                	if(startDate < currentTime  &&  currentTime < validateDate){
+		                                                                                		updateStatus.val("報名中");
+		                                                                                	}else if( validateDate < currentTime &&  currentTime < voteDate ){
+		                                                                                		updateStatus.val("審核中");
+		                                                                                	}else if( voteDate < currentTime && currentTime < endDate ){
+		                                                                                		updateStatus.val("投票中");
+		                                                                                	}else if (endDate <= currentTime ){
+		                                                                                		updateStatus.val("比賽結束");
+		                                                                                	}
+		                                                                                	
+		                                                                                });
+		                                        
  		
 		$("#id03 input[name='music_contest_name']").keyup(function(){
 	      var inputValue = $(this).val()
@@ -376,10 +411,16 @@
 	                   var cell10 = $("<td></td>").append(cellLink)
 	                    cell10.append(cellLink)
 	                   var cell11 = $("<td></td>").html('<a style="padding-left:0; display:inline" class="nav-link" data-toggle="modal" data-target="#updateContest"><button class="btn btn-info edit"><i class="fa fa-fw fa-wrench"></i></button></a>');
-	                  
-	                   var row = $('<tr></tr>').append([cell1, cell2, cell3, cell4,cell5, cell6, cell7, cell8,cell9,cell10,cell11]);
-	                    $('#table1>tbody').append(row);
-	 	                   
+	                   var cell11_2 = $("<td></td>")
+	                   
+	                   var statusName = item.music_contest_status;
+	                   if(statusName!='比賽結束'){
+	                	  var row = $('<tr></tr>').append([cell1, cell2, cell3, cell4,cell5, cell6, cell7, cell8,cell9,cell10,cell11]);     
+	                  }else{
+	                	  var row = $('<tr></tr>').append([cell1, cell2, cell3, cell4,cell5, cell6, cell7, cell8,cell9,cell10,cell11_2]);     
+	                  }
+	                   
+	                   $('#table1>tbody').append(row); 
 	                    });
 	       
 	       $("#table1>tbody").on('click','tr button:nth-child(1)',function(){
@@ -396,29 +437,21 @@
                $("#update_id").val(music_contest_id).next("span").text(music_contest_id);
                $("#update_name").val(music_contest_name);
                $("#update_decription").val(music_contest_description);
-               $("#update_status").val(music_contest_status);
                $("#update_start_date").val(music_contest_apply_start_date);
                $("#update_validate_date").val(music_contest_validate_date);	 	               
                $("#update_vote_date").val(music_contest_vote_start_date);
                $("#update_end_date").val(music_contest_end_date);
-	          })
-		   })
-		});
+            
+	           }) // 查看比賽賽事狀態按鈕結尾
+	           
+		    })
+		 });
 		
-		$('.image-popup-no-margins').magnificPopup({
-			type: 'image',
-			closeOnContentClick: true,
-			closeBtnInside: false,
-			fixedContentPos: true,
-			mainClass: 'mfp-no-margins mfp-with-zoom', // class to remove default margin from left and right side
-			image: {
-				verticalFit: true
-			},
-			zoom: {
-				enabled: true,
-				duration: 300 // don't foget to change the duration also in CSS
-			}
-		});
+
+		
+		
+		
+		
 	});
 	
 	</script>
