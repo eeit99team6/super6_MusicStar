@@ -3,7 +3,7 @@ $(document).ready(function(){
 		var docFrag =$(document.createDocumentFragment());
 		var docFragIn =$(document.createDocumentFragment());
 		$.ajaxSettings.async = false;
-		for(var i=1;i<=datacount;i++){
+		$.each(datacount,function(index,i){
 			$.getJSON(ctx + '/leaderboards.controller',{'music_contest_id':i},function(data){
 	 	    	console.log(data);
 				$.each(data,function(index,mu){				
@@ -20,8 +20,8 @@ $(document).ready(function(){
 		    		var ww=$('<div id="leaderboard-max1" class="container border border-danger"></div>').append([rr1,rr2,rr3])
 		    		docFrag.append(ww);					    								
 				$("#leaderboard-outer").append(docFrag);
-			})					
-		}		
+			})
+		})			
 	})	
 	$.ajaxSettings.async = true;						
 

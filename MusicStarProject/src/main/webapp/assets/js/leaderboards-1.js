@@ -32,14 +32,14 @@ $(document).ready(function(){
 	$.getJSON(ctx+'/leaderboards.count.controller',function(datacount){
 		var docFrag =$(document.createDocumentFragment());
 		$.ajaxSettings.async = false;
-		for(var i=1;i<=datacount;i++){
+		$.each(datacount,function(index,i){
 			$.getJSON(ctx+'/leaderboards-1.controller',{'music_contest_id':i},function(data){
 				console.log(data[1][2].music_contest_id);
 				var cc=$('<div class="left-div"><i class="material-icons" style="font-size:24px;color:red">skip_next</i><a href="'+ctx+'/pages/leaderboards-1.jsp?music_contest_id='+data[1][2].music_contest_id+'">'+data[1][2].music_contest_name+'</a></div>')
 				docFrag.append(cc)
 			$('#leaderboard-1-left').append(docFrag);
 			})
-		}
+		})
 	})
 		$.ajaxSettings.async = true;
 	
