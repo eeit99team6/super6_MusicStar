@@ -19,6 +19,7 @@ public class MusicBean {
 	private String music_photo;
 	private String music_description;
 	private String music_lyrics;
+	private String music_likes;
 
 	public Integer getMusic_id() {
 		return music_id;
@@ -82,6 +83,14 @@ public class MusicBean {
 
 	public void setMusic_lyrics(String music_lyrics) {
 		this.music_lyrics = music_lyrics;
+	}
+
+	public String getMusic_likes() {
+		return music_likes;
+	}
+
+	public void setMusic_likes(String music_likes) {
+		this.music_likes = music_likes;
 	}
 
 }

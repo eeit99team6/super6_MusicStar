@@ -70,7 +70,7 @@ public class LikeMusicDAO {
 	//利用List<>裝Map, 並在HQL指令中new一個Map包住(取到的likes_music_id, count)當作(key, value)
 	//因此select group by取出的值(key, value)會對應到(likes_music_id, 與group by之後的count值)
 	public List<Map> selectLikeCount() {
-		Query query = this.getSession().createQuery("select new Map (likes_music_id as likes_music_id, count(*) as count) from LikeMusicBean group by likes_music_id",Map.class);
+		Query query = this.getSession().createQuery("select new Map (lmb.likes_music_id as likes_music_id, (count(lmb.likes_member_id) + ISNULL(mb.music_likes,0)) as count) from LikeMusicBean lmb join MusicBean mb on lmb.likes_music_id = mb.music_id group by lmb.likes_music_id, mb.music_likes",Map.class);
 		return query.list();	
 	}
 	
