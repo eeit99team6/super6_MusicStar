@@ -80,7 +80,7 @@ public class MusicContestController {
 
 		// 驗證資料
 		   // photo
-		if(photo!=null){
+		if(!photo.isEmpty()){
 			String contentType = photo.getContentType();
 			System.out.println("照片進來了");
 			try {
@@ -146,7 +146,7 @@ public class MusicContestController {
 		return Parser.toJson(musicContestService.selectMusicContestSignUp());
 	}
 	
-	// ============================ 讀取比賽結束賽事圖表用 AJAX ============================== //
+// ============================ 讀取比賽結束賽事圖表用 AJAX ============================== //
 	
 	@RequestMapping(value="/pages/musicContesetHistoryAjax", method=RequestMethod.GET, produces="application/json;charset=UTF-8")
 	@ResponseBody
