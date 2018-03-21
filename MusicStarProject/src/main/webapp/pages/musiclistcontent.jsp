@@ -40,8 +40,7 @@ margin:0 auto;
      <br>
       <br>
        <br>
-		<div class="card">
-			<div class="card-body">
+		
 				<!-- 每頁不同的內容從這裡開始 -->
 				 <table id="productTable" class="table table-bordered">
                        <thead>
@@ -67,8 +66,7 @@ margin:0 auto;
        </div>
     </div>
       </div>
-</div>
-</div>
+
 	<script>
 		$(document).ready(function() {			
 			    //讀取歌單
