@@ -12,12 +12,7 @@
 <link type="text/css" rel="stylesheet" href="${ctx}/backend/css/jquery-ui.structure.css">
 <link type="text/css" rel="stylesheet" href="${ctx}/backend/css/jquery-ui.theme.css">
 <link type="text/css" rel="stylesheet" href="${ctx}/backend/css/jquery-ui.css">
-<style>
-.tabelContainer{
-margin-bottom:50px;
-padding:30px;
-}
-</style>
+
 </head>
 <body>
 	<!-- Navigation-- jsp include -->
@@ -25,7 +20,7 @@ padding:30px;
 
  	      <!-- Breadcrumbs-->
 
- <div class="content-wrapper"  id="page-top">
+ <div class="content-wrapper">
     <div class="container-fluid">
       <!-- 創建比賽 查詢比賽 -->
             <ol class="breadcrumb"  style="margin-top:60px;">
@@ -116,9 +111,7 @@ padding:30px;
     </form>
     </div>     
 
-
       <!--=================================================================-->
-<div class="row tabelContainer">
 <table id="table1" class="table table-bordered table-striped table-hover">
 						<thead>
 							<tr>
@@ -139,19 +132,54 @@ padding:30px;
 
 						</tbody>
 					</table>
-       </div>
-     <footer class="sticky-footer">
+ 
+  
+      <!-- Area Chart Example-->
+      <div class="card mb-3">
+        <div class="card-header">
+          <i class="fa fa-area-chart"></i> Area Chart Example</div>
+        <div class="card-body">
+          <canvas id="myAreaChart" width="100%" height="30"></canvas>
+        </div>
+        <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+      </div>
+      <div class="row">
+        <div class="col-lg-8">
+          <!-- Example Bar Chart Card-->
+          <div class="card mb-3">
+            <div class="card-header">
+              <i class="fa fa-bar-chart"></i> Bar Chart Example</div>
+            <div class="card-body">
+              <canvas id="myBarChart" width="100" height="50"></canvas>
+            </div>
+            <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+          </div>
+        </div>
+        
+        
+        <div class="col-lg-4">
+          <!-- Example Pie Chart Card-->
+          <div class="card mb-3">
+            <div class="card-header">
+              <i class="fa fa-pie-chart"></i> Pie Chart Example</div>
+            <div class="card-body">
+              <canvas id="myPieChart" width="100%" height="100"></canvas>
+            </div>
+            <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- /.container-fluid-->
+    <!-- /.content-wrapper-->
+    <footer class="sticky-footer">
       <div class="container">
         <div class="text-center">
           <small>Copyright © Music Star 2018</small>
         </div>
       </div>
     </footer>
-      
-    </div>
-    <!-- /.container-fluid-->
-    <!-- /.content-wrapper-->
-
     <!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded" href="#page-top">
       <i class="fa fa-angle-up"></i>
@@ -220,12 +248,7 @@ padding:30px;
         <option value="12">Independent</option>
       </select>
     </div>
-      
-    <div class="modal-body">
-      <label for="music_contest_status">賽事狀況</label>
-      <input id="update_status" type="text" placeholder="請輸入比賽狀況" name="music_contest_status" class="col-xl-12">
-    </div>
-      
+    
     <div class="modal-body">  
       <label for="music_contest_apply_start_date">報名開始日期</label>
       <input type="text" placeholder="請選擇報名開始日期" name="music_contest_apply_start_date" id="update_start_date" class="col-xl-12">
@@ -244,7 +267,14 @@ padding:30px;
     <div class="modal-body">  
       <label for="music_contest_end_date">比賽結束日期</label>  
       <input type="text" placeholder="請選擇比賽結束日期" name="music_contest_end_date" id="update_end_date" class="col-xl-12">
-    </div>  
+    </div> 
+    
+       
+    <div class="modal-body">
+      <label for="music_contest_status">賽事狀況</label>
+      <input id="update_status" type="text" placeholder="請輸入比賽狀況" name="music_contest_status" class="col-xl-12" readonly>
+    </div>
+     
       <div class="modal-footer ">
       <button type="submit" name="music_contest_update" class="col-xl-12">送出</button>
      </div> 
@@ -255,6 +285,9 @@ padding:30px;
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.js"></script>
 <script type="text/javascript" src="${ctx}/backend/js/jquery-datepicker-ui.js"></script>
+	
+
+	
 
 <script type="text/javascript">
 	var modal3 = document.getElementById("id03");
@@ -273,9 +306,10 @@ padding:30px;
 		
 		$("#creatContest label").css({"font-weight":"bold"})
 		
- 		$("#music_contest_apply_start_date,#music_contest_validate_date,#music_contest_vote_start_date,#music_contest_end_date").datepicker({dateFormat: "yy-mm-dd"});
-		$("#update_start_date,#update_validate_date,#update_vote_date,#update_end_date").datepicker({dateFormat: "yy-mm-dd"})
-		                                                                                .on("change",function(){
+ 		$("#music_contest_apply_start_date, #music_contest_validate_date, #music_contest_vote_start_date, #music_contest_end_date").datepicker({dateFormat: "yy-mm-dd"});
+		                                                                                   
+ 		$("#update_start_date, #update_validate_date, #update_vote_date, #update_end_date").datepicker({dateFormat: "yy-mm-dd"})
+ 		                                                                                  .on("change",function(){
                                                                                       // star 
                                                                                         var startTemp =  $("#update_start_date").val();
                                                                                            var startDate = new Date(startTemp).getTime();
@@ -305,6 +339,8 @@ padding:30px;
                                                                                       }
                                                                                       
                                                                                     });
+		                                                                           
+		                                        
  		
 		$("#id03 input[name='music_contest_name']").keyup(function(){
 	      var inputValue = $(this).val()
@@ -317,6 +353,9 @@ padding:30px;
 		}
      	    });
 	    });
+		
+		
+
 		
 		//tableCheck
 		$("#tableCheck").click(function(){
@@ -373,7 +412,7 @@ padding:30px;
 	                    cell10.append(cellLink)
 	                   var cell11 = $("<td></td>").html('<a style="padding-left:0; display:inline" class="nav-link" data-toggle="modal" data-target="#updateContest"><button class="btn btn-info edit"><i class="fa fa-fw fa-wrench"></i></button></a>');
 	                   var cell11_2 = $("<td></td>")
-	                    
+	                   
 	                   var statusName = item.music_contest_status;
 	                   if(statusName!='比賽結束'){
 	                	  var row = $('<tr></tr>').append([cell1, cell2, cell3, cell4,cell5, cell6, cell7, cell8,cell9,cell10,cell11]);     
@@ -381,8 +420,7 @@ padding:30px;
 	                	  var row = $('<tr></tr>').append([cell1, cell2, cell3, cell4,cell5, cell6, cell7, cell8,cell9,cell10,cell11_2]);     
 	                  }
 	                   
-	                   $('#table1>tbody').append(row);
-	 	                   
+	                   $('#table1>tbody').append(row); 
 	                    });
 	       
 	       $("#table1>tbody").on('click','tr button:nth-child(1)',function(){
@@ -399,29 +437,21 @@ padding:30px;
                $("#update_id").val(music_contest_id).next("span").text(music_contest_id);
                $("#update_name").val(music_contest_name);
                $("#update_decription").val(music_contest_description);
-               $("#update_status").val(music_contest_status);
                $("#update_start_date").val(music_contest_apply_start_date);
                $("#update_validate_date").val(music_contest_validate_date);	 	               
                $("#update_vote_date").val(music_contest_vote_start_date);
                $("#update_end_date").val(music_contest_end_date);
-	          })
-		   })
-		});
+            
+	           }) // 查看比賽賽事狀態按鈕結尾
+	           
+		    })
+		 });
 		
-		$('.image-popup-no-margins').magnificPopup({
-			type: 'image',
-			closeOnContentClick: true,
-			closeBtnInside: false,
-			fixedContentPos: true,
-			mainClass: 'mfp-no-margins mfp-with-zoom', // class to remove default margin from left and right side
-			image: {
-				verticalFit: true
-			},
-			zoom: {
-				enabled: true,
-				duration: 300 // don't foget to change the duration also in CSS
-			}
-		});
+
+		
+		
+		
+		
 	});
 	
 	</script>

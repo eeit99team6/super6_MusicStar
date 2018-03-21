@@ -30,6 +30,7 @@ margin:10px 20px 5px 0px;
 }
 
 .outSide{
+width:100%;
 text-align:center;
 position:relative;
 overflow: hidden;
@@ -56,7 +57,7 @@ border:1px solid black;
 border-radius:10px;
 border-radius: 50%;
 padding:5px;
-width:300px;
+width:100%;
 }
 
 .rotateClass{
@@ -267,7 +268,11 @@ text-align:center;
 }
 
 
-
+@media screen and (max-width:768px) {
+    .outSide {
+        width: device-width;
+    }
+}
 
 
 </style>
