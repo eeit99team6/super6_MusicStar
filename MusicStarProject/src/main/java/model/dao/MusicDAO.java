@@ -41,7 +41,6 @@ public class MusicDAO
 		}
 	
 	// update 
-	
 	public MusicBean update(Integer id , MusicBean bean) {
 		MusicBean temp=null;
 	 if(bean!=null && id!=null) {
@@ -80,6 +79,16 @@ public class MusicDAO
 		}
 		return false;
 	}
+	
+	
+
+	/**
+	 * @author YUTING
+	 */
+	
+    public List<MusicBean> selectMusicAllGroupBy(){
+        return  (List<MusicBean>) this.getSession().createQuery("select m.music_style_id,count(m.music_style_id) from MusicBean m group by m.music_style_id").list();
+    }
 	
 	
 	/**

@@ -310,6 +310,16 @@ public class MusicController
 	public String getMusicStyleMap(HttpSession session) {	 
 		 return  Parser.toJson(musicStyleService.getStyleMap());
     }
+	
+	/**
+	 * 取得各類型音樂總數
+	 * @author YuTIng 2018.03.21
+	 */
+	@RequestMapping(value="/backend/selectMusicGroupBy", method=RequestMethod.GET, produces="application/json; charset=UTF-8")
+    @ResponseBody
+	public String showingAllMusic() {
+		return Parser.toJson(musicservice.selectAllMusicGroupBy());
+	}
 }
 
 	
