@@ -22,63 +22,51 @@
 	<jsp:include page="/includes/main_header.jsp" />
 	<!-- main_container start -->
 	<div id="main_container" class="container-fuild">
-
-		<div id="leaderboard-1-left">
-			<div class="leaderboard-1-left-title">經典賽事</div>
-		<!-- 	<div class="left-div">連結</div> -->
-		</div>
+	
+		<h2 class="leaderboard-title card-header"></h2>
+		
+		<div class="container">
+		
+			<div id="leaderboard-1-outer-left" class="container">
+				<div id="leaderboard-1-left-title" class="card-title">經典賽事</div>
+					<div id="leaderboard-1-left-body" class="card-body">
+					<!-- 	<div class="left-div">連結</div> -->
+					</div>
+			</div>
 			
-		<div id="leaderboard-1-right">
-			<h2 class="leaderboard-title"></h2>	
-			<div class="leaderboard-1-table1">
-			<table>		
-				<thead>
-					<tr>
-						<th>排名</th>		
-					</tr>	
-				</thead>
-				<tbody class="leaderboards-1-tbody-1">						
-					<tr><td class="ch"><i class="material-icons" style="font-size:28px;color:red">filter_1</i></td></tr>
-					<tr><td class="ch"><i class="material-icons" style="font-size:28px;color:red">filter_2</i></td></tr>
-					<tr><td class="ch"><i class="material-icons" style="font-size:28px;color:red">filter_3</i></td></tr>
-					<tr><td class="ch"><i class="material-icons" style="font-size:28px;color:red">filter_4</i></td></tr>
-					<tr><td class="ch"><i class="material-icons" style="font-size:28px;color:red">filter_5</i></td></tr>
-					<tr><td class="ch"><i class="material-icons" style="font-size:28px;color:red">filter_6</i></td></tr>
-					<tr><td class="ch"><i class="material-icons" style="font-size:28px;color:red">filter_7</i></td></tr>
-					<tr><td class="ch"><i class="material-icons" style="font-size:28px;color:red">filter_8</i></td></tr>
-					<tr><td class="ch"><i class="material-icons" style="font-size:28px;color:red">filter_9</i></td></tr>
-					<tr><td class="ch"><i class="material-icons" style="font-size:28px;color:red">filter_9_plus</i></td></tr>	
-				</tbody>	
-			</table>
-			</div>
-			<div class="leaderboard-1-table2">
-			<table>		
-				<thead>
-					<tr>	
-						<th>圖</th>
-						<th>歌曲</th>
-						<th>歌曲名稱</th>
-						<th>得票數</th>
-						<th>作者</th>
-						<th>敘述</th>
-					</tr>	
-				</thead>
-				<tbody class="leaderboards-1-tbody-2">
-					<tr>
-		<!-- 				<td>放圖</td> -->
-		<!-- 				<td>放歌曲</td> -->
-		<!-- 				<td>放歌曲名稱</td> -->
-		<!-- 				<td>放作者</td> -->
-		<!-- 				<td>放敘述</td> -->
-		<!-- 				<td>放得票數</td> -->
-					</tr>	
-			</table>
-			</div>
-			<div class="leaderboard-1-back">	
-				<a href="${ctx}/pages/leaderboards.jsp" class="btn btn-outline-danger" role="button" aria-pressed="true">回排行榜</a>
-			</div>
-		</div><!-- leaderboard-1-right -->
-
+			<div id="leaderboard-1-outer-right" class="container">
+				<div id="leaderboard-1-right" class="card-body">
+					<div class="leaderboard-1-table2">
+						<table class="table">		
+							<thead class="text-light bg-dark">
+								<tr>
+									<th scope="col">排名</th>	
+									<th scope="col">圖</th>
+									<th scope="col">歌曲</th>
+									<th scope="col">歌曲名稱</th>
+									<th scope="col">得票數</th>
+									<th scope="col">作者</th>
+									<th scope="col">敘述</th>
+								</tr>	
+							</thead>
+							<tbody class="leaderboards-1-tbody-2">
+								<tr>
+					<!-- 				<td>放圖</td> -->
+					<!-- 				<td>放歌曲</td> -->
+					<!-- 				<td>放歌曲名稱</td> -->
+					<!-- 				<td>放作者</td> -->
+					<!-- 				<td>放敘述</td> -->
+					<!-- 				<td>放得票數</td> -->
+								</tr>	
+						</table>
+					</div>
+					<div class="leaderboard-1-back card-footer small text-muted">	
+						<a href="${ctx}/pages/leaderboards.jsp" class="btn btn-outline-danger" role="button" aria-pressed="true">回排行榜</a>
+					</div>
+				</div>
+			</div>		
+		</div>
+		
 		<p>${errors.action}</p>	
 	<input type="hidden" id="xxxId" value="${param.music_contest_id}">
 	</div>
