@@ -8,7 +8,7 @@
 			<img src="${ctx}/assets/img/ajax/ajax-loading.gif" />
 		</div>
 	</div>
-	<div id="jplayer_container"
+	<div id="jplayer_container row"
 		class="jp-video jp-video-270p jp-container " role="application"
 		aria-label="media player">
 		<div>

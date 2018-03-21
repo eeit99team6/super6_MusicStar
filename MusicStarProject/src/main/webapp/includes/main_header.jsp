@@ -4,7 +4,7 @@
 <header id="main_header">
 	<nav class="main_nav">
 		<ul class="menu">
-			<li><a href="<c:url value="/index.jsp"/>"><img style="padding-bottom:5%" width="60" src="${ctx}/assets/img/pagesUsage/music-star.png"/>MusicStar</a></li>
+			<li><a href="<c:url value="/index.jsp"/>"><img src="${ctx}/assets/img/pagesUsage/music-star.png"/>MusicStar</a></li>
 			<li><a href="#">賽事專區</a>
 				<ul>
 					<li><a href="<c:url value="/pages/contestrule.jsp"/>">賽事規則</a></li> 

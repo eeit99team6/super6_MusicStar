@@ -53,7 +53,7 @@ $(function(){
 					docFrag.append("<div class='display_show'></div>");
 				}	
 				$("#display_area").append(docFrag)
-				.on("click",".play_music",function(e){
+				.on("mouseup",".play_music",function(e){
 					var $this = $(this),
 						musicName = $this.parent().find("h2").eq(0).text(),
 						musicCtstPlayerId = $this.next("a").data("player-id"),
@@ -61,7 +61,7 @@ $(function(){
 						musicPhoto = $this.parents(".view").find("img").eq(0).attr("src");
 					addAndPlayMusic(musicName,musicCtstPlayerId,musicLink,musicPhoto);
 					})			
-		 		.on("click",".voting",function(e){
+		 		.on("mouseup",".voting",function(e){
 					var musicCtstPlayerId = $(this).data("player-id"),
 						thisPlayerVotes = $(this).parents(".display_show").find(".playerVotes:eq(0)");
 					if(confirm("確定要投票嗎?請注意:投票後就不能再更改囉!!")){

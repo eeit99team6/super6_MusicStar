@@ -241,7 +241,8 @@ var settings = {
 
     $(function () {
 
-        var $slideshow = $('.slideshow');
+        var $slideshow = $('.slideshow'),
+		$body = $('body');
 
         // Prioritize "important" elements on medium.
         skel.on('+medium -medium', function () {
@@ -254,6 +255,14 @@ var settings = {
         // Slide Show.
         $slideshow._slider(settings.slideshow);
 
+    	// Disable animations/transitions until the page has loaded.
+    	$body.addClass('is-loading');
+
+    	window.setTimeout(function() {
+    		$body.removeClass('is-loading');
+    	}, 750);
+        
+        
     });
 
 })(jQuery);

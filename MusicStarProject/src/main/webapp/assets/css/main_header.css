@@ -39,6 +39,11 @@ ul.menu > li:first-child {
     font-size: 1.6em;
     min-width: 0px;
 }
+ul.menu > li:first-child > a >img {
+	position:relative;
+	top: -6px;
+	height:60px;
+}
 ul.menu > li li {
     background-color: rgba(0, 0, 0, 0.5);
 }
