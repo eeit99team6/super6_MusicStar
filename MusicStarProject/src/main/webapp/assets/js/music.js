@@ -1,5 +1,31 @@
 $(document).ready(function(){
 	var needDeleteId;
+	var likeMark;
+	
+	// When loading this page, call getLikeCounts() function to give like counts
+	getLikeCounts();
+	
+	// Count up
+	$('.count').counterUp({
+        delay: 10,
+        time: 1500
+    });
+	
+	// When members loading this page, give likes to change hearts
+	function changeHearts(){
+		$.getJSON(ctx + '/music/isLiked',
+			function(data){
+				
+			var divLength = $(".musicDiv").length;
+						
+			for(var i = 0; i<=divLength; i++){
+				if(data.hasOwnProperty(i+1)){
+					$($(".musicDiv")[i]).find("#like_mark").attr("class","fas fa-heart like");
+				}
+			}
+		});
+	}
+	changeHearts();
 	
 	// Music Player
 	$(".musicDiv").on('click','.play_button',function(){
@@ -11,14 +37,14 @@ $(document).ready(function(){
 		addAndPlayMusic(musicName,musicCtstPlayerId,musicLink,musicPhoto);
 	})
 	
-	
 	// Get like counts function
 	function getLikeCounts(){
 		$.getJSON(ctx + '/music/musicSelectCount',
 			function(data){ 
 			$(":input[name='music_id']").each(function(){
 				var key = $(this).val();		// $(this) -> $(":input[name='music_id']")
-				var count = (key+1)*2-7 + data[key] || (key+1)*2-7 +"0";	// if data[key] == true -> save data[key] to count
+				var count = new Number(data[key]||0);
+				// if data[key] == true -> save data[key] to count
 												// if data[key] == false -> save "0" to count
 									
 				$(this).parents("#musicDiv").find(".count:eq(0)").text(count);
@@ -30,6 +56,7 @@ $(document).ready(function(){
 	// Delete Like function
 	function deleteLike(needDeleteId){
 		$.getJSON(ctx + '/likeleaderboards.likedelete.controller',{'likes_music_id':needDeleteId},function(data){
+			likeMark.attr("class","far fa-heart like");
 			getLikeCounts();
 		})
 	}
@@ -41,15 +68,6 @@ $(document).ready(function(){
 	$("#checkClickLike").on("click",function(){
 		$("#checkLike").modal("show");
 	})
-	
-	// When loading this page, call getLikeCounts() function to give like counts
-	getLikeCounts();
-	
-	// Count up
-	$('.count').counterUp({
-        delay: 10,
-        time: 1000
-    });
 	
 	// When first loading this page nothing radio, give default button
 	if($(":radio")[0].checked == false && $(":radio")[1].checked == false
@@ -83,10 +101,13 @@ $(document).ready(function(){
 	// Like
 	$(".musicDiv").on('click','.like',function(){
 		var id = $(this).parents(".musicDiv").find("input[name=music_id]").val();
+		likeMark = $(this).parents(".musicDiv").find("i[id=like_mark]");
+		console.log(likeMark);
 		$.getJSON(ctx + '/music/musicSelectLike',{'likes_music_id':id},
 			function(data){
 				if(data.success){
 					$(".modal-msg").eq(0).html("<span>"+ data.success +"</span>");
+					likeMark.attr("class","fas fa-heart like");
 					$("#checkList").modal("show");
 					
 				// Renew page to display update count

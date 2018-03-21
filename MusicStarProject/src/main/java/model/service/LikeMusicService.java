@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -85,6 +86,18 @@ public class LikeMusicService {
 			return true;
 		}
 		return result;
+	}
+	
+	/**
+	 * @author yeh 2018.03.20 15:00
+	 * @return 用在搜尋某位會員按哪些歌曲讚
+	 */
+	public List<LikeMusicBean> selectLikeMusic(String likes_member_id){
+		List<LikeMusicBean> temp = likeMusicDAO.selectLikeMusic(likes_member_id);
+		if(temp!=null) {
+			return temp;
+		}
+		return null;
 	}
 	
 }
