@@ -6,7 +6,6 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>進行投票</title>
 <jsp:include page="/includes/main_css.jsp" />
 <link href="${ctx}/assets/css/voting.css" rel="stylesheet" />
@@ -28,7 +27,7 @@
 			<h1 id="contest_title" class="display-2 title-title">賽事投票中</h1>
 			<div class="container">
 				<h3 id="vote_description" class="text-center"></h3>
-				<div class="counter_container text-center">
+				<div class="counter_container">
 					<div class="counter_box">
 						<div class="pure-g-r">
 							<div class="pure-u-1-2">

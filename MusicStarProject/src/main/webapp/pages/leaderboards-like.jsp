@@ -8,6 +8,7 @@
 <title>創作排行</title>
 <jsp:include page="/includes/main_css.jsp" />
 <link href="${ctx}/assets/css/leaderboards-like.css" rel="stylesheet" />
+<link href="${ctx}/assets/css/common_style/allPages.css" rel="stylesheet"/>
 <style type="text/css">
 .title-title{
 color:orange;

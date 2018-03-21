@@ -6,6 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- <link rel="stylesheet" type="text/css" href="../css/table.css" /> -->
+<link href="${ctx}/assets/css/common_style/allPages.css" rel="stylesheet"/>
 <title>我的歌單</title>
 <jsp:include page="/includes/main_css.jsp" />
 <jsp:include page="/includes/main_js.jsp" />

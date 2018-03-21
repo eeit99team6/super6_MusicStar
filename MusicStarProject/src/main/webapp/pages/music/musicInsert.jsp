@@ -8,6 +8,7 @@
 <title>Default Page</title>
 <jsp:include page="/includes/main_css.jsp" />
 <link href="${ctx}/assets/css/music-upload-muisc/site.css" rel="stylesheet" />
+<link href="${ctx}/assets/css/common_style/allPages.css" rel="stylesheet"/>
 <link href="${ctx}/assets/css/musicInsert.css" rel="stylesheet"/>
 
 

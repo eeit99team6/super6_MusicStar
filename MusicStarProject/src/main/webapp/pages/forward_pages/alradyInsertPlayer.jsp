@@ -7,6 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>AlreadyInsertedPlayer</title>
 <jsp:include page="/includes/main_css.jsp" />
+<link href="${ctx}/assets/css/common_style/allPages.css" rel="stylesheet"/>
 
 <style type="text/css">
 #alerInfor{

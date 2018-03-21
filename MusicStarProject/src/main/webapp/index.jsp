@@ -5,7 +5,6 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>MusicStar 首頁</title>
 <jsp:include page="/includes/main_css.jsp" />
 <link href="${ctx}/assets/css/slideshow.css" rel="stylesheet" />

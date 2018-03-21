@@ -6,6 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>InsertMusicOK</title>
+<link href="${ctx}/assets/css/common_style/allPages.css" rel="stylesheet"/>
 <jsp:include page="/includes/main_css.jsp" />
 <style type="text/css">
 

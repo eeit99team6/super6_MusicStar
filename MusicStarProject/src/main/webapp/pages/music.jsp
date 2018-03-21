@@ -8,6 +8,7 @@
 <title>音樂搜尋</title>
 <jsp:include page="/includes/main_css.jsp" />
 <link href="${ctx}/assets/css/music.css" rel="stylesheet" />
+<link href="${ctx}/assets/css/common_style/allPages.css" rel="stylesheet"/>
 <jsp:include page="/includes/main_js.jsp" />
 </head>
 <body>

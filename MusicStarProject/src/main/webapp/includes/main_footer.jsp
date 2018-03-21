@@ -5,7 +5,7 @@
     <footer id="main_footer">
         <div class="copyright container">
             <div class="row">
-                <div class="col-sm-3 text-center">
+                <div class="col-md-3 text-center">
                     <h4>公司簡介</h4>
                     <dl>
                         <dt>
@@ -22,7 +22,7 @@
                         </dt>
                     </dl>
                 </div>
-                <div class="col-sm-3 text-center">
+                <div class="col-md-3 text-center">
                     <h4>會員服務</h4>
                     <dl>
                         <dt>
@@ -36,7 +36,7 @@
                         </dt>
                     </dl>
                 </div>
-                <div class="col-sm-3 text-center">
+                <div class="col-md-3 text-center">
                     <h4>其他</h4>
                     <dl>
                         <dt>
@@ -50,7 +50,7 @@
                         </dt>
                     </dl>
                 </div>
-                <div class="col-sm-3 text-center">
+                <div class="col-md-3 text-center">
                     <h4>加入社群</h4>
                     <div class="link row">
                         <div class="col-md-1"></div>
