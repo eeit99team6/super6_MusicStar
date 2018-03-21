@@ -372,7 +372,7 @@
 						<div><input type="hidden" name="music_style_id" value="${beanVar.music_style_id}"/></div>
 						
 						<div id="like_music" class="like_music">Like:&nbsp;&nbsp;
-							<i class="fa fa-heart like" id="like_mark"></i>
+							<i class="far fa-heart like" id="like_mark"></i>
 						</div>
 						
 						<div id="like_count">按讚數:&nbsp;&nbsp;<span class="count"></span></div>

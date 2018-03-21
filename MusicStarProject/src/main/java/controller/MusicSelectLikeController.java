@@ -44,9 +44,10 @@ public class MusicSelectLikeController {
 			}
 		}else {
 			data.put("mustlogin", "必須登入才可以按讚喔~");
-		}						
+		}					
 		return Parser.toJson(data);
 	}
+	
 	
 	@RequestMapping(path={"/music/musicSelectCount"},method={RequestMethod.GET,RequestMethod.POST},produces="application/json;charset=UTF-8")
 	@ResponseBody
@@ -71,4 +72,37 @@ public class MusicSelectLikeController {
 			return jsonString;
 		}
 	}
+	
+	
+	@RequestMapping(path={"/music/isLiked"},method={RequestMethod.GET,RequestMethod.POST},produces="application/json;charset=UTF-8")
+	@ResponseBody
+	public String IsLiked(LikeMusicBean bean, Model model, HttpSession session) {
+		Map<String,String> errors = new HashMap<>();
+		//new一個新的Map map
+		Map<String,String> beanMap = new HashMap<>();
+		MemberBean mb =(MemberBean) session.getAttribute("loginOK");
+		model.addAttribute("errors",errors);
+		
+		if(mb!=null) {
+			String MbrId = mb.getMbrId();
+			Gson gson = new Gson();
+			List<LikeMusicBean> beanList = likeMusicService.selectLikeMusic(MbrId);
+			if(beanList==null) {
+				errors.put("action", "UnKnow Action");
+				return "likemusic UnKnow";
+			}else {
+				//利用for迴圈印出beanList中每一筆資料 "方式:for(小的Map:大的List)"
+				for(LikeMusicBean map : beanList) {
+					//在新的Map map中放入(key, value)=>(從小的Map中取出的likes_music_id,與count值)
+					beanMap.put(map.getLikes_music_id().toString(), "true");
+				}
+				String jsonString = gson.toJson(beanMap);
+				return jsonString;
+			}
+		}else {
+			return "mustLogin";
+		}
+		
+	}
+	
 }
