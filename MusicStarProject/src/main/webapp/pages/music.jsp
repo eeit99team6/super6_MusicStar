@@ -30,7 +30,8 @@
         	<table>
         		<tbody>
         			<tr><td id="music_list_music_name">歌曲名稱: </td></tr>
-        			<tr><td id="listname">歌單名稱: <select id="listselect"><option value="0">請選擇</option></select></td></tr>
+        			<tr><td id="listname">歌單名稱: <select id="listselect"><option value="0">請選擇</option></select></td>
+        			<td>&nbsp&nbsp<a href="${ctx}/pages/mymusiclist.jsp">還沒有歌單請點</a></td></tr>
         		</tbody>
         	</table>
 	        <div class="modal-footer">
