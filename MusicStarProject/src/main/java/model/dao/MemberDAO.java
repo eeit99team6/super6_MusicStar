@@ -27,7 +27,7 @@ public class MemberDAO
 	 */
 	public MemberBean selectById(String mbrId)
 	{
-		return mbrId != null ? getSession().get(MemberBean.class, mbrId) : null;
+		return mbrId != null ? getSession().createQuery("from MemberBean where mbrId = :mbrId", MemberBean.class).setParameter("mbrId", mbrId).uniqueResult() : null;
 	}
 	
 	/**
