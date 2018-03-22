@@ -27,7 +27,6 @@ margin:0 auto;
 }
 </style>
 <jsp:include page="/includes/main_js.jsp" />
-<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 </head>
 <body>
 	<jsp:include page="/includes/main_header.jsp" />
@@ -111,7 +110,6 @@ margin:0 auto;
 		})	
 			
 	</script>
- 	</div>
 	<!-- main_container end -->
 	<jsp:include page="/includes/main_aside.jsp" />
 	<jsp:include page="/includes/main_footer.jsp" />

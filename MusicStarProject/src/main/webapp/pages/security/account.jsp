@@ -17,14 +17,14 @@
 }
 
 .scrollspy_container {
-	height: 50vh; 
+	height: 62vh; 
  	overflow-y: scroll; 
 	position: relative;
 	user-select:none;
 }
 
 .contorl_box{
-	height: calc(50vh - 33px);
+	height: calc(62vh - 36px);
 	overflow-y: scroll; 
 }
 

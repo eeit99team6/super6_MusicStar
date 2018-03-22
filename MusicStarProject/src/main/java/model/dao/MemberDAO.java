@@ -23,7 +23,7 @@ public class MemberDAO
 	}
 
 	/**
-	 * @author Phil 2018.03.12
+	 * @author Phil 2018.03.22
 	 */
 	public MemberBean selectById(String mbrId)
 	{
