@@ -20,6 +20,7 @@ import _global.utils.Parser;
 import model.bean.LikeMusicBean;
 import model.bean.MemberBean;
 import model.service.LikeMusicService;
+import model.service.MusicService;
 
 @Controller
 public class MusicSelectLikeController {
@@ -27,6 +28,8 @@ public class MusicSelectLikeController {
 	private ApplicationContext context;
 	@Autowired
 	private LikeMusicService likeMusicService;
+	@Autowired
+	private MusicService musicService;
 	
 	@RequestMapping(path={"/music/musicSelectLike"},method={RequestMethod.GET,RequestMethod.POST},produces="application/json;charset=UTF-8")
 	@ResponseBody
@@ -102,7 +105,18 @@ public class MusicSelectLikeController {
 		}else {
 			return "mustLogin";
 		}
+	}
+	
+	@RequestMapping(path={"/music/musicCount"},method={RequestMethod.GET,RequestMethod.POST},produces="application/json;charset=UTF-8")
+	@ResponseBody
+	public String selectCount(LikeMusicBean bean, Model model, HttpSession session) {
+				
+		Long temp = musicService.selectCount();
+		String count = temp.toString();
 		
+		Gson gson = new Gson();
+		String jsonString = gson.toJson(count);
+		return jsonString;
 	}
 	
 }

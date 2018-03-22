@@ -1,21 +1,35 @@
 @charset "UTF-8";
 
 /* leaderboards-1.jsp */
-#leaderboard-1-left{
-	float:left;
-	margin-left:200px;
+
+.leaderboard-title{
+	box-shadow:2px 2px 2px rgba(20%,20%,40%,0.6),4px 4px 6px rgba(20%,20%,40%,0.4),6px 6px 12px rgba(20%,20%,40%,0.4),12px 12px 24px rgba(20%,20%,40%,0.4);
+	text-align: center;
+	font-family:標楷體;
+	font-size:56px;
 	margin-top:60px;
+	color:orange;
 }
 
-.leaderboard-1-left-title{
+#leaderboard-1-outer-left{
+	float:left;
+	margin-top:30px;
+	width:30%;
+}
+
+#leaderboard-1-left-title{
 	color:#8e8e8e;
-	font-size:36px;
+	font-size:32px;
 	font-weight:bold;
 	font-family:標楷體;
 }
 
+#leaderboard-1-left-body{
+
+}
+
 .left-div a{
-	font-size:24px;
+/* 	font-size:18px; */
 	line-height:50px;
 	font-weight:bold;
 }
@@ -33,33 +47,10 @@
 	color:red;
 }
 
-#leaderboard-1-left{
-	margin-top:70px;
-}
-
-#leaderboard-1-right{
-	margin-top:70px;
-}
-
-#leaderboard-1-right h2{
-	 font-family:標楷體;
-	 font-weight:bold;
-	 padding-top:30px;
-	 color:blue;
-	 text-align:center;
-}
-
-.leaderboard-1-table1{
+#leaderboard-1-outer-right{
 	float:left;
-	line-height:92px;
-	margin-left:100px;
-/* 	margin-top:10px; */
-}
-
-.leaderboard-1-table2{
-	float:left;
-	line-height:92px;
-/* 	font-size:20px; */
+	margin-top:20px;
+	width:70%;
 }
 
 .leaderboards-1-tbody-2 img{
@@ -67,22 +58,17 @@
 	height:60px;
 }
 
-.ch i{
-/* 	padding-top:30px; */
-	padding-bottom:2px;
-}
-
- tbody td{
-	padding-right:50px;
-}
-
- tbody tr{
-	border-bottom:1px solid;
-}
-
-.leaderboard-1-back{
+.leaderboard-1-table2{
+	font-size:18px;
 	text-align:center;
-	margin-top:1400px;
-	float:none;
+	font-weight:bold;
 }
 
+.td1{
+	color:red;
+	font-size:28px;
+}
+
+.td6{
+	color:blue;
+}

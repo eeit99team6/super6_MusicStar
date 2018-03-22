@@ -135,4 +135,10 @@ public class MusicService
 		return allMusicName;
 	}
 	
+	// select count
+	public Long selectCount() {
+		Long count = musicdao.selectCount();
+		return count;
+	}
+	
 }
