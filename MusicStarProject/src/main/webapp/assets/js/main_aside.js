@@ -59,9 +59,14 @@ $(function() {
 				mp3:value.musicLink,
 				poster:value.musicPhoto
 			});
-		});	
+		});
+		
+		audioPlaylist.pause();
+		
 		audioPlaylist.setPlaylist(data);
+	
 		audioPlaylist.play(0);
+		
 		if($("#jp_player_list").hasClass("jp-hide")){
 			$("#jp_player_list").removeClass("jp-hide");
 			$("#jp_toggle").addClass("fa-chevron-down").removeClass("fa-chevron-up");			

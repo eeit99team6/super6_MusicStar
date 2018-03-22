@@ -65,7 +65,6 @@ font-weight: bold;
 
 
 </style>
-<link href="${ctx}/assets/css/common_style/allPages.css" rel="stylesheet"/>
 <jsp:include page="/includes/main_js.jsp" />
 <script>
 	

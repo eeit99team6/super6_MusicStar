@@ -9,4 +9,4 @@
 <link href="${ctx}/assets/css/main_header.css" rel="stylesheet" />
 <link href="${ctx}/assets/css/main_aside.css" rel="stylesheet" />
 <link href="${ctx}/assets/css/main_footer.css" rel="stylesheet" />
-<link href="${ctx}/assets/css/common_style/allPages.css" rel="stylesheet" />
+<link href="${ctx}/assets/css/common_style/allPages.css" rel="stylesheet"/>

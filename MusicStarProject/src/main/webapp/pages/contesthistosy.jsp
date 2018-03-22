@@ -8,8 +8,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Contest History Page</title>
 <jsp:include page="/includes/main_css.jsp" />
-<link href="${ctx}/assets/css/common_style/allPages.css" rel="stylesheet"/>
 <style type="text/css">
+.title-title{
+	margin-bottom: 20px;
+}
 </style>
 <jsp:include page="/includes/main_js.jsp" />
 <script
