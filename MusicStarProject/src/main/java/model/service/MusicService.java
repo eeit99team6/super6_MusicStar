@@ -69,6 +69,15 @@ public class MusicService
 		return false;
 	} 
 	
+
+	/**
+	 * @author YUTING
+	 */
+	// select all music group by
+	public List<MusicBean> selectAllMusicGroupBy(){
+		List<MusicBean> list = musicdao.selectMusicAllGroupBy();
+		return list;
+	}
 	
 	/**
 	 * @author Yeh
@@ -124,6 +133,12 @@ public class MusicService
 			allMusicName = musicdao.selectAllMusicName(music_name);
 		}
 		return allMusicName;
+	}
+	
+	// select count
+	public Long selectCount() {
+		Long count = musicdao.selectCount();
+		return count;
 	}
 	
 }

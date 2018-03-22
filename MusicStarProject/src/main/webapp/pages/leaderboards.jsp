@@ -25,7 +25,7 @@
 	
 		<div class="title-title">經典賽事排行榜</div>
 			
-		<div id="leaderboard-outer" class="container">
+		<div id="leaderboard-outer" class=" row">
 <!-- 			<div id='leaderboard-max1' class="container border border-danger"> -->
 <!-- 				<h2 class="leaderboard-title1"><i class="fa fa-play" style="font-size:48px;color:red"></i></h2> -->
 <!-- 				<ol class="leaderboard-ol"> -->
