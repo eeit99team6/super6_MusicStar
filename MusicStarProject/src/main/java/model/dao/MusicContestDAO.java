@@ -86,7 +86,7 @@ public class MusicContestDAO {
 	
 	//用在搜尋已結束的比賽有幾個-賽事排行榜使用
 	public List<MusicContestBean> selectContestIdCount(){
-		Query query = this.getSession().createQuery("select count(music_contest_id) from MusicContestBean where music_contest_status='比賽結束'");
+		Query query = this.getSession().createQuery("select music_contest_id from MusicContestBean where music_contest_status='比賽結束'");
 		return (List<MusicContestBean>) query.list();
 	}
 

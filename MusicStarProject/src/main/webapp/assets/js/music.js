@@ -14,15 +14,19 @@ $(document).ready(function(){
 	// When members loading this page, give likes to change hearts
 	function changeHearts(){
 		$.getJSON(ctx + '/music/isLiked',
-			function(data){
-				
-			var divLength = $(".musicDiv").length;
-						
-			for(var i = 0; i<=divLength; i++){
-				if(data.hasOwnProperty(i+1)){
-					$($(".musicDiv")[i]).find("#like_mark").attr("class","fas fa-heart like");
+			function(liked){
+			var count;
+			$.getJSON(ctx + '/music/musicCount',
+				function(data){
+					count = data;
+					console.log(count);
+					for(var i = 0; i<=count; i++){
+						if(liked.hasOwnProperty(i)){
+							$(".musicDiv input[id=music_id_"+i+"]").parents(".musicDiv").find("#like_mark").attr("class","fas fa-heart like");
+						}
+					}
 				}
-			}
+			);
 		});
 	}
 	changeHearts();

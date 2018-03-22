@@ -136,4 +136,11 @@ public class MusicDAO
 		List<MusicBean> test = (List<MusicBean>)query.list();
 		return test;
 	}
+	
+	//select music count
+	
+	public Long selectCount() {
+		Query query = this.getSession().createQuery("select count(*) from MusicBean");
+		return (Long) query.uniqueResult();
+	}
 }

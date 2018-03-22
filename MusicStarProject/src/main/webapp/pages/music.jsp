@@ -364,7 +364,7 @@
 							</div>
 						</div>
 						
-						<div><input type="hidden" name="music_id" value="${beanVar.music_id}"/></div>
+						<div><input type="hidden" name="music_id" id="music_id_${beanVar.music_id}" value="${beanVar.music_id}"/></div>
 						
 						<div id="singer">歌手: <div id="music_member_id">${beanVar.music_member_id}</div></div>
 						

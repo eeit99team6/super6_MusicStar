@@ -7,39 +7,50 @@
 	font-family:標楷體;
 	font-size:56px;
 	margin-top:70px;
+	color:orange;
 }
 
 #leaderboard-outer{
 	text-align:center;
-	margin-top:10px;	
+	width:auto;	
 }
 
-#leaderboard-outer h2{
-	 font-family:標楷體;
-	 font-weight:bold;
-	 padding-top:30px;
-	 color:blue;
+#leaderboard-max1{
+	float:left;
+	width:auto;
+	margin:80px;
+}
+
+.leaderboard-title1{
+	font-family:標楷體;
+	font-weight:bold;
+	font-size:18px;
+	color:blue;
 }
 
 .leaderboard-ol{
  	list-style-type: none; 
 }
+
 .leaderboard-ol li{
- 	padding-top:20px;
+ 	padding-top:10px;
  	padding-bottom:10px;
  	border-bottom:2px solid ; 	
 }
+
 .leaderboard-ol img{
 	width:80px;
-	height:80px;
-	padding-top:5px;
-	padding-bottom:10px;	
+	height:80px;	
 }
 
-#leaderboard-max1{
-	float:left;
-	width:30%;
-	height:820px;
-	margin:15px;
+.ph4{
+	font-family:標楷體;
+	font-weight:bold;
+/* 	font-size:18px; */
 }
 
+.ph5{
+	font-family:標楷體;
+	font-weight:bold;
+/* 	font-size:18px; */
+}
